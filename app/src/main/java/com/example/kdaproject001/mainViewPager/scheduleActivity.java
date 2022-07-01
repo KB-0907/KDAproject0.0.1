@@ -1,8 +1,10 @@
-package com.example.kdaproject001;
+package com.example.kdaproject001.mainViewPager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.kdaproject001.R;
 
 public class scheduleActivity extends AppCompatActivity {
 

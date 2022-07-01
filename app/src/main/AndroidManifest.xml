@@ -21,7 +21,7 @@
             android:name=".creditActivity"
             android:exported="false" />
         <activity
-            android:name=".scheduleActivity"
+            android:name=".mainViewPager.scheduleActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
