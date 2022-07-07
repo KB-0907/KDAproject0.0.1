@@ -63,5 +63,10 @@ public class Login extends AppCompatActivity {
                 });
             }
         }); //로그인 요청
+
+    }
+    public void button(View view){
+        Intent goIntent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(goIntent);
     }
 }
