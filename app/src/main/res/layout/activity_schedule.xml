@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="150dp"
             android:background="#00C32929"
-            android:text="Button" />
+            android:text="만들기" />
     </LinearLayout>
 
     <LinearLayout

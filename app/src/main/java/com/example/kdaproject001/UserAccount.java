@@ -1,5 +1,10 @@
 package com.example.kdaproject001;
 
+import android.os.Bundle;
+import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 /**
  * 사용자 계정 정보 모델 클래스
  */
@@ -33,4 +38,5 @@ public class UserAccount {
     public void setIdToken(String idToken) {
         this.idToken = idToken;
     }
+
 }
