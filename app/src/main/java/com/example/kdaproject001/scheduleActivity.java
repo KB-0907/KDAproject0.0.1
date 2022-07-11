@@ -38,7 +38,7 @@ public class scheduleActivity extends AppCompatActivity {
         makeSchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent makeIntent =  new Intent(scheduleActivity.this, makeSchedule.class);
+                Intent makeIntent =  new Intent(scheduleActivity.this, createSchedule.class);
                 startActivity(makeIntent);
             }
         });

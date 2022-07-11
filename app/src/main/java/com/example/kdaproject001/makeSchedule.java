@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -126,14 +127,12 @@ public class makeSchedule extends AppCompatActivity {
                 TextView textView = new TextView(mContext);
                 textView.setGravity(Gravity.CENTER);
                 textView.setText(String.format(Locale.ROOT,"%s", j, i, getRandomString(j)));
-                textView.setBackgroundResource(R.drawable.list_border);
                 textView.setPadding(5 ,5,5,5);
                 textView.setTextSize(textSize * 1.5f);
                 textView.setTextColor(Color.parseColor("#000000"));
                 textView.setOnClickListener(v -> {
                     if (v.isSelected()){
                         v.setSelected(false);
-                        v.setBackgroundResource(R.drawable.list_border);
                     } else {
                         v.setSelected(true);
                         v.setBackgroundResource(R.drawable.selected_border);
@@ -154,7 +153,6 @@ public class makeSchedule extends AppCompatActivity {
                 TextView textView = new TextView(mContext);
                 textView.setGravity(Gravity.CENTER);
                 textView.setText(String.format(Locale.ROOT,"C%d:%d", i, j));
-                textView.setBackgroundResource(R.drawable.list_border);
                 textView.setPadding(5 ,5,5,5);
                 textView.setTextSize(textSize);
                 textView.setTextColor(Color.parseColor("#000000"));
