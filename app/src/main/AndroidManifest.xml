@@ -14,7 +14,16 @@
         android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".createSchedule"
+            android:name=".post_Item"
+            android:exported="false" />
+        <activity
+            android:name=".board.WriteContentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".board.BoardListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CreateSchedule"
             android:exported="false" />
         <activity
             android:name=".account.Login"
@@ -27,9 +36,6 @@
         </activity>
         <activity
             android:name=".account.SignUp"
-            android:exported="false" />
-        <activity
-            android:name=".makeSchedule"
             android:exported="false" />
         <activity
             android:name=".creditActivity"
