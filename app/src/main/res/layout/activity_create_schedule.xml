@@ -22,7 +22,6 @@
 
         <TextView
             android:id="@+id/textView00"
-            android:layout_Bottom="60dp"
             android:layout_margin="0.5dp"
             android:background="#FFFFFF"
             android:paddingTop="5dp"

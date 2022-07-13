@@ -43,26 +43,43 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View v) {
                 String strEmail = webMail.getText().toString();
                 String strPwd = PassWd.getText().toString();
-                mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-                            FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
-                            UserAccount account = new UserAccount();
-                            account.setEmailId(firebaseUser.getEmail());
-                            account.setPassword(strPwd);
-                            account.setIdToken(firebaseUser.getUid());
+                String strPwdCh = PWCheck.getText().toString();
 
-                            mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account); //database insert
+                if (strEmail.length() > 0 && strPwd.length() > 0 && strPwdCh.length() > 0) {
+                    if (strPwd.equals(strPwdCh)) {
+                        mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPwd)
+                                .addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()) {
+                                            FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
+                                            UserAccount account = new UserAccount();
+                                            account.setEmailId(firebaseUser.getEmail());
+                                            account.setPassword(strPwd);
+                                            account.setIdToken(firebaseUser.getUid());
 
-                            Toast.makeText(SignUp.this, "가입 성공", Toast.LENGTH_SHORT).show();
-                        }else {
-                            Toast.makeText(SignUp.this, "가입 실패", Toast.LENGTH_SHORT).show();
+                                            mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account); //database insert
 
-                        }
+                                            startToast("가입에 성공하였습니다.");
+                                            finish();
+                                        } else {
+                                            if (task.getException() != null) {
+                                            }
+                                        }
+                                    }
+                                });
+                    } else {
+                        startToast("비밀번호가 일치하지 않습니다.");
                     }
-                });
+                }else {
+                    startToast("이메일 또는 비밀번호를 정확히 입력해주세요.");
+                }
             }
         });
     }
+
+    public void startToast(String msg){
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
 }

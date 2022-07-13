@@ -48,27 +48,35 @@ public class Login extends AppCompatActivity {
         loginBnt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String strEmail = userMail.getText().toString();
-                String strPwd = userPassword.getText().toString();
-
-                mFirebaseAuth.signInWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){//로그인 성공
-                            Intent intent = new Intent(Login.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
-                        }else {
-                            Toast.makeText(Login.this, "이메일 혹은 패스워드가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                UserLogin();
             }
         }); //로그인 요청
 
     }
+
     public void button(View view){
         Intent goIntent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(goIntent);
+    }
+
+    public void UserLogin(){
+        String strEmail = userMail.getText().toString();
+        String strPwd = userPassword.getText().toString();
+
+        if (strEmail.length() > 0 && strPwd.length() > 0) {
+            mFirebaseAuth.signInWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()){//로그인 성공
+                        Intent intent = new Intent(Login.this, MainActivity.class);
+                        startActivity(intent);
+                    }else {
+                        Toast.makeText(Login.this, "이메일 혹은 패스워드가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }else {
+            Toast.makeText(Login.this, "이메일 혹은 패스워드를 입력해주세요.", Toast.LENGTH_SHORT).show();
+        }
     }
 }
