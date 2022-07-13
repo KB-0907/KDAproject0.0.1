@@ -1,5 +1,7 @@
 package com.example.kdaproject001.board;
 
+import java.util.ArrayList;
+
 public class PostInfo {
     private String title;
     private String content;
