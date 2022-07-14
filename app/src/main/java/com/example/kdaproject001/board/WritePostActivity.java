@@ -65,6 +65,7 @@ public class WritePostActivity extends AppCompatActivity {
 
                     }
                 });
+
         finish();
     }
 
