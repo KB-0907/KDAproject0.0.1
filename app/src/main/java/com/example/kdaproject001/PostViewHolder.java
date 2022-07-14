@@ -6,16 +6,20 @@ import android.widget.TextView;
 
 import androidx.annotation.Dimension;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kdaproject001.board.PostInfo;
 
-public class postViewHolder extends RecyclerView.ViewHolder {
-    TextView titleText;
+public class PostViewHolder extends RecyclerView.ViewHolder {
+    TextView titleText, contentText;
+    CardView postItemView;
 
-    public postViewHolder(@NonNull View itemView) {
+    public PostViewHolder(@NonNull View itemView) {
         super(itemView);
+        postItemView = itemView.findViewById(R.id.post_item_view);
         titleText = itemView.findViewById(R.id.post_title);
+        contentText = itemView.findViewById(R.id.post_content);
     }
 
     public void setItem(String postInfo){

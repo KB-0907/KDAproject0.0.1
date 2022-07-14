@@ -9,10 +9,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import com.example.kdaproject001.R;
-import com.example.kdaproject001.postAdapter;
+import com.example.kdaproject001.PostAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -20,7 +19,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class BoardListActivity extends AppCompatActivity {
     public final static String TAG = "BoardListActivity";
@@ -30,8 +28,6 @@ public class BoardListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_borad_list);
-
-
 
         ArrayList<PostInfo> postList = new ArrayList<>();
 
@@ -44,14 +40,15 @@ public class BoardListActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 postList.add(new PostInfo(document.getData().get("title").toString(),
-                                        document.getData().get("content").toString()));
+                                        document.getData().get("content").toString(),
+                                        document.getData().get("publisher").toString()));
                             }
                             RecyclerView postRecyclerView;
                             postRecyclerView = findViewById(R.id.post_recyclerview);
                             LinearLayoutManager layoutManager = new LinearLayoutManager(BoardListActivity.this, LinearLayoutManager.VERTICAL, false);
                             postRecyclerView.setLayoutManager(layoutManager);
 
-                            RecyclerView.Adapter mAdapter = new postAdapter(BoardListActivity.this, postList);
+                            RecyclerView.Adapter mAdapter = new PostAdapter(BoardListActivity.this, postList);
                             postRecyclerView.setAdapter(mAdapter);
 
                         } else {
@@ -65,7 +62,7 @@ public class BoardListActivity extends AppCompatActivity {
 
 
     public void moveToContent(View view){
-        Intent intent = new Intent(getApplicationContext(), WriteContentActivity.class);
+        Intent intent = new Intent(getApplicationContext(), WritePostActivity.class);
         startActivity(intent);
     }
 }

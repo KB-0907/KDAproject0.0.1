@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:layout_weight="1"
-            android:text="정보과학교육원"
+            android:text="광운대"
             android:textColor="#FF9A2929"
             android:textSize="25sp" />
 

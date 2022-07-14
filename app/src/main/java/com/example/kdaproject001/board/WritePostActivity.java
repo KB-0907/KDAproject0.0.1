@@ -9,24 +9,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.kdaproject001.PostAdapter;
 import com.example.kdaproject001.R;
-import com.example.kdaproject001.account.Login;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
-
-public class WriteContentActivity extends AppCompatActivity {
+public class WritePostActivity extends AppCompatActivity {
     Button writePostBtn;
     private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_write_content);
+        setContentView(R.layout.activity_write_post);
 
         writePostBtn = findViewById(R.id.writeButton);
         writePostBtn.setOnClickListener(new View.OnClickListener() {
@@ -42,7 +41,9 @@ public class WriteContentActivity extends AppCompatActivity {
         final String contents = ((EditText)findViewById(R.id.post_content_et)).getText().toString();
 
         if (title.length() > 0 && contents.length() > 0){
-            PostInfo postInfo = new PostInfo(title, contents);
+            user = FirebaseAuth.getInstance().getCurrentUser();
+            PostInfo postInfo = new PostInfo(title, contents, user.getUid());
+            //현재 로그인 사용자 UID 받아 변수로 저장 후 PostInfo 에 등록
             uploader(postInfo);
         }else {
             Toast.makeText(this, "제목과 내용을 입력해주세요.", Toast.LENGTH_SHORT).show();
@@ -64,6 +65,7 @@ public class WriteContentActivity extends AppCompatActivity {
 
                     }
                 });
+        finish();
     }
 
 }

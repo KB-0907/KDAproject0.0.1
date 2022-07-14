@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class PostInfo {
     private String title;
     private String content;
-    //private String publisher;
+    private String publisher;
 
-    public PostInfo(String title, String content){
+    public PostInfo(String title, String content, String publisher){
         this.title = title;
         this.content = content;
-  //      this.publisher = publisher;
+        this.publisher = publisher;
     }
 
     public String getTitle() {
@@ -29,5 +29,11 @@ public class PostInfo {
         this.content = content;
     }
 
+    public String getPublisher() {
+        return publisher;
+    }
 
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
 }
