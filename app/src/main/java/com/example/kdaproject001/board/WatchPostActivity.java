@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -47,12 +49,14 @@ public class WatchPostActivity extends AppCompatActivity {
     RecyclerView commentRecyclerView;
     private ArrayList<CommentInfo> commentInfo; // PostInfo 로 실제 입력 받은 글을 파이어 스토어에 널기 위한 ArrayList 변수 생성
     CommentAdapter commentAdapter;
+    EditText commentText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_watch_post);
 
+        commentText = findViewById(R.id.comment_text);
         postTitle = findViewById(R.id.post_title);
         postContents = findViewById(R.id.post_contents);
         postMenu = findViewById(R.id.post_menu);
@@ -84,11 +88,15 @@ public class WatchPostActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
         //현재 누른 게시글과 댓글에 저장된 댓글을 단 게시글 아이디가 같을 경우 표시
-        Intent genIntent = getIntent();
-        String getPostID = genIntent.getStringExtra("ClickPostID");
-        final String[] comPostID = {null};
+        recyclerUpdate();
+    }
 
-        db.collection("comments").orderBy("comCreated", Query.Direction.DESCENDING) //파이어베이스에서 모든 포스트의 문서(글)룰 생성일자순으로 가져옴
+    private void recyclerUpdate(){
+        Intent genIntent = getIntent();
+        String getPostID = genIntent.getStringExtra("ClickPostID"); // 현재 보고 있는 게시글 아이디
+        Log.d("댓글", getPostID);
+
+        db.collection("comments").orderBy("comCreated", Query.Direction.ASCENDING) //파이어베이스에서 모든 포스트의 문서(글)룰 생성일자순으로 가져옴
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -97,21 +105,20 @@ public class WatchPostActivity extends AppCompatActivity {
                             commentInfo = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                commentInfo.add(new CommentInfo(document.getData().get("comment").toString(), //postList 에 가져온 데이터 추가
-                                        document.getId(),
-                                        document.getData().get("comPostID").toString(),
-                                        (Long) document.getData().get("comCreated")
-                                ));
-                                comPostID[0] = document.getData().get("comPostID").toString();
+                                if (getPostID.equals(document.getData().get("comPostID").toString())){
+                                    commentInfo.add(new CommentInfo(document.getData().get("comment").toString(), //postList 에 가져온 데이터 추가
+                                            document.getId(),
+                                            document.getData().get("comPostID").toString(),
+                                            (Long) document.getData().get("comCreated")));
+                                }else {
+                                    Log.d("결과", "실패");
+                                }
+
                             }
-                            if (getPostID.equals(comPostID)){
-                                LinearLayoutManager layoutManager = new LinearLayoutManager(WatchPostActivity.this, LinearLayoutManager.VERTICAL, false);
-                                commentRecyclerView.setLayoutManager(layoutManager);
-                                commentAdapter = new CommentAdapter(commentInfo); //리싸이클러뷰를 보이게 하기 위한 어댑터 생성
-                                commentRecyclerView.setAdapter(commentAdapter); //리싸이클러뷰에 위에서 생성한 어댑터 설정
-                            }else {
-                                Log.d("댓글", "없음");
-                            }
+                            LinearLayoutManager layoutManager = new LinearLayoutManager(WatchPostActivity.this, LinearLayoutManager.VERTICAL, false);
+                            commentRecyclerView.setLayoutManager(layoutManager);
+                            commentAdapter = new CommentAdapter(commentInfo); //리싸이클러뷰를 보이게 하기 위한 어댑터 생성
+                            commentRecyclerView.setAdapter(commentAdapter); //리싸이클러뷰에 위에서 생성한 어댑터 설정
 
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
@@ -191,7 +198,7 @@ public class WatchPostActivity extends AppCompatActivity {
     }
 
     private void createComment(String getPostID){
-        final String comment = ((EditText)findViewById(R.id.comment_text)).getText().toString();
+        final String comment = commentText.getText().toString();
 
         if (comment.length() > 0){
             commentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -215,6 +222,13 @@ public class WatchPostActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
                     }
                 });
+        InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(commentText.getWindowToken(), 0);
+        commentText.setText(null);
+        recyclerUpdate();
+    }
+
+    public void finishAct(){
         finish();
     }
 

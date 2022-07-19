@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,11 +22,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/button4"
+            <ImageView
+                android:id="@+id/back_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="back" />
+                android:onClick="finishAct"
+                android:src="@drawable/before" />
 
             <TextView
                 android:id="@+id/post_title"
@@ -38,10 +39,10 @@
                 android:textSize="17sp" />
 
             <ImageButton
-                android:layout_marginTop="5dp"
                 android:id="@+id/post_menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:background="#00FFFFFF"
                 app:srcCompat="@drawable/button_squares" />
 
@@ -121,26 +122,31 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#EDEDED"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <EditText
+            android:id="@+id/comment_text"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName" />
 
-            <EditText
-                android:id="@+id/comment_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName" />
-
-            <Button
-                android:id="@+id/comment_register_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="등록" />
-        </LinearLayout>
-
+        <Button
+            android:id="@+id/comment_register_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="등록" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
