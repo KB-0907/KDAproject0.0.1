@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.kdaproject001.R;
-import com.example.kdaproject001.PostAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;

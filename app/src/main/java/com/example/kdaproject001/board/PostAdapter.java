@@ -1,4 +1,4 @@
-package com.example.kdaproject001;
+package com.example.kdaproject001.board;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,12 +6,12 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.kdaproject001.board.PostInfo;
+import com.example.kdaproject001.R;
+
 import java.util.ArrayList;
 
 public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
@@ -31,8 +31,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
     @Override
     public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View itemView = inflater.inflate(R.layout.activity_post_item, parent ,false);
-        return new PostViewHolder(itemView);
+        View postItemView = inflater.inflate(R.layout.activity_post_item, parent ,false);
+        return new PostViewHolder(postItemView);
     }
 
     @Override

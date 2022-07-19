@@ -1,4 +1,4 @@
-package com.example.kdaproject001;
+package com.example.kdaproject001.board;
 
 import android.view.View;
 import android.widget.TextView;
@@ -6,6 +6,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.kdaproject001.R;
 
 public class PostViewHolder extends RecyclerView.ViewHolder {
     TextView titleText, contentText;

@@ -1,4 +1,4 @@
-package com.example.kdaproject001;
+package com.example.kdaproject001.schedule;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.kdaproject001.R;
 
 public class CreateSchedule extends AppCompatActivity {
     TextView textView00, textView01, textView02, textView03, textView04, textView05, textView06

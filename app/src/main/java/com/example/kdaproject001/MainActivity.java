@@ -6,12 +6,12 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.kdaproject001.board.BoardListActivity;
 import com.example.kdaproject001.mainViewPager.CreditFragment;
 import com.example.kdaproject001.mainViewPager.ScheduleFragment;
+import com.example.kdaproject001.schedule.scheduleActivity;
 
 public class MainActivity extends AppCompatActivity{
     ImageButton boardBnt, schBtn;

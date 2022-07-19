@@ -1,4 +1,4 @@
-package com.example.kdaproject001;
+package com.example.kdaproject001.account;
 
 import android.os.Bundle;
 import android.widget.Button;

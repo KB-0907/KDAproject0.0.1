@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".WatchPostActivity"
+            android:name=".board.WatchPostActivity"
             android:exported="false" />
         <activity
             android:name=".board.ModifyPostActivity"
@@ -26,7 +26,7 @@
             android:name=".board.BoardListActivity"
             android:exported="false" />
         <activity
-            android:name=".CreateSchedule"
+            android:name=".schedule.CreateSchedule"
             android:exported="false" />
         <activity
             android:name=".account.Login"
@@ -44,7 +44,7 @@
             android:name=".creditActivity"
             android:exported="false" />
         <activity
-            android:name=".scheduleActivity"
+            android:name=".schedule.scheduleActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
