@@ -14,10 +14,13 @@
         android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".WatchPostActivity"
+            android:exported="false" />
+        <activity
             android:name=".board.ModifyPostActivity"
             android:exported="false" />
         <activity
-            android:name=".board.WritePostActivity"
+            android:name=".board.CreatePostActivity"
             android:exported="false" />
         <activity
             android:name=".board.BoardListActivity"

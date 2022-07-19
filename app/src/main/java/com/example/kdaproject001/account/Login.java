@@ -54,13 +54,20 @@ public class Login extends AppCompatActivity {
 
     }
 
-    public void button(View view){
-        Intent goIntent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(goIntent);
+    public void KBButton(View view){
+        userMail.setText("boomki0907@icloud.com");
+        userPassword.setText("bkk97920");
+        UserLogin();
+    }
+
+    public void SHButton(View view){
+        userMail.setText("1022lsh@naver.com");
+        userPassword.setText("seunghee6224");
+        UserLogin();
     }
 
     public void UserLogin(){
-        String strEmail = userMail.getText().toString();
+        String strEmail = userMail.getText().toString();// 사용자로 부터 문자를 입력 받아서 String 변수에 저장
         String strPwd = userPassword.getText().toString();
 
         if (strEmail.length() > 0 && strPwd.length() > 0) {

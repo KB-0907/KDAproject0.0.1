@@ -18,31 +18,32 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class WritePostActivity extends AppCompatActivity {
+public class CreatePostActivity extends AppCompatActivity {
     Button writePostBtn;
     private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_write_post);
+        setContentView(R.layout.activity_create_post);
 
         writePostBtn = findViewById(R.id.writeButton);
         writePostBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WritePost();
+                CreatePost();
             }
         });
     }
 
-    private void WritePost(){
+    private void CreatePost(){
         final String title = ((EditText) findViewById(R.id.post_title_et)).getText().toString();
         final String contents = ((EditText)findViewById(R.id.post_content_et)).getText().toString();
+        String ste = "1";
 
         if (title.length() > 0 && contents.length() > 0){
-            user = FirebaseAuth.getInstance().getCurrentUser();
-            PostInfo postInfo = new PostInfo(title, contents, user.getUid());
+            user = FirebaseAuth.getInstance().getCurrentUser(); //파이어 베이스에서 현재 로그인한 유저의 UID
+            PostInfo postInfo = new PostInfo(title, contents, user.getUid(), ste, System.currentTimeMillis());
             //현재 로그인 사용자 UID 받아 변수로 저장 후 PostInfo 에 등록
             uploader(postInfo);
         }else {
@@ -50,19 +51,17 @@ public class WritePostActivity extends AppCompatActivity {
         }
     }
 
-    private void uploader(PostInfo postInfo){
+    private void uploader(PostInfo postInfo){// 실제 파이어베이스 파이어스토어의 posts 컬렉션에 작성된 글 등록 함수
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("posts").add(postInfo)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-
                     }
                 });
 

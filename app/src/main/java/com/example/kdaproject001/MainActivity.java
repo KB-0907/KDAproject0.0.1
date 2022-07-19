@@ -7,21 +7,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.kdaproject001.board.BoardListActivity;
 import com.example.kdaproject001.mainViewPager.CreditFragment;
 import com.example.kdaproject001.mainViewPager.ScheduleFragment;
 
 public class MainActivity extends AppCompatActivity{
-    Button schButton, boardBnt;
+    ImageButton boardBnt, schBtn;
     ViewPager pager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        schButton = findViewById(R.id.schedule);
         boardBnt = findViewById(R.id.move_to_board_btn);
+        schBtn = findViewById(R.id.schedule_btn);
         pager = findViewById(R.id.pager);
         pager.setOffscreenPageLimit(2);
 
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        schButton.setOnClickListener(new View.OnClickListener() {
+        schBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent schIntent = new Intent(getApplicationContext(), scheduleActivity.class);

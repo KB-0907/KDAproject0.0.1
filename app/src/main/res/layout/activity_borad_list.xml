@@ -22,7 +22,7 @@
             android:text="Button" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/post_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -31,7 +31,7 @@
             android:textSize="17sp" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/post_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="?android:attr/actionModeWebSearchDrawable" />
@@ -57,7 +57,7 @@
         android:id="@+id/move_to_write_content_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="moveToContent"
+        android:onClick="CreatePostBtn"
         android:text="글쓰기"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

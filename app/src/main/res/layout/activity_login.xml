@@ -66,12 +66,25 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/kibeom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="button"
-        android:text="Button"
+        android:layout_marginStart="88dp"
+        android:layout_marginBottom="4dp"
+        android:onClick="KBButton"
+        android:text="기범"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/seunghee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:onClick="SHButton"
+        android:text="승희"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.442"
+        app:layout_constraintStart_toEndOf="@+id/kibeom" />
 </androidx.constraintlayout.widget.ConstraintLayout>
