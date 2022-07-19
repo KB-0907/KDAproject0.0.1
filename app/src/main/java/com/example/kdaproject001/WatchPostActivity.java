@@ -16,6 +16,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.kdaproject001.account.Login;
 import com.example.kdaproject001.board.BoardListActivity;
 import com.example.kdaproject001.board.ModifyPostActivity;
 import com.example.kdaproject001.board.PostInfo;
@@ -30,13 +31,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.security.acl.Group;
+
 public class WatchPostActivity extends AppCompatActivity {
     public final static String TAG = "WatchPostActivity";
     TextView postTitle, postContents;
     ImageButton postMenu;
     FirebaseFirestore db = FirebaseFirestore.getInstance(); //파이어 베이스 파이어스토어를 사용하기 위한 변수 생성 및 할당
     String userID;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,14 +50,14 @@ public class WatchPostActivity extends AppCompatActivity {
         postMenu = findViewById(R.id.post_menu);
         Intent genIntent = getIntent();
         String getPostID = genIntent.getStringExtra("ClickPostID"); // PostAdapter 로 부터 받은 선택한 문서 ID 변수에 저장
-
+        generatePost(getPostID);
         postMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showMenu(postMenu, getPostID);
             }
         });
-        generatePost(getPostID);
+
     }
 
     public void generatePost(String getPostID){
@@ -85,9 +87,16 @@ public class WatchPostActivity extends AppCompatActivity {
     public void showMenu(View view, String getPostId){
         PopupMenu popupMenu = new PopupMenu(getApplicationContext(), postMenu);
         popupMenu.inflate(R.menu.post_pop_menu);
-        MenuItem moItem = findViewById(R.id.modify);
-        MenuItem deItem = findViewById(R.id.delete);
-        MenuItem reItem = findViewById(R.id.report);
+        MenuItem moItem = popupMenu.getMenu().findItem(R.id.modify);
+        MenuItem deItem = popupMenu.getMenu().findItem(R.id.delete);
+        MenuItem reItem = popupMenu.getMenu().findItem(R.id.report);
+
+        if (FirebaseAuth.getInstance().getCurrentUser().getUid().equals(userID)){
+            reItem.setVisible(false);
+        } else {
+            deItem.setVisible(false);
+            moItem.setVisible(false);
+        }
 
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
@@ -121,18 +130,7 @@ public class WatchPostActivity extends AppCompatActivity {
                 }
                 return false;
             }
-        });
-        if (FirebaseAuth.getInstance().getCurrentUser().getUid() == userID){
-            reItem.setVisible(false);
-            popupMenu.show();
-        } else {
-            if (deItem != null && moItem != null){
-                deItem.setVisible(false);
-                moItem.setVisible(false);
-                popupMenu.show();
-            }
-        }
-
+        });popupMenu.show();
     }
 
 }
