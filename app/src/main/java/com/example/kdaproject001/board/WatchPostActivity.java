@@ -228,7 +228,7 @@ public class WatchPostActivity extends AppCompatActivity {
         recyclerUpdate();
     }
 
-    public void finishAct(){
+    public void finishAct(View view){
         finish();
     }
 

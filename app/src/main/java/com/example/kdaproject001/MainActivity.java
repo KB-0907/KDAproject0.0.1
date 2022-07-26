@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.example.kdaproject001.board.BoardListActivity;
+import com.example.kdaproject001.board.FreeBoardListActivity;
 import com.example.kdaproject001.mainViewPager.CreditFragment;
 import com.example.kdaproject001.mainViewPager.ScheduleFragment;
 import com.example.kdaproject001.schedule.scheduleActivity;
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity{
         boardBnt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent borIntent = new Intent(getApplicationContext(), BoardListActivity.class);
+                Intent borIntent = new Intent(getApplicationContext(), FreeBoardListActivity.class);
                 startActivity(borIntent);
             }
         });

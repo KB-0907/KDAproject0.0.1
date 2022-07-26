@@ -3,18 +3,13 @@ package com.example.kdaproject001;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.View;
 
-public class creditActivity extends AppCompatActivity {
+public class ToDoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_credit);
-    }
-
-    public void finishAct(View view){
-        finish();
+        setContentView(R.layout.activity_to_do);
     }
 
 }
