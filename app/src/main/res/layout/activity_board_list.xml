@@ -15,6 +15,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!--
+        1. 자유 게시판 버튼 누르면 FreeBoardActivity 로 이동
+        2. 현재 버튼 두개 이미지로 변경
+        3. 게시판 텍스트 뷰들 마진이나 패딩으로 간격 띄우, xd 보면서 느낌 살려주셈
+        -->
+
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"

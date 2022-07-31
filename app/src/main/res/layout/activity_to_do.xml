@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ToDoActivity">
-<!-- 버튼 두개 왼쪽은 뒤로가기/ 오른쪽은 작대기 세게 토글 버튼
-가운데 텍스트는 일정 관리
-위 세가지로 변경 후 디자인(뷰 크기, 글자 크기, 마진, 페딩 설정)
--->
+    <!-- 버튼 두개 왼쪽은 뒤로가기/ 오른쪽은 작대기 세게 토글 버튼
+    가운데 텍스트는 일정 관리
+    위 세가지로 변경 후 디자인(뷰 크기, 글자 크기, 마진, 페딩 설정)
+    -->
     <LinearLayout
         android:id="@+id/linearLayout9"
         android:layout_width="match_parent"
@@ -17,30 +17,38 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <Button
+        ​
+        <ImageButton
             android:id="@+id/button3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Button" />
-
+            android:background="#FFFFFF"
+            app:srcCompat="@drawable/before" />
+        ​
         <TextView
             android:id="@+id/textView26"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TextView" />
-
-        <Button
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:text="일정"
+            android:textSize="30sp"
+            android:textAlignment="center"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"/>
+        ​
+        <ImageButton
             android:id="@+id/button5"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Button" />
-
+            android:background="#FFFFFF"
+            app:srcCompat="@drawable/to_do_setting" />
+        ​
+        ​
+        ​
     </LinearLayout>
-
+    ​
     <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="0dp"
@@ -49,9 +57,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout9" />
-
-
-
+    ​
+    ​
+    ​
     <LinearLayout
         android:id="@+id/linearLayout10"
         android:layout_width="match_parent"
@@ -60,15 +68,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendarView">
-
+        ​
         <TextView
             android:id="@+id/textView27"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="과제" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        ​
     </LinearLayout>
-
+    ​
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -76,11 +88,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
-
+        ​
         <TextView
             android:id="@+id/textView28"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="시험" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

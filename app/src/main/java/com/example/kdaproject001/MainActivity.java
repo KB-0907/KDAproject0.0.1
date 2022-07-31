@@ -14,7 +14,7 @@ import com.example.kdaproject001.mainViewPager.ScheduleFragment;
 import com.example.kdaproject001.schedule.scheduleActivity;
 
 public class MainActivity extends AppCompatActivity{
-    ImageButton boardBnt, schBtn;
+    ImageButton boardBnt, schBtn, TodoBtn;
     ViewPager pager;
 
     @Override
@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         boardBnt = findViewById(R.id.move_to_board_btn);
         schBtn = findViewById(R.id.schedule_btn);
+        TodoBtn = findViewById(R.id.move_to_do_btn);
         pager = findViewById(R.id.pager);
         pager.setOffscreenPageLimit(2);
 
@@ -52,4 +53,10 @@ public class MainActivity extends AppCompatActivity{
             }
         });
     }
+
+    public void moveTodoActivity(View view){
+        Intent todoIntent = new Intent(getApplicationContext(), ToDoActivity.class);
+        startActivity(todoIntent);
+    }
+
 }

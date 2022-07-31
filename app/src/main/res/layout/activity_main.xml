@@ -91,6 +91,10 @@
             android:background="#FFFFFF"
             app:srcCompat="@drawable/school_calendar" />
 
+        <!--
+        move_to_board_btn 이거 누르면 BoardListActivity 로 이동
+        -->
+
         <ImageButton
             android:id="@+id/move_to_board_btn"
             android:layout_width="wrap_content"
@@ -101,13 +105,14 @@
             app:srcCompat="@drawable/write_board" />
 
         <ImageButton
-            android:id="@+id/move_to_test_calendar_btn"
+            android:id="@+id/move_to_do_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_weight="1"
 
             android:background="#FFFFFF"
+            android:onClick="moveTodoActivity"
             app:srcCompat="@drawable/test_calendar" />
 
         <ImageButton
