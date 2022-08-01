@@ -8,8 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kdaproject001.R;
-import com.example.kdaproject001.board.PostInfo;
-import com.example.kdaproject001.board.PostViewHolder;
 
 import java.util.ArrayList;
 
@@ -25,7 +23,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentViewHolder> {
     @Override
     public CommentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View itemView = inflater.inflate(R.layout.comment_item, parent ,false);
+        View itemView = inflater.inflate(R.layout.item_comment, parent ,false);
         return new CommentViewHolder(itemView);
     }
 

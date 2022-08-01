@@ -12,6 +12,7 @@ import com.example.kdaproject001.board.FreeBoardListActivity;
 import com.example.kdaproject001.mainViewPager.CreditFragment;
 import com.example.kdaproject001.mainViewPager.ScheduleFragment;
 import com.example.kdaproject001.schedule.scheduleActivity;
+import com.example.kdaproject001.todo.ToDoActivity;
 
 public class MainActivity extends AppCompatActivity{
     ImageButton boardBnt, schBtn, TodoBtn;
