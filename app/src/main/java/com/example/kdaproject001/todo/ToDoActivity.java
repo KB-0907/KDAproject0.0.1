@@ -44,7 +44,9 @@ public class ToDoActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance(); // 파이어 베이스 파이어스토어를 사용하기 위한 변수 생성 및 할당
     RecyclerView assignRCV, examRCV;
     AssignAdapter AsAdapter;
-    int y=0, m=0, d=0, h=0, mi=0;
+    ExamAdapter examAdapter;
+
+    int y = 0, m = 0, d = 0, h = 0, mi = 0;
 
     Map<String, Object> data = new HashMap<>();
     ArrayList<String> dataList;
@@ -54,17 +56,19 @@ public class ToDoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do);
         assignRCV = findViewById(R.id.assign_RCV);
+        examRCV = findViewById(R.id.exam_RCV);
 
-        generateRCV();
+        generateAssignRCV();
+        generateExamRCV();
 
     }
 
-    public void showDialog1(View view){
+    public void showDialog1(View view) {
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 y = year;
-                m = month+1;
+                m = month + 1;
                 d = dayOfMonth;
                 Intent intent = new Intent(getApplicationContext(), ToDoMakeActivity.class);
                 intent.putExtra("year", y);
@@ -73,17 +77,19 @@ public class ToDoActivity extends AppCompatActivity {
                 intent.putExtra("sort", "assign");
                 startActivity(intent);
             }
-            },Integer.parseInt(toY.format(dateNow)), Integer.parseInt(toM.format(dateNow)) -1, Integer.parseInt(toD.format(dateNow)));
+        }, Integer.parseInt(toY.format(dateNow)), Integer.parseInt(toM.format(dateNow)) - 1, Integer.parseInt(toD.format(dateNow)));
         datePickerDialog.setMessage("마감 기한");
         datePickerDialog.show();
+
+        ;
     }
 
-    public void showDialog2(View view){
+    public void showDialog2(View view) {
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 y = year;
-                m = month+1;
+                m = month + 1;
                 d = dayOfMonth;
                 Intent intent = new Intent(getApplicationContext(), ToDoMakeActivity.class);
                 intent.putExtra("year", y);
@@ -92,14 +98,14 @@ public class ToDoActivity extends AppCompatActivity {
                 intent.putExtra("sort", "exam");
                 startActivity(intent);
             }
-        },Integer.parseInt(toY.format(dateNow)), Integer.parseInt(toM.format(dateNow)) -1, Integer.parseInt(toD.format(dateNow)));
+        }, Integer.parseInt(toY.format(dateNow)), Integer.parseInt(toM.format(dateNow)) - 1, Integer.parseInt(toD.format(dateNow)));
 
         datePickerDialog.setMessage("시험 일시");
         datePickerDialog.show();
     }
-//jhh
 
-    private void generateRCV(){//파이어 베이스 db 에서 todo 를 가져와 리싸이클러뷰에 보여주기 위한 코드
+
+    private void generateAssignRCV() {    //파이어 베이스 db 에서 todo 를 가져와 리싸이클러뷰에 보여주기 위한 코드
         db.collection("ToDo")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -120,7 +126,33 @@ public class ToDoActivity extends AppCompatActivity {
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
-                    }//jkh
+                    }
                 });
     }
-}//hj
+
+
+    private void generateExamRCV() {
+        db.collection("ToDo")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            dataList = new ArrayList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                if (document.getData().get("sort").toString().equals("exam"))
+                                    dataList.add(document.getData().get("title").toString());
+                            }
+
+                            LinearLayoutManager layoutManager = new LinearLayoutManager(ToDoActivity.this, LinearLayoutManager.VERTICAL, false);
+                            examRCV.setLayoutManager(layoutManager);
+                            examAdapter = new ExamAdapter(ToDoActivity.this, dataList, getApplicationContext());
+                            examRCV.setAdapter(examAdapter); //리싸이클러뷰에 위에서 생성한 어댑터 설정
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
+}
