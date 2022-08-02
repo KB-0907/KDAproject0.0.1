@@ -97,7 +97,7 @@ public class ToDoActivity extends AppCompatActivity {
         datePickerDialog.setMessage("시험 일시");
         datePickerDialog.show();
     }
-//erere
+//jhh
 
     private void generateRCV(){//파이어 베이스 db 에서 todo 를 가져와 리싸이클러뷰에 보여주기 위한 코드
         db.collection("ToDo")
