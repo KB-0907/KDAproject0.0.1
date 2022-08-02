@@ -136,8 +136,6 @@ public class ToDoActivity extends AppCompatActivity {
                             dataList = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                Log.d("파이어베이스 아이디", currentUserID);
-                                Log.d("현재 아이디", document.getData().get("UID").toString());
                                 if (document.getData().get("sort").toString().equals("assign") && currentUserID.equals(document.getData().get("UID").toString()))
                                     dataList.add(document.getData().get("title").toString());
                             }
