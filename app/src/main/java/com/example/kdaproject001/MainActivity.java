@@ -16,7 +16,7 @@ import com.example.kdaproject001.schedule.scheduleActivity;
 import com.example.kdaproject001.todo.ToDoActivity;
 
 public class MainActivity extends AppCompatActivity{
-    ImageButton boardBnt, schBtn, TodoBtn;
+    ImageButton boardBnt, schBtn, TodoBtn, creditBtn;
     ViewPager pager;
 
     @Override
@@ -26,8 +26,17 @@ public class MainActivity extends AppCompatActivity{
         boardBnt = findViewById(R.id.move_to_board_btn);
         schBtn = findViewById(R.id.schedule_btn);
         TodoBtn = findViewById(R.id.move_to_do_btn);
+        creditBtn = findViewById(R.id.move_to_grade_planner_btn);
         pager = findViewById(R.id.pager);
         pager.setOffscreenPageLimit(2);
+
+        creditBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), creditActivity.class);
+                startActivity(intent);
+            }
+        });
 
         MainPagerAdapter mainAdapter = new MainPagerAdapter(getSupportFragmentManager());
 

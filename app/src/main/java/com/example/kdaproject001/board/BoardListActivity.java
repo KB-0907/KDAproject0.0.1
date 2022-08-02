@@ -32,6 +32,7 @@ public class BoardListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent academicIntent = new Intent(getApplicationContext(),AcademicBoardActivity.class);
+
                 startActivity(academicIntent);
             }
         });
