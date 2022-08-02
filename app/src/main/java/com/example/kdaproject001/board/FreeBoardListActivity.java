@@ -68,6 +68,8 @@ public class FreeBoardListActivity extends AppCompatActivity {
 
     public void CreatePostBtn(View view){
         Intent intent = new Intent(getApplicationContext(), CreatePostActivity.class);
+        //인텐트애 여기(자유게시판)에서 호출햇다는 데이터 놓고 전달
+        //putExtra 프리 보냐고
         startActivity(intent);
     }
 }

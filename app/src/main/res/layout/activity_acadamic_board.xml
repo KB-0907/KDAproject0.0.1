@@ -23,7 +23,7 @@
              />
 
         <TextView
-            android:id="@+id/post_title"
+            android:id="@+id/post_title2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -32,7 +32,7 @@
             android:textSize="19sp" />
 
         <ImageButton
-            android:id="@+id/post_menu"
+            android:id="@+id/post_menu23"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="?android:attr/actionModeWebSearchDrawable" />

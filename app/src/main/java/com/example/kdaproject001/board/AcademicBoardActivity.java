@@ -79,6 +79,8 @@ public class AcademicBoardActivity extends AppCompatActivity {
 
     public void CreatePostBtn(View view){
         Intent intent = new Intent(getApplicationContext(), CreatePostActivity.class);
+        //인텐트애 학업게시판에서 호출햇다는 데이터 놓고 전달고
+        //아카데미디 영어로 보내고
         startActivity(intent);
     }
 }

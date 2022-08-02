@@ -20,7 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kdaproject001.R;
-import com.example.kdaproject001.board.ModifyPostActivity;
 import com.example.kdaproject001.comments.CommentAdapter;
 import com.example.kdaproject001.comments.CommentInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -59,7 +58,7 @@ public class WatchPostActivity extends AppCompatActivity {
         commentText = findViewById(R.id.comment_text);
         postTitle = findViewById(R.id.post_title);
         postContents = findViewById(R.id.post_contents);
-        postMenu = findViewById(R.id.post_menu);
+        postMenu = findViewById(R.id.post_menu23);
         coReBtn = findViewById(R.id.comment_register_btn);
         commentRecyclerView = findViewById(R.id.comments_recyclerview);
 
