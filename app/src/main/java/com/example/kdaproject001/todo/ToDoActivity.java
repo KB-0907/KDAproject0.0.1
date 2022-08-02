@@ -120,7 +120,7 @@ public class ToDoActivity extends AppCompatActivity {
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
-                    }//jkhhjk
+                    }//jkhhjkd
                 });
     }
 }//hj
