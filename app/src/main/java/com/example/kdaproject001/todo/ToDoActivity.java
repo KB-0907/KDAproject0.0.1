@@ -1,5 +1,5 @@
 package com.example.kdaproject001.todo;
-// 도레미파솔라시도
+// 도레미파솔라시
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -162,7 +162,7 @@ public class ToDoActivity extends AppCompatActivity {
                             dataList = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                if (document.getData().get("sort").toString().equals("exam"))
+                                if (document.getData().get("sort").toString().equals("exam") && currentUserID.equals(document.getData().get("UID").toString()))
                                     dataList.add(document.getData().get("title").toString());
                             }
 
