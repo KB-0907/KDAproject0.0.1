@@ -22,7 +22,6 @@
         android:layout_height="394dp"
         android:background="#D3CECE"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName">
@@ -36,22 +35,4 @@
             android:text="만들기" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="389dp"
-        android:layout_height="197dp"
-        android:background="#ECDEDE"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.562"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="학점계산기"
-            android:textSize="24sp" />
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

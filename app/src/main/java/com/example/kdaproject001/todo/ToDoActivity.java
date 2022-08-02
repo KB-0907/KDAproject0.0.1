@@ -45,6 +45,7 @@ import java.util.Map;
 
 //과제랑 시험 추가 버튼 누르면 달력 팝업 -> 달력에서 날짜(마감 일) 선택 후, 제목 입력 받음
 // 과제나 시험 추가 시 일정 달력에 색깔로 표시
+//ㄱ저ㅗㅜㅕㅈ초셔미ㅠㅈ펴ㅛ무;속쟈ㅜㅐ셔ㅗㅛ쵸그ㅑㅐ;ㅗ쇼먀ㅐㅜㅙ
 
 public class ToDoActivity extends AppCompatActivity {
     Date dateNow = Calendar.getInstance().getTime();
@@ -139,7 +140,6 @@ public class ToDoActivity extends AppCompatActivity {
                                 if (document.getData().get("sort").toString().equals("assign") && currentUserID.equals(document.getData().get("UID").toString()))
                                     dataList.add(document.getData().get("title").toString());
                             }
-
                             LinearLayoutManager layoutManager = new LinearLayoutManager(ToDoActivity.this, LinearLayoutManager.VERTICAL, false);
                             assignRCV.setLayoutManager(layoutManager);
                             AsAdapter = new AssignAdapter(ToDoActivity.this, dataList, getApplicationContext()); //리싸이클러뷰를 보이게 하기 위한 어댑터 생성

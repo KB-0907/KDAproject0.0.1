@@ -24,7 +24,6 @@ public class CreateSchedule extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_schedule);
-        textTouch();
         textView00 = findViewById(R.id.textView11);
         textView00.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -38,8 +37,16 @@ public class CreateSchedule extends AppCompatActivity {
                 return true;
             }
         });
+
+        textView01 = findViewById(R.id.textView21);
+        textView01.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textView01.setBackgroundColor(Color.parseColor("#AFAFAF"));
+            }
+        });
     }
-    public void textTouch(){
+    public void textTouch(View v){
     }
 
 }
