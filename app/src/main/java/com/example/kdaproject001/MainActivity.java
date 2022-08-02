@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity{
     ImageButton boardBnt, schBtn, TodoBtn, creditBtn;
     ViewPager pager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
