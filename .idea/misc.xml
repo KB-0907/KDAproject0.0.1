@@ -21,13 +21,13 @@
         <entry key="app/src/main/res/drawable/write_board.xml" value="0.193" />
         <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.214190093708166" />
         <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.21209016393442623" />
-        <entry key="app/src/main/res/layout/activity_board_list.xml" value="0.2902542114257813" />
+        <entry key="app/src/main/res/layout/activity_board_list.xml" value="0.36759796142578127" />
         <entry key="app/src/main/res/layout/activity_borad.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/activity_borad_list.xml" value="0.3534022569897931" />
         <entry key="app/src/main/res/layout/activity_calendar.xml" value="0.16210739614994935" />
-        <entry key="app/src/main/res/layout/activity_create_post.xml" value="0.16210739614994935" />
+        <entry key="app/src/main/res/layout/activity_create_post.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/layout/activity_create_schedule.xml" value="0.3285568237304688" />
-        <entry key="app/src/main/res/layout/activity_credit.xml" value="0.42045700552494936" />
+        <entry key="app/src/main/res/layout/activity_credit.xml" value="0.16210739614994935" />
         <entry key="app/src/main/res/layout/activity_free_borad_list.xml" value="0.3288966417554181" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.29450988769531267" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2898770567217638" />
@@ -38,9 +38,9 @@
         <entry key="app/src/main/res/layout/activity_schedule.xml" value="0.2750438809998734" />
         <entry key="app/src/main/res/layout/activity_schedule_onbuttonclicked1.xml" value="0.22916666666666666" />
         <entry key="app/src/main/res/layout/activity_sing_up.xml" value="0.35073349478276183" />
-        <entry key="app/src/main/res/layout/activity_to_do.xml" value="0.16210739614994935" />
+        <entry key="app/src/main/res/layout/activity_to_do.xml" value="0.2734568834546369" />
         <entry key="app/src/main/res/layout/activity_to_do_make.xml" value="0.3007125606381796" />
-        <entry key="app/src/main/res/layout/activity_watch_post.xml" value="0.2553191489361702" />
+        <entry key="app/src/main/res/layout/activity_watch_post.xml" value="0.30457290767903367" />
         <entry key="app/src/main/res/layout/activity_wirte_content.xml" value="0.15729166666666666" />
         <entry key="app/src/main/res/layout/activity_write_content.xml" value="0.31927083333333334" />
         <entry key="app/src/main/res/layout/activity_write_post.xml" value="0.2767210144927536" />
@@ -49,9 +49,10 @@
         <entry key="app/src/main/res/layout/fragment_credit.xml" value="0.7288639897885529" />
         <entry key="app/src/main/res/layout/fragment_schedule.xml" value="0.43085221000339674" />
         <entry key="app/src/main/res/layout/fragment_todo.xml" value="0.5637141466382306" />
-        <entry key="app/src/main/res/layout/item_assignment.xml" value="0.3551969589935251" />
-        <entry key="app/src/main/res/layout/item_comment.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_assignment.xml" value="0.43611584327086883" />
+        <entry key="app/src/main/res/layout/item_comment.xml" value="0.3384429931640625" />
         <entry key="app/src/main/res/layout/item_exam.xml" value="0.3321666064354183" />
+        <entry key="app/src/main/res/layout/item_post.xml" value="0.2418478260869565" />
         <entry key="app/src/main/res/menu/post_pop_menu.xml" value="0.3123076923076923" />
       </map>
     </option>
