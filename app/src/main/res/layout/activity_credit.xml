@@ -34,11 +34,13 @@
             android:text="학점 플래너"
             android:textSize="17sp" />
         ​
+
         <Button
             android:id="@+id/save_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="saveCredit"
             android:text="저장" />
         ​
     </LinearLayout>
@@ -91,7 +93,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="50dp"
                         android:text="일반:" />
-                    ​
+
+
                     <EditText
                         android:id="@+id/general_credit"
                         android:layout_width="wrap_content"
@@ -101,14 +104,15 @@
                         android:inputType="number"
                         android:maxLength="2"
                         android:textSize="14sp" />
-                    ​
+
+
                     <TextView
                         android:id="@+id/culture"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="50dp"
                         android:text="교양:" />
-                    ​
+
                     <EditText
                         android:id="@+id/culture_credit"
                         android:layout_width="wrap_content"
@@ -123,11 +127,13 @@
                 ​
             </LinearLayout>
             ​
+
             <TextView
                 android:id="@+id/total_credit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="평가인정 대상 :" />
+                android:text="평가인정 대상 :"
+                android:textColor="#000000" />
             ​
             <LinearLayout
                 android:id="@+id/linearLayout15"
@@ -225,7 +231,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="32dp"
                     android:text="독학사 :"
-                    android:maxLength="2"/>
+                    />
                 ​
                 <EditText
                     android:id="@+id/final_total_credit"
