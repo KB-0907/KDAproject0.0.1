@@ -17,7 +17,7 @@ import com.example.kdaproject001.todo.ToDoActivity;
 public class MainActivity extends AppCompatActivity{
     ImageButton boardBnt, schBtn, TodoBtn, creditBtn;
     ViewPager pager;
-
+//jhghjg
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
