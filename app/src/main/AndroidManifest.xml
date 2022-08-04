@@ -51,9 +51,6 @@
             android:name=".account.SignUp"
             android:exported="false" />
         <activity
-            android:name=".creditActivity"
-            android:exported="false" />
-        <activity
             android:name=".schedule.scheduleActivity"
             android:exported="false" />
         <activity
