@@ -23,6 +23,7 @@ public class BoardListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent freeIntent = new Intent(getApplicationContext(),FreeBoardListActivity.class);
+                freeIntent.putExtra("boardSort", "free");
                 startActivity(freeIntent);
             }
         });
@@ -31,8 +32,8 @@ public class BoardListActivity extends AppCompatActivity {
         moveToAcademicBoard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent academicIntent = new Intent(getApplicationContext(),AcademicBoardActivity.class);
-
+                Intent academicIntent = new Intent(getApplicationContext(),FreeBoardListActivity.class);
+                academicIntent.putExtra("boardSort", "academic");
                 startActivity(academicIntent);
             }
         });

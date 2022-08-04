@@ -102,8 +102,6 @@ public class ToDoActivity extends AppCompatActivity {
         }, Integer.parseInt(toY.format(dateNow)), Integer.parseInt(toM.format(dateNow)) - 1, Integer.parseInt(toD.format(dateNow)));
         datePickerDialog.setMessage("마감 기한");
         datePickerDialog.show();
-
-        ;
     }
 
     public void showDialog2(View view) {
@@ -135,14 +133,17 @@ public class ToDoActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             dataList = new ArrayList<>();
+                            ArrayList<String> deadlines = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                if (document.getData().get("sort").toString().equals("assign") && currentUserID.equals(document.getData().get("UID").toString()))
+                                if (document.getData().get("sort").toString().equals("assign") && currentUserID.equals(document.getData().get("UID").toString())) {
                                     dataList.add(document.getData().get("title").toString());
+                                    deadlines.add(document.getData().get("deadline").toString());
+                                }
                             }
                             LinearLayoutManager layoutManager = new LinearLayoutManager(ToDoActivity.this, LinearLayoutManager.VERTICAL, false);
                             assignRCV.setLayoutManager(layoutManager);
-                            AsAdapter = new AssignAdapter(ToDoActivity.this, dataList, getApplicationContext()); //리싸이클러뷰를 보이게 하기 위한 어댑터 생성
+                            AsAdapter = new AssignAdapter(ToDoActivity.this, dataList, deadlines, getApplicationContext()); //리싸이클러뷰를 보이게 하기 위한 어댑터 생성
                             assignRCV.setAdapter(AsAdapter); //리싸이클러뷰에 위에서 생성한 어댑터 설정
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());

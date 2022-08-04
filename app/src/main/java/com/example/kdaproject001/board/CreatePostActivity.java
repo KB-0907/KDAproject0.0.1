@@ -31,7 +31,7 @@ public class CreatePostActivity extends AppCompatActivity {
         writePostBtn = findViewById(R.id.writeButton);
 
         Intent getIntent = getIntent();
-        boardSort = getIntent.getStringExtra("");
+        boardSort = getIntent.getStringExtra("boardSort");
 
         writePostBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,16 +48,12 @@ public class CreatePostActivity extends AppCompatActivity {
 
         if (title.length() > 0 && contents.length() > 0){
             user = FirebaseAuth.getInstance().getCurrentUser(); //파이어 베이스에서 현재 로그인한 유저의 UID
-            PostInfo postInfo = new PostInfo(title, contents, user.getUid(), ste, System.currentTimeMillis());
+            PostInfo postInfo = new PostInfo(title, contents, user.getUid(), ste, System.currentTimeMillis(), boardSort);
             //현재 로그인 사용자 UID 받아 변수로 저장 후 PostInfo 에 등록
-            selectBoard(postInfo);
+            uploadPost(postInfo);
         }else {
             Toast.makeText(this, "제목과 내용을 입력해주세요.", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private void selectBoard(PostInfo postInfo){// 실제 파이어베이스 파이어스토어의 posts 컬렉션에 작성된 글 등록 함수
-        uploadPost(postInfo);
     }
 
     private void uploadPost(PostInfo postInfo){

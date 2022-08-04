@@ -9,10 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.kdaproject001.R;
 
 public class AssignViewHolder extends RecyclerView.ViewHolder {
-    TextView todoTitleText;
+    TextView todoTitleText, todoDeadLineText;
 
     public AssignViewHolder(@NonNull View itemView) {
         super(itemView);
         todoTitleText = itemView.findViewById(R.id.assignment_title);
+        todoDeadLineText = itemView.findViewById(R.id.assignment_deadline);
     }
 }

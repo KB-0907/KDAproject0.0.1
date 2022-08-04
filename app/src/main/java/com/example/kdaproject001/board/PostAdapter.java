@@ -44,8 +44,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
             @Override
             public void onClick(View v) {//게시판 올린 포스트 클릭시 작성된 글 보기 화면으로 이동
                 postClick(postInfo);
-               // String postId = postInfo.getPostID();
-               // Toast.makeText(context, postId, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -58,6 +56,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
     public void postClick(PostInfo postInfo){
         Intent intent = new Intent(context, WatchPostActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("ClickPostID", postInfo.getPostID()); //포스트 클릭시 클릭한 포스트의 문서 ID를 받아 WatchPostActivity 에 전달
+        intent.putExtra("boardSort", postInfo.getBoardSort());
         context.startActivity(intent);
     }
 }

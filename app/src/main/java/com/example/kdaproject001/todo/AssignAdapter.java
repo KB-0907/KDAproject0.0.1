@@ -16,13 +16,15 @@ import java.util.ArrayList;
 
 public class AssignAdapter extends RecyclerView.Adapter<AssignViewHolder> {
     ArrayList<String> assigns;
+    ArrayList<String> deadline;
     private Activity activity;
     private Context context;
 
-    public AssignAdapter(ToDoActivity toDoActivity, ArrayList<String> dataList, Context applicationContext) {
+    public AssignAdapter(ToDoActivity toDoActivity, ArrayList<String> dataList, ArrayList<String> deadline, Context applicationContext) {
         this.activity = toDoActivity;
         this.assigns = dataList;
         this.context = applicationContext;
+        this.deadline = deadline;
     }
 
     @NonNull
@@ -36,7 +38,9 @@ public class AssignAdapter extends RecyclerView.Adapter<AssignViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull AssignViewHolder holder, int position) {
         String assign = assigns.get(position);
+        String assignDeadLine = deadline.get(position);
         holder.todoTitleText.setText(assign);
+        holder.todoDeadLineText.setText(assignDeadLine);
     }
 
     @Override

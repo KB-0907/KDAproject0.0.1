@@ -8,13 +8,15 @@ public class PostInfo {
     private String publisher;
     private String postID;
     private long created;
+    private String boardSort;
 
-    public PostInfo(String title, String content, String publisher, String postID, long created){
+    public PostInfo(String title, String content, String publisher, String postID, long created, String boardSort){
         this.title = title;
         this.content = content;
         this.publisher = publisher;
         this.postID = postID;
         this.created = created;
+        this.boardSort = boardSort;
     }
 
     public String getTitle() {
@@ -55,5 +57,13 @@ public class PostInfo {
 
     public void setCreated(long created) {
         this.created = created;
+    }
+
+    public String getBoardSort() {
+        return boardSort;
+    }
+
+    public void setBoardSort(String boardSort) {
+        this.boardSort = boardSort;
     }
 }

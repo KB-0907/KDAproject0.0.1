@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.kdaproject001.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,10 +23,13 @@ import java.util.ArrayList;
 
 public class FreeBoardListActivity extends AppCompatActivity {
     public final static String TAG = "FreeBoardListActivity";
+    Intent sortIntent;
     FirebaseFirestore db = FirebaseFirestore.getInstance(); //파이어 베이스 파이어스토어를 사용하기 위한 변수 생성 및 할당
     PostAdapter mAdapter;
     private ArrayList<PostInfo> postList; // PostInfo 로 실제 입력 받은 글을 파이어 스토어에 널기 위한 ArrayList 변수 생성
     RecyclerView postRecyclerView;
+    String boardSort;
+    TextView boardSortTitle;
 
 
     @Override
@@ -33,13 +37,20 @@ public class FreeBoardListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_free_borad_list);
         postRecyclerView = findViewById(R.id.post_recyclerview);
-
+        boardSortTitle = findViewById(R.id.board_sort_title);
     }
 
     @Override
     protected void onResume(){
         super.onResume();
-        db.collection("posts").orderBy("created", Query.Direction.DESCENDING) //파이어베이스에서 모든 포스트의 문서(글)룰 생성일자순으로 가져옴
+        sortIntent = getIntent();
+        boardSort = sortIntent.getStringExtra("boardSort");
+        if (boardSort.equals("free")){
+            boardSortTitle.setText("자유게시판");
+        } else if (boardSort.equals("academic")){
+            boardSortTitle.setText("학업게시판");
+        }
+        db.collection(boardSort).orderBy("created", Query.Direction.DESCENDING) //파이어베이스에서 모든 포스트의 문서(글)룰 생성일자순으로 가져옴
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -52,7 +63,8 @@ public class FreeBoardListActivity extends AppCompatActivity {
                                         document.getData().get("content").toString(),
                                         document.getData().get("publisher").toString(),
                                         document.getId(),
-                                        (Long) document.getData().get("created")
+                                        (Long) document.getData().get("created"),
+                                        document.getData().get("boardSort").toString()
                                 ));
                             }
                             LinearLayoutManager layoutManager = new LinearLayoutManager(FreeBoardListActivity.this, LinearLayoutManager.VERTICAL, false);
@@ -68,8 +80,7 @@ public class FreeBoardListActivity extends AppCompatActivity {
 
     public void CreatePostBtn(View view){
         Intent intent = new Intent(getApplicationContext(), CreatePostActivity.class);
-        //인텐트애 여기(자유게시판)에서 호출햇다는 데이터 놓고 전달
-        //putExtra 프리 보냐고
+        intent.putExtra("boardSort", boardSort);
         startActivity(intent);
     }
 }

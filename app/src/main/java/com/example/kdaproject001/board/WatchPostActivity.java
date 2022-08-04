@@ -49,6 +49,7 @@ public class WatchPostActivity extends AppCompatActivity {
     private ArrayList<CommentInfo> commentInfo; // PostInfo 로 실제 입력 받은 글을 파이어 스토어에 널기 위한 ArrayList 변수 생성
     CommentAdapter commentAdapter;
     EditText commentText;
+    String boardSort;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +57,7 @@ public class WatchPostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_watch_post);
 
         commentText = findViewById(R.id.comment_text);
-        postTitle = findViewById(R.id.post_title);
+        postTitle = findViewById(R.id.board_sort_title);
         postContents = findViewById(R.id.post_contents);
         postMenu = findViewById(R.id.post_menu23);
         coReBtn = findViewById(R.id.comment_register_btn);
@@ -64,6 +65,7 @@ public class WatchPostActivity extends AppCompatActivity {
 
         Intent genIntent = getIntent();
         String getPostID = genIntent.getStringExtra("ClickPostID"); // PostAdapter 로 부터 받은 선택한 문서 ID 변수에 저장
+        boardSort = getIntent().getStringExtra("boardSort");
 
         generatePost(getPostID);
 
@@ -127,7 +129,7 @@ public class WatchPostActivity extends AppCompatActivity {
     }
 
     public void generatePost(String getPostID){
-        DocumentReference docRef = db.collection("posts").document(getPostID); // 선택한 문서 ID 로 그 ID 에 해당하는 문서의 제목과 내용을 가져오는 코드
+        DocumentReference docRef = db.collection(boardSort).document(getPostID); // 선택한 문서 ID 로 그 ID 에 해당하는 문서의 제목과 내용을 가져오는 코드
         docRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
@@ -168,11 +170,12 @@ public class WatchPostActivity extends AppCompatActivity {
                     case R.id.modify:
                         Intent intent = new Intent(getApplicationContext(), ModifyPostActivity.class);
                         intent.putExtra("PostID", getPostId);
+                        intent.putExtra("boardSort", boardSort);
                         startActivity(intent);
                         finish();
                         break;
                     case R.id.delete:// 정말 삭제하시겠습니까? 질문박스 띄우기
-                        db.collection("posts").document(getPostId)
+                        db.collection(boardSort).document(getPostId)
                                 .delete()
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override

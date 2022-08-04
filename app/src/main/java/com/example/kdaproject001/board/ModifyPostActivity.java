@@ -28,7 +28,9 @@ public class ModifyPostActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance(); //파이어 베이스 파이어스토어를 사용하기 위한 변수 생성 및 할당
     Button modifyBtn;
     EditText moTitle, moContents;
-    String getPostID;
+    String getPostID, boardSort;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +50,13 @@ public class ModifyPostActivity extends AppCompatActivity {
 
         Intent moIntent = getIntent();
         getPostID = moIntent.getStringExtra("PostID");
+        boardSort = moIntent.getStringExtra("boardSort");
 
-        modifyGenerate(getPostID);
+        modifyGenerate(getPostID, boardSort);
     }
 
-    public void modifyGenerate(String getPostID){
-        DocumentReference docRef = db.collection("posts").document(getPostID); // 선택한 문서 ID 로 그 ID 에 해당하는 문서의 제목과 내용을 가져오는 코드
+    public void modifyGenerate(String getPostID, String boardSort){
+        DocumentReference docRef = db.collection(boardSort).document(getPostID); // 선택한 문서 ID 로 그 ID 에 해당하는 문서의 제목과 내용을 가져오는 코드
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -80,7 +83,7 @@ public class ModifyPostActivity extends AppCompatActivity {
         data.put("title", moTitle.getText().toString());
         data.put("content", moContents.getText().toString());
 
-        DocumentReference washingtonRef = db.collection("posts").document(getPostID);
+        DocumentReference washingtonRef = db.collection(boardSort).document(getPostID);
         washingtonRef
                 .update(data)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
