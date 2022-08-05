@@ -48,11 +48,11 @@ import java.util.Map;
 //ㄱ저ㅗㅜㅕㅈ초셔미ㅠㅈ펴ㅛ무;속쟈ㅜㅐ셔ㅗㅛ쵸그ㅑㅐ;ㅗ쇼먀ㅐㅜㅙ
 
 public class ToDoActivity extends AppCompatActivity {
+    public final static String TAG = "ToDoActivity";
     Date dateNow = Calendar.getInstance().getTime();
     SimpleDateFormat toY = new SimpleDateFormat("yyyy");
     SimpleDateFormat toM = new SimpleDateFormat("MM");
     SimpleDateFormat toD = new SimpleDateFormat("dd");
-    public final static String TAG = "ToDoActivity";
     FirebaseFirestore db = FirebaseFirestore.getInstance(); // 파이어 베이스 파이어스토어를 사용하기 위한 변수 생성 및 할당
     RecyclerView assignRCV, examRCV;
     AssignAdapter AsAdapter;
@@ -60,8 +60,8 @@ public class ToDoActivity extends AppCompatActivity {
     ImageButton beforeBtn;
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); //파이어 베이스에서 현재 로그인한 유저
     String currentUserID = user.getUid(); //현재 로그인한 사용자 uid
-    int y = 0, m = 0, d = 0, h = 0, mi = 0;
-    Map<String, Object> data = new HashMap<>();
+    String sort;
+    int y = 0, m = 0, d = 0;
     ArrayList<String> dataList;
 
     @Override
@@ -70,6 +70,8 @@ public class ToDoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_to_do);
         assignRCV = findViewById(R.id.assign_RCV);
         examRCV = findViewById(R.id.exam_RCV);
+        findViewById(R.id.add_assignment).setOnClickListener(onClickListener);
+        findViewById(R.id.add_exam).setOnClickListener(onClickListener);
 
         generateAssignRCV();
         generateExamRCV();
@@ -81,11 +83,21 @@ public class ToDoActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
     }
 
-    public void showDialog1(View view) {
+    View.OnClickListener onClickListener = v -> {
+        switch (v.getId()){
+            case R.id.add_assignment:
+                sort = "assign";
+                generateToDo(sort);
+                break;
+            case R.id.add_exam:
+                sort = "exam";
+                generateToDo(sort);
+        }
+    };
+
+    public void generateToDo(String sort) {
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -96,34 +108,17 @@ public class ToDoActivity extends AppCompatActivity {
                 intent.putExtra("year", y);
                 intent.putExtra("month", m);
                 intent.putExtra("day", d);
-                intent.putExtra("sort", "assign");
+                intent.putExtra("sort", sort);
                 startActivity(intent);
             }
         }, Integer.parseInt(toY.format(dateNow)), Integer.parseInt(toM.format(dateNow)) - 1, Integer.parseInt(toD.format(dateNow)));
-        datePickerDialog.setMessage("마감 기한");
+        if (sort.equals("assign")){
+            datePickerDialog.setMessage("마감 기한");
+        } else if (sort.equals("exam")){
+            datePickerDialog.setMessage("시험 일시");
+        }
         datePickerDialog.show();
     }
-
-    public void showDialog2(View view) {
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                y = year;
-                m = month + 1;
-                d = dayOfMonth;
-                Intent intent = new Intent(getApplicationContext(), ToDoMakeActivity.class);
-                intent.putExtra("year", y);
-                intent.putExtra("month", m);
-                intent.putExtra("day", d);
-                intent.putExtra("sort", "exam");
-                startActivity(intent);
-            }
-        }, Integer.parseInt(toY.format(dateNow)), Integer.parseInt(toM.format(dateNow)) - 1, Integer.parseInt(toD.format(dateNow)));
-
-        datePickerDialog.setMessage("시험 일시");
-        datePickerDialog.show();
-    }
-
 
     private void generateAssignRCV() {    //파이어 베이스 db 에서 todo 를 가져와 리싸이클러뷰에 보여주기 위한 코드
         db.collection("ToDo")

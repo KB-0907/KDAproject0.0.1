@@ -31,7 +31,6 @@ public class FreeBoardListActivity extends AppCompatActivity {
     String boardSort;
     TextView boardSortTitle;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +44,13 @@ public class FreeBoardListActivity extends AppCompatActivity {
         super.onResume();
         sortIntent = getIntent();
         boardSort = sortIntent.getStringExtra("boardSort");
-        if (boardSort.equals("free")){
-            boardSortTitle.setText("자유게시판");
-        } else if (boardSort.equals("academic")){
-            boardSortTitle.setText("학업게시판");
+        switch (boardSort){
+            case "free":
+                boardSortTitle.setText("자유 게시판");
+                break;
+            case "academic":
+                boardSortTitle.setText("학업 게시판");
+                break;
         }
         db.collection(boardSort).orderBy("created", Query.Direction.DESCENDING) //파이어베이스에서 모든 포스트의 문서(글)룰 생성일자순으로 가져옴
                 .get()

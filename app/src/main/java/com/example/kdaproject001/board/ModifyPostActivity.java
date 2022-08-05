@@ -64,10 +64,8 @@ public class ModifyPostActivity extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                        String getPostTitle = document.getData().get("title").toString();
-                        String getPostContents = document.getData().get("content").toString();
-                        moTitle.setText(getPostTitle);
-                        moContents.setText(getPostContents);
+                        moTitle.setText(document.getData().get("title").toString());
+                        moContents.setText(document.getData().get("content").toString());
                     } else {
                         Log.d(TAG, "No such document");
                     }

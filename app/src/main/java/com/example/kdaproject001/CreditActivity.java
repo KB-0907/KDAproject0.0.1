@@ -2,6 +2,7 @@ package com.example.kdaproject001;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -13,20 +14,32 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.kdaproject001.board.FreeBoardListActivity;
+import com.example.kdaproject001.board.PostAdapter;
 import com.example.kdaproject001.board.PostInfo;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
 
 
 public class CreditActivity extends AppCompatActivity {
+    public final static String TAG = "CreditActivity";
     EditText self_learn_credit,major_credit,general_credit,culture_credit,certificate_credit1,certificate_credit2,certificate_credit3,etc_credit;
     TextView totalCredit,totalCertificate,final_total_credit,self_learn_credit_name,etc_name;
-    private FirebaseUser user;
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     Button button, allClear;
+    FirebaseFirestore db = FirebaseFirestore.getInstance(); //파이어 베이스 파이어스토어를 사용하기 위한 변수 생성 및 할당
+
 
 
 
@@ -67,12 +80,35 @@ public class CreditActivity extends AppCompatActivity {
             }
         });
 
+        generateCredit();
 
     }
     public void finishAct(View view){
         finish();
     }
 
+    private void generateCredit(){
+        db.collection("Credit")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                if (user.getUid().equals(document.getData().get("writer").toString())){
+                                   major_credit.setText(document.getData().get("majorCredit").toString());
+                                    // major_credit.setText();
+                                    // general_credit,culture_credit,certificate_credit1,certificate_credit2,certificate_credit3,etc_credit;
+                                    // TextView totalCredit,totalCertificate,final_total_credit,self_learn_credit_name,etc_name;
+                                }
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
 
     public void saveCredit() {
         String majorPStr = major_credit.getText().toString();
@@ -83,7 +119,9 @@ public class CreditActivity extends AppCompatActivity {
         String certificate3 = certificate_credit3.getText().toString();
         String selfLearnStr = self_learn_credit.getText().toString();
         String etcStr = etc_credit.getText().toString();
-
+        String certificate_name1 = ((EditText)findViewById(R.id.certificate_name1)).getText().toString();
+        String certificate_name2 = ((EditText)findViewById(R.id.certificate_name2)).getText().toString();
+        String certificate_name3 = ((EditText)findViewById(R.id.certificate_name3)).getText().toString();
 
         try {
             int majorP = Integer.parseInt(majorPStr);
@@ -97,12 +135,6 @@ public class CreditActivity extends AppCompatActivity {
             int selfLearnP = Integer.parseInt(selfLearnStr);
             int etcP = Integer.parseInt(etcStr);
             int finalP = totalP+totalCertificateN+etcP+selfLearnP;
-
-
-            String certificate_name1 = ((EditText)findViewById(R.id.certificate_name1)).getText().toString();
-            String certificate_name2 = ((EditText)findViewById(R.id.certificate_name2)).getText().toString();
-            String certificate_name3 = ((EditText)findViewById(R.id.certificate_name3)).getText().toString();
-            String planner = ((TextView)findViewById(R.id.planner)).getText().toString();
 
 
             String totalStr = String.valueOf(totalP);
@@ -120,50 +152,101 @@ public class CreditActivity extends AppCompatActivity {
             String finalNStr = String.valueOf(finalP);
             final_total_credit.setText("최종 학점 : "+ finalNStr + " 학점");
 
+            user = FirebaseAuth.getInstance().getCurrentUser(); //파이어 베이스에서 현재 로그인한 유저의 UID
+            MyCreditInfo myCreditInfo = new MyCreditInfo(certificate1, certificate2, certificate3, certificate_name1,
+                    certificate_name2, certificate_name3, cultureStr, etcStr, majorPStr, generalPStr, selfLearnStr ,user.getUid());
+
+            uploadMyCreditInfo(myCreditInfo);
+
+
         } catch (NumberFormatException e){
             Toast.makeText(getApplicationContext(), "학점을 입력해 주세요.", Toast.LENGTH_SHORT).show();
 
         } catch (Exception e){
         }
+
     }
-
-/*
-
-    private void CreateMyCreditInfo(){
-        String ste = "1"; //현재 생성될 게시글의 아이디
-
-        if (true) {
-            user = FirebaseAuth.getInstance().getCurrentUser(); //파이어 베이스에서 현재 로그인한 유저의 UID
-            MyCreditInfo myCreditInfo = new MyCreditInfo(user.getUid(),ste, );
-
-
-            uploadMyCreditInfo(myCreditInfo);
-        }else {
-            Toast.makeText(this, "이상해요.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-
-
-    private void uploadMyCreditInfo(MyCreditInfo myCreditInfo){
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection(my).add(credit)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+    // 모든 문서 안에 저장된 사용자의 아이가 현재 사용자의 아이디와 일치하는 것이 하나라도 있으면 이 사용자는 학점을 한번 이상 저장한 유저
+    private void sortData(MyCreditInfo myCreditInfo){
+        db.collection("Credit")//현재 로그인한 사용자가 학점 플래너를 사용했다고 가정하고 생성된 함수
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                if (user.getUid().equals(document.getData().get("writer").toString())){
+                                    delet(document.getId());
+
+                                } else {
+                                    uploadMyCreditInfo(myCreditInfo);
+                                    
+                                    //Log.d("횟수", "ㅡㅡㅡ");
+                                    break;
+                                }
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
+
+    public void delet(String id){
+
+        db.collection("Credit").document(id)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error deleting document", e);
+                        Log.e("횟수", "ㅡㅡㅡ");
+
                     }
                 });
-
-        finish();
     }
 
+    private void updateCredit(MyCreditInfo myCreditInfo,String documentID){
+        DocumentReference washingtonRef = db.collection("Credit").document(documentID);
+        washingtonRef
+                .set(myCreditInfo)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully updated!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error updating document", e);
+                    }
+                });
+    }
 
- */
+    private void uploadMyCreditInfo(MyCreditInfo myCreditInfo){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-
+        db.collection("Credit").document(user.getUid())
+                .set(myCreditInfo)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+    }
 }

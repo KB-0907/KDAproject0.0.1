@@ -28,7 +28,7 @@ public class ToDoMakeActivity extends AppCompatActivity {
     EditText ToDoTitle;
     Button addToDo;
     private FirebaseUser user;
-    private int y=0, m=0, d=0, h=0, mi=0;
+    private int y=0, m=0, d=0;
     private String sort;
 
 
@@ -57,19 +57,13 @@ public class ToDoMakeActivity extends AppCompatActivity {
         addToDo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (sort.equals("assign")){
-                    AddToDoAssignment(deadStr);
-                }
-                else if (sort.equals("exam")) {
-                    AddToDoTest(deadStr);
-                }
+                AddToDo(deadStr);
             }
         });
         deadline.setText(deadStr);
     }
 
-
-    private void AddToDoAssignment(String deadStr){
+    private void AddToDo(String deadStr){
         user = FirebaseAuth.getInstance().getCurrentUser(); //파이어 베이스에서 현재 로그인한 유저의 UID
         Map<String, Object> data = new HashMap<>();
         data.put("title", ToDoTitle.getText().toString());
@@ -77,7 +71,6 @@ public class ToDoMakeActivity extends AppCompatActivity {
         data.put("UID",user.getUid());
         data.put("sort",sort);
 
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("ToDo").add(data)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -92,33 +85,4 @@ public class ToDoMakeActivity extends AppCompatActivity {
                 });
         finish();
     }
-
-
-
-    private void AddToDoTest(String deadStr){
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        Map<String, Object> data = new HashMap<>();
-        data.put("title", ToDoTitle.getText().toString());
-        data.put("deadline", deadStr);
-        data.put("UID",user.getUid());
-        data.put("sort",sort);
-
-
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("ToDo").add(data)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                    }
-                });
-        finish();
-    }
-
-
 }

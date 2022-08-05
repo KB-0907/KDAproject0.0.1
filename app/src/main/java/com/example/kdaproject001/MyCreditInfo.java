@@ -10,14 +10,14 @@ public class MyCreditInfo{
     private String certificateName3;
     private String cultureCredit;
     private String etcCredit;
+    String selfCredit;
     private String majorCredit;
     private String generalCredit;
     private String writer;
 
 
-    public  MyCreditInfo(String certificateCredit1, String certificateCredit2, String certificateCredit3, String certificateName1, String certificateName2, String certificateName3,
-                String cultureCredit , String etcCredit, String majorCredit, String generalCredit, String writer) {
-
+    public MyCreditInfo(String certificateCredit1, String certificateCredit2, String certificateCredit3, String certificateName1, String certificateName2, String certificateName3,
+                String cultureCredit , String etcCredit, String majorCredit, String generalCredit, String selfCredit ,String writer) {
         this.certificateCredit1 = certificateCredit1;
         this.certificateCredit2 = certificateCredit2;
         this.certificateCredit3 = certificateCredit3;
@@ -29,6 +29,7 @@ public class MyCreditInfo{
         this.majorCredit = majorCredit;
         this.generalCredit = generalCredit;
         this.writer = writer;
+        this.selfCredit = selfCredit;
     }
 
     public String getCertificateCredit1() {
