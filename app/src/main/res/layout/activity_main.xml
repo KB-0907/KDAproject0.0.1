@@ -80,6 +80,7 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:paddingTop="3dp"
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
@@ -87,6 +88,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:layout_weight="1"
             android:background="#FFFFFF"
             app:srcCompat="@drawable/school_calendar" />
@@ -101,6 +104,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_weight="1"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:background="#FFFFFF"
             app:srcCompat="@drawable/write_board" />
 
@@ -110,8 +115,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_weight="1"
-
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:background="#FFFFFF"
+
             android:onClick="moveTodoActivity"
             app:srcCompat="@drawable/test_calendar" />
 
@@ -121,6 +128,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginTop="5dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:background="#FFFFFF"
             app:srcCompat="@drawable/grade_planner" />
 
