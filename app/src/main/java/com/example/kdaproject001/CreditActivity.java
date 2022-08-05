@@ -1,8 +1,10 @@
 package com.example.kdaproject001;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,10 +13,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.kdaproject001.board.PostInfo;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 
 public class CreditActivity extends AppCompatActivity {
     EditText self_learn_credit,major_credit,general_credit,culture_credit,certificate_credit1,certificate_credit2,certificate_credit3,etc_credit;
     TextView totalCredit,totalCertificate,final_total_credit,self_learn_credit_name,etc_name;
+    private FirebaseUser user;
+    Button button, allClear;
+
+
+
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +48,24 @@ public class CreditActivity extends AppCompatActivity {
         final_total_credit = findViewById(R.id.final_total_credit);
         etc_credit = findViewById(R.id.etc_credit);
 
+        // Intent getIntent = getIntent();
+        // boardSort = getIntent.getStringExtra("boardSort");
+
+        button = findViewById(R.id.save_btn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveCredit();
+            }
+        });
+
+        allClear = findViewById(R.id.all_clear_btn);
+        allClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
 
     }
@@ -40,7 +73,8 @@ public class CreditActivity extends AppCompatActivity {
         finish();
     }
 
-    public void saveCredit(View view){
+
+    public void saveCredit() {
         String majorPStr = major_credit.getText().toString();
         String generalPStr = general_credit.getText().toString();
         String cultureStr = culture_credit.getText().toString();
@@ -66,7 +100,6 @@ public class CreditActivity extends AppCompatActivity {
 
 
             String certificate_name1 = ((EditText)findViewById(R.id.certificate_name1)).getText().toString();
-
             String certificate_name2 = ((EditText)findViewById(R.id.certificate_name2)).getText().toString();
             String certificate_name3 = ((EditText)findViewById(R.id.certificate_name3)).getText().toString();
             String planner = ((TextView)findViewById(R.id.planner)).getText().toString();
@@ -91,10 +124,46 @@ public class CreditActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "학점을 입력해 주세요.", Toast.LENGTH_SHORT).show();
 
         } catch (Exception e){
-
         }
-
     }
+
+/*
+
+    private void CreateMyCreditInfo(){
+        String ste = "1"; //현재 생성될 게시글의 아이디
+
+        if (true) {
+            user = FirebaseAuth.getInstance().getCurrentUser(); //파이어 베이스에서 현재 로그인한 유저의 UID
+            MyCreditInfo myCreditInfo = new MyCreditInfo(user.getUid(),ste, );
+
+
+            uploadMyCreditInfo(myCreditInfo);
+        }else {
+            Toast.makeText(this, "이상해요.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+    private void uploadMyCreditInfo(MyCreditInfo myCreditInfo){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection(my).add(credit)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                    }
+                });
+
+        finish();
+    }
+
+
+ */
 
 
 }
