@@ -34,7 +34,7 @@ import java.util.ArrayList;
 
 public class CreditActivity extends AppCompatActivity {
     public final static String TAG = "CreditActivity";
-    EditText self_learn_credit,major_credit,general_credit,culture_credit,certificate_credit1,certificate_credit2,certificate_credit3,etc_credit;
+    EditText major_credit,general_credit,culture_credit,certificate_credit1,certificate_credit2,certificate_credit3,etc_credit,self_learn_credit;
     TextView totalCredit,totalCertificate,final_total_credit,self_learn_credit_name,etc_name;
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     Button button, allClear;
@@ -61,8 +61,6 @@ public class CreditActivity extends AppCompatActivity {
         final_total_credit = findViewById(R.id.final_total_credit);
         etc_credit = findViewById(R.id.etc_credit);
 
-        // Intent getIntent = getIntent();
-        // boardSort = getIntent.getStringExtra("boardSort");
 
         button = findViewById(R.id.save_btn);
         button.setOnClickListener(new View.OnClickListener() {
@@ -97,10 +95,15 @@ public class CreditActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 if (user.getUid().equals(document.getData().get("writer").toString())){
-                                   major_credit.setText(document.getData().get("majorCredit").toString());
-                                    // major_credit.setText();
-                                    // general_credit,culture_credit,certificate_credit1,certificate_credit2,certificate_credit3,etc_credit;
-                                    // TextView totalCredit,totalCertificate,final_total_credit,self_learn_credit_name,etc_name;
+                                    major_credit.setText(document.getData().get("majorCredit").toString());
+                                    general_credit.setText(document.getData().get("generalCredit").toString());
+                                    culture_credit.setText(document.getData().get("cultureCredit").toString());
+                                    certificate_credit1.setText(document.getData().get("certificateCredit1").toString());
+                                    certificate_credit2.setText(document.getData().get("certificateCredit2").toString());
+                                    certificate_credit3.setText(document.getData().get("certificateCredit3").toString());
+                                    etc_credit.setText(document.getData().get("etcCredit").toString());
+                                    self_learn_credit.setText(document.getData().get("selfLearnCredit").toString());
+
                                 }
                             }
                         } else {
@@ -128,13 +131,15 @@ public class CreditActivity extends AppCompatActivity {
             int generalP = Integer.parseInt(generalPStr);
             int cultureP = Integer.parseInt(cultureStr);
             int totalP = majorP+generalP+cultureP;
+
             int certificate1P = Integer.parseInt(certificate1);
             int certificate2P = Integer.parseInt(certificate2);
             int certificate3P = Integer.parseInt(certificate3);
+
             int totalCertificateN = certificate1P+certificate2P+certificate3P;
-            int selfLearnP = Integer.parseInt(selfLearnStr);
+            int selfLearnCreditP = Integer.parseInt(selfLearnStr);
             int etcP = Integer.parseInt(etcStr);
-            int finalP = totalP+totalCertificateN+etcP+selfLearnP;
+            int finalP = totalP+totalCertificateN+etcP+selfLearnCreditP;
 
 
             String totalStr = String.valueOf(totalP);
@@ -142,12 +147,6 @@ public class CreditActivity extends AppCompatActivity {
 
             String totalCertificateP = String.valueOf(totalCertificateN);
             totalCertificate.setText("자격증 : " + totalCertificateP + " 학점");
-
-            String selfLearnCreditStr = String.valueOf(selfLearnP);
-            self_learn_credit.setText(selfLearnCreditStr);
-
-            String etcN = String.valueOf(etcP);
-            etc_credit.setText(etcN);
 
             String finalNStr = String.valueOf(finalP);
             final_total_credit.setText("최종 학점 : "+ finalNStr + " 학점");
