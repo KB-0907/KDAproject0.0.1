@@ -34,7 +34,7 @@ import java.util.ArrayList;
 
 public class CreditActivity extends AppCompatActivity {
     public final static String TAG = "CreditActivity";
-    EditText major_credit,general_credit,culture_credit,certificate_credit1,certificate_credit2,certificate_credit3,etc_credit,self_learn_credit;
+    EditText major_credit,general_credit,culture_credit,certificate_credit1,certificate_credit2,certificate_credit3,etc_credit,self_learn_credit,certificate_name1,certificate_name2,certificate_name3;
     TextView totalCredit,totalCertificate,final_total_credit,self_learn_credit_name,etc_name;
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     Button button, allClear;
@@ -54,6 +54,9 @@ public class CreditActivity extends AppCompatActivity {
         culture_credit = findViewById(R.id.culture_credit);
         totalCredit = findViewById(R.id.total_credit);
         certificate_credit1 = findViewById(R.id.certificate_credit1);
+        certificate_name1 = findViewById(R.id.certificate_name1);
+        certificate_name2 = findViewById(R.id.certificate_name2);
+        certificate_name3 = findViewById(R.id.certificate_name3);
         certificate_credit2 = findViewById(R.id.certificate_credit2);
         certificate_credit3 = findViewById(R.id.certificate_credit3);
         totalCertificate = findViewById(R.id.total_certificate);
@@ -103,6 +106,9 @@ public class CreditActivity extends AppCompatActivity {
                                     certificate_credit3.setText(document.getData().get("certificateCredit3").toString());
                                     etc_credit.setText(document.getData().get("etcCredit").toString());
                                     self_learn_credit.setText(document.getData().get("selfLearnCredit").toString());
+                                    certificate_name1.setText((document.getData().get("certificateName1").toString()));
+                                    certificate_name2.setText((document.getData().get("certificateName2").toString()));
+                                    certificate_name3.setText((document.getData().get("certificateName3").toString()));
 
                                 }
                             }
@@ -140,6 +146,7 @@ public class CreditActivity extends AppCompatActivity {
             int selfLearnCreditP = Integer.parseInt(selfLearnStr);
             int etcP = Integer.parseInt(etcStr);
             int finalP = totalP+totalCertificateN+etcP+selfLearnCreditP;
+
 
 
             String totalStr = String.valueOf(totalP);
