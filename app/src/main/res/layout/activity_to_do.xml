@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-        ​
+
         <ImageButton
             android:id="@+id/before_btn"
             android:layout_width="wrap_content"
@@ -25,18 +25,20 @@
             android:layout_weight="1"
             android:background="#FFFFFF"
             app:srcCompat="@drawable/before" />
-        ​
+
+
         <TextView
             android:id="@+id/textView26"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="5"
-            android:text="일정"
-            android:textSize="30sp"
-            android:textAlignment="center"
+            android:background="#FFFFFFFF"
             android:paddingTop="5sp"
-            android:paddingBottom="5sp"/>
-        ​
+            android:paddingBottom="5sp"
+            android:text="일정"
+            android:textAlignment="center"
+            android:textSize="30sp" />
+
         <ImageButton
             android:id="@+id/button5"
             android:layout_width="wrap_content"
@@ -47,11 +49,13 @@
 
 
     </LinearLayout>
+
     <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout9" />
@@ -71,11 +75,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+
+            android:background="#FFFFFFFF"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="#FFFFFF"
                 android:orientation="horizontal">
 
                 <TextView
@@ -86,6 +93,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="30dp"
                     android:layout_marginBottom="2dp"
+                    android:background="#FFFFFF"
                     android:text="과제"
                     android:textSize="22sp" />
 
@@ -93,6 +101,7 @@
                     android:id="@+id/add_assignment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="만들기" />
             </LinearLayout>
 
@@ -107,11 +116,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#FFFFFFFF"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="#FFFFFF"
                 android:orientation="horizontal">
 
                 <TextView

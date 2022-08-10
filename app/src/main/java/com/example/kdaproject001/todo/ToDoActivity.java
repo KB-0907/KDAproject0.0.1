@@ -162,7 +162,7 @@ public class ToDoActivity extends AppCompatActivity {
                                     //삭제하기 위해 - 내가 얻을 수 있는 것 : 현재 클릭한 아이템의 문자열들 혹은
                                 }
                             });
-                            itemTouchHelper.attachToRecyclerView(assignRCV);
+                            itemTouchHelper.attachToRecyclerView(examRCV);
 
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());

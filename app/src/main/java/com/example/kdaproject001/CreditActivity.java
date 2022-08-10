@@ -32,8 +32,6 @@ public class CreditActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance(); //파이어 베이스 파이어스토어를 사용하기 위한 변수 생성 및 할당
 
 
-
-
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +62,12 @@ public class CreditActivity extends AppCompatActivity {
             }
         });
 
+
         allClear = findViewById(R.id.all_clear_btn);
         allClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
             }
         });
