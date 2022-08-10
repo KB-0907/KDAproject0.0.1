@@ -74,6 +74,7 @@ public class AssignAdapter extends RecyclerView.Adapter<AssignViewHolder> implem
         Log.d("아이디", todoID);
     }
 
+
     public void ItemRemove(String todoID){
         db.collection("ToDo").document(todoID)//현재 스와이프한 todo 의 문서 아이디
                 .delete()

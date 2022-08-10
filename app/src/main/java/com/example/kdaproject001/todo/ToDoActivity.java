@@ -173,28 +173,55 @@ public class ToDoActivity extends AppCompatActivity {
     }
 
 
-    private void generateExamRCV() {
+    private void generateExamRCV() {    //파이어 베이스 db 에서 todo 를 가져와 리싸이클러뷰에 보여주기 위한 코드
         db.collection("ToDo")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            dataList = new ArrayList<>();
+                            todoInfo = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                if (document.getData().get("sort").toString().equals("exam") && currentUserID.equals(document.getData().get("UID").toString()))
-                                    dataList.add(document.getData().get("title").toString());
+                                if (document.getData().get("sort").toString().equals("exam") && currentUserID.equals(document.getData().get("uid").toString())) {
+                                    todoInfo.add(new TodoInfo(document.getData().get("title").toString(),
+                                            document.getData().get("deadline").toString(),
+                                            (Long) document.getData().get("created"),
+                                            document.getId(),
+                                            document.getData().get("sort").toString(),
+                                            document.getData().get("uid").toString()
+                                    ));
+                                }
                             }
-
                             LinearLayoutManager layoutManager = new LinearLayoutManager(ToDoActivity.this, LinearLayoutManager.VERTICAL, false);
                             examRCV.setLayoutManager(layoutManager);
-                            examAdapter = new ExamAdapter(ToDoActivity.this, dataList, getApplicationContext());
+                            examAdapter = new ExamAdapter(ToDoActivity.this, todoInfo, getApplicationContext()); //리싸이클러뷰를 보이게 하기 위한 어댑터 생성
                             examRCV.setAdapter(examAdapter); //리싸이클러뷰에 위에서 생성한 어댑터 설정
+
+                            ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP|ItemTouchHelper.DOWN, ItemTouchHelper.START|ItemTouchHelper.END) {
+                                @Override
+                                public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                                    return examAdapter.onItemMove(viewHolder.getAdapterPosition(),target.getAdapterPosition());
+                                }
+
+                                @Override
+                                public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                                    ExamAdapter.onItemSwipe(viewHolder.getAdapterPosition()); //화면에서 삭제
+                                    Log.d("상태1", String.valueOf(viewHolder.getAdapterPosition()));
+
+                                    //Log.d("값", todoInfo.get(viewHolder.getAdapterPosition()).getTodoID());
+
+                                    //삭제하기 위해 - 내가 얻을 수 있는 것 : 현재 클릭한 아이템의 문자열들 혹은
+                                }
+                            });
+                            itemTouchHelper.attachToRecyclerView(assignRCV);
+
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                     }
                 });
     }
+
+
 }
