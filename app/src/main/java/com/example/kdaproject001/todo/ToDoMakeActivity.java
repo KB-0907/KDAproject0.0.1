@@ -65,14 +65,11 @@ public class ToDoMakeActivity extends AppCompatActivity {
 
     private void AddToDo(String deadStr){
         user = FirebaseAuth.getInstance().getCurrentUser(); //파이어 베이스에서 현재 로그인한 유저의 UID
-        Map<String, Object> data = new HashMap<>();
-        data.put("title", ToDoTitle.getText().toString());
-        data.put("deadline", deadStr);
-        data.put("UID",user.getUid());
-        data.put("sort",sort);
+        String todoID = "1";
+        TodoInfo todoInfo = new TodoInfo(ToDoTitle.getText().toString(), deadStr, System.currentTimeMillis(), todoID, sort, user.getUid());
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("ToDo").add(data)
+        db.collection("ToDo").add(todoInfo)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {

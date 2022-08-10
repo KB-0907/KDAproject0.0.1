@@ -2,6 +2,7 @@ package com.example.kdaproject001.todo;
 // 도레미파솔라시
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -63,6 +64,7 @@ public class ToDoActivity extends AppCompatActivity {
     String sort;
     int y = 0, m = 0, d = 0;
     ArrayList<String> dataList;
+    ArrayList<TodoInfo> todoInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,19 +129,44 @@ public class ToDoActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            dataList = new ArrayList<>();
-                            ArrayList<String> deadlines = new ArrayList<>();
+                            todoInfo = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                if (document.getData().get("sort").toString().equals("assign") && currentUserID.equals(document.getData().get("UID").toString())) {
-                                    dataList.add(document.getData().get("title").toString());
-                                    deadlines.add(document.getData().get("deadline").toString());
+                                Log.d("TAG", document.getData().get("sort").toString());
+                                Log.d("TAG", document.getData().get("uid").toString()
+                                );
+
+                                if (document.getData().get("sort").toString().equals("assign") && currentUserID.equals(document.getData().get("uid").toString())) {
+                                    todoInfo.add(new TodoInfo(document.getData().get("title").toString(),
+                                            document.getData().get("deadline").toString(),
+                                            (Long) document.getData().get("created"),
+                                            document.getId(),
+                                            document.getData().get("sort").toString(),
+                                            document.getData().get("uid").toString()
+                                            ));
                                 }
                             }
                             LinearLayoutManager layoutManager = new LinearLayoutManager(ToDoActivity.this, LinearLayoutManager.VERTICAL, false);
                             assignRCV.setLayoutManager(layoutManager);
-                            AsAdapter = new AssignAdapter(ToDoActivity.this, dataList, deadlines, getApplicationContext()); //리싸이클러뷰를 보이게 하기 위한 어댑터 생성
+                            AsAdapter = new AssignAdapter(ToDoActivity.this, todoInfo, getApplicationContext()); //리싸이클러뷰를 보이게 하기 위한 어댑터 생성
                             assignRCV.setAdapter(AsAdapter); //리싸이클러뷰에 위에서 생성한 어댑터 설정
+
+                            ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP|ItemTouchHelper.DOWN, ItemTouchHelper.START|ItemTouchHelper.END) {
+                                @Override
+                                public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                                    return AsAdapter.onItemMove(viewHolder.getAdapterPosition(),target.getAdapterPosition());
+                                }
+
+                                @Override
+                                public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                                    AsAdapter.onItemSwipe(viewHolder.getAdapterPosition()); //화면에서 삭제
+                                   Log.d("값", todoInfo.get(viewHolder.getAdapterPosition()).getTodoID());
+
+                                    //삭제하기 위해 - 내가 얻을 수 있는 것 : 현재 클릭한 아이템의 문자열들 혹은
+                                }
+                            });
+                            itemTouchHelper.attachToRecyclerView(assignRCV);
+
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }

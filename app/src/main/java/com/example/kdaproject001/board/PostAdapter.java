@@ -33,6 +33,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View postItemView = inflater.inflate(R.layout.item_post, parent ,false);
         return new PostViewHolder(postItemView);
+
     }
 
     @Override
