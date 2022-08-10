@@ -30,6 +30,7 @@ public class ToDoMakeActivity extends AppCompatActivity {
     private FirebaseUser user;
     private int y=0, m=0, d=0;
     private String sort;
+    String day, q, deadStr;
 
 
     @Override
@@ -51,8 +52,12 @@ public class ToDoMakeActivity extends AppCompatActivity {
 
         String year = String.valueOf(y);
         String month = String.valueOf(m);
-        String day = String.valueOf(d);
-        String deadStr = year + "/" + month + "/" + day;
+        day = String.valueOf(d);
+
+        if (d < 10){
+            q = "0" + day;
+            deadStr = year + "/" + month + "/" + q;
+        }else deadStr = year + "/" + month + "/" + day;
 
         addToDo.setOnClickListener(new View.OnClickListener() {
             @Override

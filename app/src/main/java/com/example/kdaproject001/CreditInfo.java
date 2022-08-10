@@ -1,6 +1,6 @@
 package com.example.kdaproject001;
 
-public class MyCreditInfo{
+public class CreditInfo {
 
 
     private String majorCredit;
@@ -17,8 +17,8 @@ public class MyCreditInfo{
     private String writer;
 
 
-    public MyCreditInfo(String certificateCredit1, String certificateCredit2, String certificateCredit3, String certificateName1, String certificateName2, String certificateName3,
-                String cultureCredit , String etcCredit, String majorCredit, String generalCredit, String selfLearnCredit ,String writer) {
+    public CreditInfo(String certificateCredit1, String certificateCredit2, String certificateCredit3, String certificateName1, String certificateName2, String certificateName3,
+                      String cultureCredit , String etcCredit, String majorCredit, String generalCredit, String selfLearnCredit , String writer) {
         this.majorCredit = majorCredit;
         this.generalCredit = generalCredit;
         this.cultureCredit = cultureCredit;

@@ -63,7 +63,6 @@ public class ToDoActivity extends AppCompatActivity {
     String currentUserID = user.getUid(); //현재 로그인한 사용자 uid
     String sort;
     int y = 0, m = 0, d = 0;
-    ArrayList<String> dataList;
     ArrayList<TodoInfo> todoInfo;
 
     @Override
@@ -123,7 +122,7 @@ public class ToDoActivity extends AppCompatActivity {
     }
 
     private void generateAssignRCV() {    //파이어 베이스 db 에서 todo 를 가져와 리싸이클러뷰에 보여주기 위한 코드
-        db.collection("ToDo")
+        db.collection("ToDo").orderBy("deadline", Query.Direction.ASCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -206,7 +205,7 @@ public class ToDoActivity extends AppCompatActivity {
 
                                 @Override
                                 public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                                    ExamAdapter.onItemSwipe(viewHolder.getAdapterPosition()); //화면에서 삭제
+                                    examAdapter.onItemSwipe(viewHolder.getAdapterPosition()); //화면에서 삭제
                                     Log.d("상태1", String.valueOf(viewHolder.getAdapterPosition()));
 
                                     //Log.d("값", todoInfo.get(viewHolder.getAdapterPosition()).getTodoID());
@@ -214,7 +213,7 @@ public class ToDoActivity extends AppCompatActivity {
                                     //삭제하기 위해 - 내가 얻을 수 있는 것 : 현재 클릭한 아이템의 문자열들 혹은
                                 }
                             });
-                            itemTouchHelper.attachToRecyclerView(assignRCV);
+                            itemTouchHelper.attachToRecyclerView(examRCV);
 
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());

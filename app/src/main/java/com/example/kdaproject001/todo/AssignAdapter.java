@@ -57,9 +57,8 @@ public class AssignAdapter extends RecyclerView.Adapter<AssignViewHolder> implem
 
     @Override
     public boolean onItemMove(int from_position, int to_position) {
-      //  ChattingListDataModel number = assigns.get(from_position); // 이동할 객체 저장
         todos.remove(from_position); // 이동할 객체 삭제
-      //  assigns.add(to_position , number); // 이동하고 싶은 position 에 추가
+        todos.add(to_position,todos.get(from_position)); // 이동하고 싶은 position 에 추가
         notifyItemMoved(from_position,to_position); //Adapter에 데이터 이동알림
         return true;
     }

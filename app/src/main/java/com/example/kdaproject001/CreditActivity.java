@@ -2,10 +2,8 @@ package com.example.kdaproject001;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,22 +12,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.kdaproject001.board.FreeBoardListActivity;
-import com.example.kdaproject001.board.PostAdapter;
-import com.example.kdaproject001.board.PostInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.ArrayList;
 
 
 public class CreditActivity extends AppCompatActivity {
@@ -159,7 +150,7 @@ public class CreditActivity extends AppCompatActivity {
             final_total_credit.setText("최종 학점 : "+ finalNStr + " 학점");
 
             user = FirebaseAuth.getInstance().getCurrentUser(); //파이어 베이스에서 현재 로그인한 유저의 UID
-            MyCreditInfo myCreditInfo = new MyCreditInfo(certificate1, certificate2, certificate3, certificate_name1,
+            CreditInfo myCreditInfo = new CreditInfo(certificate1, certificate2, certificate3, certificate_name1,
                     certificate_name2, certificate_name3, cultureStr, etcStr, majorPStr, generalPStr, selfLearnStr ,user.getUid());
 
             uploadMyCreditInfo(myCreditInfo);
@@ -173,7 +164,7 @@ public class CreditActivity extends AppCompatActivity {
 
     }
 
-    private void uploadMyCreditInfo(MyCreditInfo myCreditInfo){
+    private void uploadMyCreditInfo(CreditInfo myCreditInfo){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection("Credit").document(user.getUid())

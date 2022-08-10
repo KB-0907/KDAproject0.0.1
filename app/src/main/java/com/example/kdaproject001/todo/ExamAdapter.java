@@ -21,11 +21,7 @@ import java.util.ArrayList;
 
 public class ExamAdapter extends RecyclerView.Adapter<ExamViewHolder> implements ItemTouchHelperListener{
     ArrayList<TodoInfo> todos;
-    ArrayList<String> exam;
-    ArrayList<String> deadline;
     FirebaseFirestore db = FirebaseFirestore.getInstance(); // 파이어 베이스 파이어스토어를 사용하기 위한 변수 생성 및 할당
-
-
     private Activity activity;
     private Context context;
 
