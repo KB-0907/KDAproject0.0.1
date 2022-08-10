@@ -66,11 +66,12 @@ public class AssignAdapter extends RecyclerView.Adapter<AssignViewHolder> implem
 
     @Override
     public void onItemSwipe(int position) {
-        Log.d("상태", "움직임");
+        Log.d("상태", String.valueOf(position));
+        String todoID = todos.get(position).getTodoID();
+        ItemRemove(todoID);//파이어베이스에서 삭제
         todos.remove(position);
         notifyItemRemoved(position);
-       // String todoID = todos.get(position).getTodoID();
-       // ItemRemove(todoID);//파이어베이스에서 삭제
+        Log.d("아이디", todoID);
     }
 
     public void ItemRemove(String todoID){

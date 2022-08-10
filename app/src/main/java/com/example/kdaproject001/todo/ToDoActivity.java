@@ -132,10 +132,6 @@ public class ToDoActivity extends AppCompatActivity {
                             todoInfo = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                Log.d("TAG", document.getData().get("sort").toString());
-                                Log.d("TAG", document.getData().get("uid").toString()
-                                );
-
                                 if (document.getData().get("sort").toString().equals("assign") && currentUserID.equals(document.getData().get("uid").toString())) {
                                     todoInfo.add(new TodoInfo(document.getData().get("title").toString(),
                                             document.getData().get("deadline").toString(),
@@ -160,7 +156,9 @@ public class ToDoActivity extends AppCompatActivity {
                                 @Override
                                 public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                                     AsAdapter.onItemSwipe(viewHolder.getAdapterPosition()); //화면에서 삭제
-                                   Log.d("값", todoInfo.get(viewHolder.getAdapterPosition()).getTodoID());
+                                    Log.d("상태1", String.valueOf(viewHolder.getAdapterPosition()));
+
+                                    //Log.d("값", todoInfo.get(viewHolder.getAdapterPosition()).getTodoID());
 
                                     //삭제하기 위해 - 내가 얻을 수 있는 것 : 현재 클릭한 아이템의 문자열들 혹은
                                 }
