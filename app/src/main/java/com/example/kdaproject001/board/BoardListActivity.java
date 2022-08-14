@@ -5,39 +5,53 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
-
 import com.example.kdaproject001.R;
 
 public class BoardListActivity extends AppCompatActivity {
-    TextView moveToFreeBoard, moveToAcademicBoard , textView19;
-
+    String boardSort;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board_list);
 
-        moveToFreeBoard = findViewById(R.id.moveToFreeBoard);
-        moveToFreeBoard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent freeIntent = new Intent(getApplicationContext(),FreeBoardListActivity.class);
-                freeIntent.putExtra("boardSort", "free");
-                startActivity(freeIntent);
-            }
-        });
-
-        moveToAcademicBoard = findViewById(R.id.moveToAcademicBoard);
-        moveToAcademicBoard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent academicIntent = new Intent(getApplicationContext(),FreeBoardListActivity.class);
-                academicIntent.putExtra("boardSort", "academic");
-                startActivity(academicIntent);
-            }
-        });
-
+        findViewById(R.id.freeBoard).setOnClickListener(onBoardClickListener);
+        findViewById(R.id.academicBoard).setOnClickListener(onBoardClickListener);
+        findViewById(R.id.courseBoard).setOnClickListener(onBoardClickListener);
+        findViewById(R.id.professorBoard).setOnClickListener(onBoardClickListener);
+        findViewById(R.id.TextBookBoard).setOnClickListener(onBoardClickListener);
     }
+
+    View.OnClickListener onBoardClickListener = v -> {
+        switch (v.getId()){
+            case R.id.freeBoard:
+                boardSort = "free";
+                moveToBoard(boardSort);
+                break;
+            case R.id.academicBoard:
+                boardSort = "academic";
+                moveToBoard(boardSort);
+                break;
+            case R.id.courseBoard:
+                boardSort = "course";
+                moveToBoard(boardSort);
+                break;
+            case R.id.professorBoard:
+                boardSort = "professor";
+                moveToBoard(boardSort);
+                break;
+            case R.id.TextBookBoard:
+                boardSort = "textbook";
+                moveToBoard(boardSort);
+                break;
+        }
+    };
+
+    private void moveToBoard(String boardSort){
+        Intent boardIntent = new Intent(getApplicationContext(), FreeBoardListActivity.class);
+        boardIntent.putExtra("boardSort", boardSort);
+        startActivity(boardIntent);
+    }
+
     public void finishAct(View view) { finish(); }
 }

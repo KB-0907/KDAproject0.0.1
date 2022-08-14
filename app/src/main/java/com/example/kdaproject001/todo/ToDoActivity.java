@@ -137,7 +137,9 @@ public class ToDoActivity extends AppCompatActivity {
                                             (Long) document.getData().get("created"),
                                             document.getId(),
                                             document.getData().get("sort").toString(),
-                                            document.getData().get("uid").toString()
+                                            document.getData().get("uid").toString(),
+                                            Integer.parseInt(String.valueOf(document.getData().get("hour"))), //Map 자료형을 int 로 받아 올 때
+                                            Integer.parseInt(String.valueOf(document.getData().get("minute")))
                                             ));
                                 }
                             }
@@ -162,7 +164,7 @@ public class ToDoActivity extends AppCompatActivity {
                                     //삭제하기 위해 - 내가 얻을 수 있는 것 : 현재 클릭한 아이템의 문자열들 혹은
                                 }
                             });
-                            itemTouchHelper.attachToRecyclerView(examRCV);
+                            itemTouchHelper.attachToRecyclerView(assignRCV);
 
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
@@ -188,7 +190,9 @@ public class ToDoActivity extends AppCompatActivity {
                                             (Long) document.getData().get("created"),
                                             document.getId(),
                                             document.getData().get("sort").toString(),
-                                            document.getData().get("uid").toString()
+                                            document.getData().get("uid").toString(),
+                                            Integer.parseInt(String.valueOf(document.getData().get("hour"))),
+                                            Integer.parseInt(String.valueOf(document.getData().get("minute")))
                                     ));
                                 }
                             }

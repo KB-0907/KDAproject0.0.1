@@ -11,6 +11,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.example.kdaproject001.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -24,6 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ToDoMakeActivity extends AppCompatActivity {
+    TimePicker timePicker;
     TextView deadline;
     EditText ToDoTitle;
     Button addToDo;
@@ -39,6 +41,7 @@ public class ToDoMakeActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_to_do_make);
 
+        timePicker = findViewById(R.id.create_timepicker);
         deadline = findViewById(R.id.get_deadline);
         ToDoTitle = findViewById(R.id.ToDo_title);
         addToDo = findViewById(R.id.add_ToDo);
@@ -49,6 +52,8 @@ public class ToDoMakeActivity extends AppCompatActivity {
         d = inIntent.getIntExtra("day", 0);
         sort = inIntent.getStringExtra("sort");
         Log.d("sort", sort);
+
+
 
         String year = String.valueOf(y);
         String month = String.valueOf(m);
@@ -69,9 +74,11 @@ public class ToDoMakeActivity extends AppCompatActivity {
     }
 
     private void AddToDo(String deadStr){
+        int inHour = TimePickerUtil.getTimePickerHour(timePicker);
+        int inMinute = TimePickerUtil.getTimePickerMinute(timePicker);
         user = FirebaseAuth.getInstance().getCurrentUser(); //파이어 베이스에서 현재 로그인한 유저의 UID
         String todoID = "1";
-        TodoInfo todoInfo = new TodoInfo(ToDoTitle.getText().toString(), deadStr, System.currentTimeMillis(), todoID, sort, user.getUid());
+        TodoInfo todoInfo = new TodoInfo(ToDoTitle.getText().toString(), deadStr, System.currentTimeMillis(), todoID, sort, user.getUid(), inHour, inMinute);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("ToDo").add(todoInfo)

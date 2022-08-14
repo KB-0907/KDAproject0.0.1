@@ -15,6 +15,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <TimePicker
+                android:id="@+id/create_timepicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:timePickerMode="spinner"
+                />
+
             <EditText
                 android:id="@+id/ToDo_title"
                 android:layout_width="match_parent"

@@ -19,8 +19,7 @@
             android:id="@+id/before_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/before"
-             />
+            android:src="@drawable/before" />
 
         <TextView
             android:id="@+id/post_title2"

@@ -50,18 +50,22 @@
 
     </LinearLayout>
 
+
     <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_weight="1"
-        android:background="#FFFFFF"
+        android:paddingStart="30dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout9" />
 
-
     <LinearLayout
+        android:id="@+id/linearLayout16"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
@@ -73,80 +77,99 @@
         <LinearLayout
             android:id="@+id/linearLayout10"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
             android:layout_weight="1"
-
-            android:background="#FFFFFFFF"
+            android:background="@drawable/recyclerangle"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="#FFFFFF"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/asssignment"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="2dp"
-                    android:background="#FFFFFF"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
                     android:text="과제"
-                    android:textSize="22sp" />
+                    android:textColor="#FF9A2929"
+                    android:textSize="16sp" />
 
-                <Button
+                <ImageView
                     android:id="@+id/add_assignment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    app:srcCompat="@drawable/add" />
 
-                    android:text="만들기" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/assign_RCV"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginBottom="10dp" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout12"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="20dp"
             android:layout_weight="1"
-            android:background="#FFFFFFFF"
+            android:background="@drawable/recyclerangle"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="#FFFFFF"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/exam"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="2dp"
-                    android:text="시험"
-                    android:textSize="22sp" />
-
-                <Button
-                    android:id="@+id/add_exam"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="만들기" />
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:text="시험"
+                    android:textColor="#FF9A2929"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/add_exam"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    app:srcCompat="@drawable/add" />
+
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/exam_RCV"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginBottom="10dp" />
         </LinearLayout>
 
     </LinearLayout>

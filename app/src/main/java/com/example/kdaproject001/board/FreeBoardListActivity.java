@@ -51,7 +51,17 @@ public class FreeBoardListActivity extends AppCompatActivity {
             case "academic":
                 boardSortTitle.setText("학업 게시판");
                 break;
+            case "course":
+                boardSortTitle.setText("진로 게시판");
+                break;
+            case "professor":
+                boardSortTitle.setText("교수 게시판");
+                break;
+            case "textbook":
+                boardSortTitle.setText("교재 게시판");
+                break;
         }
+
         db.collection(boardSort).orderBy("created", Query.Direction.DESCENDING) //파이어베이스에서 모든 포스트의 문서(글)룰 생성일자순으로 가져옴
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

@@ -46,8 +46,7 @@ public class AssignAdapter extends RecyclerView.Adapter<AssignViewHolder> implem
     @Override
     public void onBindViewHolder(@NonNull AssignViewHolder holder, int position) {
         TodoInfo todoInfo = todos.get(position);
-        holder.todoTitleText.setText(todos.get(position).getTitle());
-        holder.todoDeadLineText.setText(todos.get(position).getDeadline());
+        holder.setAssignTodo(todoInfo);
     }
 
     @Override
@@ -59,7 +58,7 @@ public class AssignAdapter extends RecyclerView.Adapter<AssignViewHolder> implem
     public boolean onItemMove(int from_position, int to_position) {
         todos.remove(from_position); // 이동할 객체 삭제
         todos.add(to_position,todos.get(from_position)); // 이동하고 싶은 position 에 추가
-        notifyItemMoved(from_position,to_position); //Adapter에 데이터 이동알림
+        notifyItemMoved(from_position,to_position); //Adapter 에 데이터 이동알림
         return true;
     }
 

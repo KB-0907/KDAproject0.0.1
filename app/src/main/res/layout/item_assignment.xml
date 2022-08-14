@@ -1,31 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/comment_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+    android:layout_marginEnd="3dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="" />
+
         <TextView
             android:id="@+id/assignment_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
+            android:layout_marginStart="5dp"
             android:hint="과제 제목"
-            android:textSize="20sp" />
+            android:layout_gravity="center"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/assignment_deadline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_weight="0"
+            android:layout_gravity="bottom"
             android:hint="마감 기한"
-            android:textSize="20sp"
-            android:layout_marginStart="20dp"/>
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/assignment_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="0"
+            android:layout_gravity="bottom"
+            android:hint="마감 기한 시간"
+            android:textSize="14sp" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

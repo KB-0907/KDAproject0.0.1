@@ -1,20 +1,22 @@
 package com.example.kdaproject001.todo;
 
 public class TodoInfo {
-    private String title;
-    private String deadline;
+    private String title, deadline;
     private long created;
-    private String todoID;
+    private String todoID, UID;
     private String sort;
-    private String UID;
+    private int hour, minute;
 
-    public TodoInfo(String title, String deadline, long created, String todoID, String sort, String UID){
+
+    public TodoInfo(String title, String deadline, long created, String todoID, String sort, String UID, int hour, int minute){
         this.title = title;
         this.deadline = deadline;
         this.created = created;
         this.todoID = todoID;
         this.sort = sort;
         this.UID = UID;
+        this.hour = hour;
+        this.minute  = minute;
     }
 
     public String getTitle() {
@@ -63,5 +65,21 @@ public class TodoInfo {
 
     public void setUID(String UID) {
         this.UID = UID;
+    }
+
+    public int getHour() {
+        return hour;
+    }
+
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    public int getMinute() {
+        return minute;
+    }
+
+    public void setMinute(int minute) {
+        this.minute = minute;
     }
 }
