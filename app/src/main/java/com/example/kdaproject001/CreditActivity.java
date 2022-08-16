@@ -62,16 +62,6 @@ public class CreditActivity extends AppCompatActivity {
             }
         });
 
-
-        allClear = findViewById(R.id.all_clear_btn);
-        allClear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-            }
-        });
-
         generateCredit();
 
     }

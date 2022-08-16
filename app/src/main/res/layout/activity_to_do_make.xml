@@ -9,32 +9,32 @@
     <!-- //end 타이틀바 -->
      
         <!-- Notice -->
-        <LinearLayout
-            android:padding="24dp"
-            android:orientation="vertical"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1C1C1B"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TimePicker
+            android:id="@+id/create_timepicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:timePickerMode="spinner" />
+
+        <EditText
+            android:id="@+id/ToDo_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName" />
 
-            <TimePicker
-                android:id="@+id/create_timepicker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:timePickerMode="spinner"
-                />
-
-            <EditText
-                android:id="@+id/ToDo_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
-
-            <TextView
-                android:id="@+id/get_deadline"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="마감 기한" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/get_deadline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="마감 기한" />
+    </LinearLayout>
         <!-- Notice -->
      
         <View
@@ -53,12 +53,12 @@
                 android:id="@+id/add_ToDo"
                 android:layout_width="match_parent"
                 android:layout_height="53dp"
-                android:background="#00000000"
+                android:background="#707070"
                 android:gravity="center"
                 android:padding="16dp"
                 android:text="추가"
-                android:textColor="#ff7a00"
-                android:textSize="15sp" />
+                android:textColor="#FF9A2929"
+                android:textSize="18sp" />
         </LinearLayout>
         <!--// 닫기 버튼 -->
     </LinearLayout>

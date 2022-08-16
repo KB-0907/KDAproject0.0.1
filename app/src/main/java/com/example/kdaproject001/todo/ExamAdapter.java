@@ -42,9 +42,11 @@ public class ExamAdapter extends RecyclerView.Adapter<ExamViewHolder> implements
     @Override
     public void onBindViewHolder(@NonNull ExamViewHolder holder, int position) {
         TodoInfo todoInfo = todos.get(position);
-        holder.todoTitleText.setText(todos.get(position).getTitle());
-        holder.todoDeadLineText.setText(todos.get(position).getDeadline());
+
+        holder.setExamTodo(todoInfo);
     }
+
+
 
     @Override
     public int getItemCount() {
