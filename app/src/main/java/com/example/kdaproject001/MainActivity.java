@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity{
         pager = findViewById(R.id.pager);
         pager.setOffscreenPageLimit(2);
 
+
         creditBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -73,15 +73,40 @@
         </LinearLayout>
     </ScrollView>
 
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mianScrollView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </ScrollView>
+
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/border"
         android:orientation="horizontal"
+        android:paddingTop="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:paddingTop="3dp"
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
@@ -89,10 +114,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
             android:layout_weight="1"
             android:background="#FFFFFF"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             app:srcCompat="@drawable/school_calendar" />
 
         <!--
@@ -105,9 +130,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_weight="1"
+            android:background="#FFFFFF"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:background="#FFFFFF"
             app:srcCompat="@drawable/write_board" />
 
         <ImageButton
@@ -116,22 +141,22 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_weight="1"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
             android:background="#FFFFFF"
-
             android:onClick="moveTodoActivity"
+            android:paddingTop="10dp"
+
+            android:paddingBottom="10dp"
             app:srcCompat="@drawable/test_calendar" />
 
         <ImageButton
             android:id="@+id/move_to_grade_planner_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:background="#FFFFFF"
             app:srcCompat="@drawable/grade_planner" />
 
     </LinearLayout>
