@@ -23,9 +23,12 @@
             android:name=".todo.ToDoActivity"
             android:exported="false" />
         <activity
+            android:name=".MyInfoActivity"
+            android:exported="false" />
+        <activity
             android:name=".todo.ToDoMakeActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar" />
         <activity
             android:name=".board.ModifyPostActivity"
             android:exported="false" />

@@ -3,13 +3,12 @@ package com.example.kdaproject001;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.kdaproject001.board.BoardListActivity;
@@ -49,9 +48,9 @@ import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
 public class MainActivity extends AppCompatActivity{
-    ImageButton boardBnt, schBtn, TodoBtn, creditBtn;
     ViewPager pager;
     TextView textText;
+    String[] noticeTitle = new String[5];
 
 
     @Override
@@ -60,21 +59,15 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         makeNotice();
 
-        textText = findViewById(R.id.textView16);
-        boardBnt = findViewById(R.id.move_to_board_btn);
-        schBtn = findViewById(R.id.schedule_btn);
-        TodoBtn = findViewById(R.id.move_to_do_btn);
-        creditBtn = findViewById(R.id.move_to_grade_planner_btn);
+
+        findViewById(R.id.move_to_board_btn).setOnClickListener(moveActivityClickListener);
+        findViewById(R.id.schedule_btn).setOnClickListener(moveActivityClickListener);
+        findViewById(R.id.move_to_do_btn).setOnClickListener(moveActivityClickListener);
+        findViewById(R.id.move_to_grade_planner_btn).setOnClickListener(moveActivityClickListener);
+        findViewById(R.id.myPage).setOnClickListener(moveActivityClickListener);
+
         pager = findViewById(R.id.pager);
         pager.setOffscreenPageLimit(2);
-
-        creditBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CreditActivity.class);
-                startActivity(intent);
-            }
-        });
 
         MainPagerAdapter mainAdapter = new MainPagerAdapter(getSupportFragmentManager());
 
@@ -85,27 +78,31 @@ public class MainActivity extends AppCompatActivity{
         mainAdapter.addItem(creFragment);
 
         pager.setAdapter(mainAdapter);
-
-        boardBnt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent borIntent = new Intent(getApplicationContext(), BoardListActivity.class);
-                startActivity(borIntent);
-            }
-        });
-
-        schBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent schIntent = new Intent(getApplicationContext(), scheduleActivity.class);
-                startActivity(schIntent);
-            }
-        });
     }
 
-    public void moveTodoActivity(View view){
-        Intent todoIntent = new Intent(getApplicationContext(), ToDoActivity.class);
-        startActivity(todoIntent);
+    View.OnClickListener moveActivityClickListener = v -> {
+        switch (v.getId()){
+            case R.id.move_to_board_btn:
+                moveActivity(BoardListActivity.class);
+                break;
+            case R.id.schedule_btn:
+                moveActivity(scheduleActivity.class);
+                break;
+            case R.id.move_to_do_btn:
+                moveActivity(ToDoActivity.class);
+                break;
+            case R.id.move_to_grade_planner_btn:
+                moveActivity(CreditActivity.class);
+                break;
+            case R.id.myPage:
+                moveActivity(MyInfoActivity.class);
+                break;
+        }
+    };
+
+    private void moveActivity(Class moveClass){
+        Intent moveIntent = new Intent(getApplicationContext(), moveClass);
+        startActivity(moveIntent);
     }
 
     @Override
@@ -114,24 +111,58 @@ public class MainActivity extends AppCompatActivity{
         super.onBackPressed();
     }
 
+    private void makeNotice(){
+        new Thread(() -> {
+            trustAllHosts();
+            try {
+                trustAllHosts();
+                // url을 열기 전에 trustAllHosts 호출
+                String url = "https://iit.kw.ac.kr/servlet/controller.home.bbs.NoticeUserServlet?p_process=listPage&p_layerId=5&p_page=1";
+                Document doc = Jsoup.connect(url).get();
+                Elements titleEle = doc.select(".lft a");//공지사항의 제목
+                Elements dateEle = doc.select(".tbl-type02* tr td");//첫행의 날짜
+                String date = dateEle.get(9).text();
+               // String[] noticeTitle = new String[titleEle.size()];
+
+                for (int i = 0; i < 5; ++i){
+                    noticeTitle[i] = titleEle.get(i).text().replace("&nbsp", "");
+                    Log.e("결과", noticeTitle[i]);
+                }
+                Message msg = handler.obtainMessage();
+                handler.sendMessage(msg);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                Log.d("결과", "실패");
+            }
+        }).start();
+    }
+
+    final Handler handler = new Handler(){
+        public void handleMessage(Message msg){
+            ((TextView)findViewById(R.id.notice0)).setText(noticeTitle[0]);
+            ((TextView)findViewById(R.id.notice1)).setText(noticeTitle[1]);
+            ((TextView)findViewById(R.id.notice2)).setText(noticeTitle[2]);
+            ((TextView)findViewById(R.id.notice3)).setText(noticeTitle[3]);
+            ((TextView)findViewById(R.id.notice4)).setText(noticeTitle[4]);
+        }
+    };
+
     private void trustAllHosts() {
         // Create a trust manager that does not validate certificate chains
         TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
             public java.security.cert.X509Certificate[] getAcceptedIssuers() {
                 return new java.security.cert.X509Certificate[] {};
             }
-
             @Override
             public void checkClientTrusted(X509Certificate[] chain,
                                            String authType) throws CertificateException {
             }
-
             @Override
             public void checkServerTrusted(X509Certificate[] chain,
                                            String authType) throws CertificateException {
             }
         }};
-
         // Install the all-trusting trust manager
         try {
             SSLContext sc = SSLContext.getInstance("TLS");
@@ -143,33 +174,4 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
-    private void makeNotice(){
-        new Thread(() -> {
-            trustAllHosts(); // network 동작, 인터넷에서 xml을 받아오는 코드
-            try {
-                trustAllHosts();
-                // url을 열기 전에 trustAllHosts 호출
-                String url = "https://iit.kw.ac.kr/servlet/controller.home.bbs.NoticeUserServlet?p_process=listPage&p_layerId=5&p_page=1";
-                Document doc = Jsoup.connect(url).get();
-                Elements titleEle = doc.select(".lft a");//공지사항의 제목
-                Elements dateEle = doc.select(".tbl-type02* tr td");//첫행의 날짜
-
-                String date = dateEle.get(9).text();
-                Log.e("결과", date);
-
-                //String date = dateEle.get(3).select("td").get(3).text();
-
-
-                for (int i = 0; i < titleEle.size(); ++i){
-                    String[] noticeTitle = new String[titleEle.size()];
-                    noticeTitle[i] = titleEle.get(i).text();
-                    //Log.e("결과", noticeTitle[i]);
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                Log.d("결과", "실패");
-            }
-        }).start();
-    }
 }

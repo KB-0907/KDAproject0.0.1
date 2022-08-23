@@ -118,7 +118,7 @@ public class WatchPostActivity extends AppCompatActivity {
                             }
                             LinearLayoutManager layoutManager = new LinearLayoutManager(WatchPostActivity.this, LinearLayoutManager.VERTICAL, false);
                             commentRecyclerView.setLayoutManager(layoutManager);
-                            commentAdapter = new CommentAdapter(commentInfo); //리싸이클러뷰를 보이게 하기 위한 어댑터 생성
+                            commentAdapter = new CommentAdapter(commentInfo, getSupportFragmentManager()); //리싸이클러뷰를 보이게 하기 위한 어댑터 생성
                             commentRecyclerView.setAdapter(commentAdapter); //리싸이클러뷰에 위에서 생성한 어댑터 설정
 
                         } else {

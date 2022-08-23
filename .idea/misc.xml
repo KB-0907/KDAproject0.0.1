@@ -14,6 +14,7 @@
         <entry key="app/src/main/res/drawable/button_squares.xml" value="0.193" />
         <entry key="app/src/main/res/drawable/comment.xml" value="0.204" />
         <entry key="app/src/main/res/drawable/corner_border.xml" value="0.1945" />
+        <entry key="app/src/main/res/drawable/flag.xml" value="0.252" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.221" />
         <entry key="app/src/main/res/drawable/layoutradius.xml" value="1.1077603759765626" />
         <entry key="app/src/main/res/drawable/like.xml" value="0.204" />
@@ -38,7 +39,7 @@
         <entry key="app/src/main/res/layout/activity_credit.xml" value="0.2971864576276801" />
         <entry key="app/src/main/res/layout/activity_free_borad_list.xml" value="0.42609853528628494" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.29450988769531267" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2898770567217638" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_make_schedule.xml" value="0.3115942028985507" />
         <entry key="app/src/main/res/layout/activity_modify_post.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/activity_my_info.xml" value="0.30753503329512" />
@@ -48,21 +49,23 @@
         <entry key="app/src/main/res/layout/activity_schedule_onbuttonclicked1.xml" value="0.22916666666666666" />
         <entry key="app/src/main/res/layout/activity_sing_up.xml" value="0.35073349478276183" />
         <entry key="app/src/main/res/layout/activity_to_do.xml" value="0.32395474646337463" />
-        <entry key="app/src/main/res/layout/activity_to_do_make.xml" value="0.3007125606381796" />
+        <entry key="app/src/main/res/layout/activity_to_do_make.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_watch_post.xml" value="0.2553191489361702" />
         <entry key="app/src/main/res/layout/activity_wirte_content.xml" value="0.15729166666666666" />
         <entry key="app/src/main/res/layout/activity_write_content.xml" value="0.31927083333333334" />
         <entry key="app/src/main/res/layout/activity_write_post.xml" value="0.2767210144927536" />
         <entry key="app/src/main/res/layout/comment_item.xml" value="0.6880351367088557" />
         <entry key="app/src/main/res/layout/fgfgu.xml" value="0.3875838926174497" />
+        <entry key="app/src/main/res/layout/fragment_co_report.xml" value="0.28351449275362317" />
         <entry key="app/src/main/res/layout/fragment_credit.xml" value="0.3990788335385529" />
         <entry key="app/src/main/res/layout/fragment_schedule.xml" value="0.43085221000339674" />
         <entry key="app/src/main/res/layout/fragment_todo.xml" value="0.5637141466382306" />
         <entry key="app/src/main/res/layout/item_assignment.xml" value="0.31363088057901084" />
-        <entry key="app/src/main/res/layout/item_comment.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_comment.xml" value="0.39708088129546465" />
         <entry key="app/src/main/res/layout/item_exam.xml" value="0.3321666064354183" />
-        <entry key="app/src/main/res/layout/item_post.xml" value="0.4762942327969316" />
+        <entry key="app/src/main/res/layout/item_post.xml" value="0.247637939453125" />
         <entry key="app/src/main/res/menu/post_pop_menu.xml" value="0.3123076923076923" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3885" />
       </map>
     </option>
   </component>
@@ -75,7 +78,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.2971864576276801" />
+        <option name="scale" value="0.28351449275362317" />
       </ProjectState>
     </option>
   </component>
