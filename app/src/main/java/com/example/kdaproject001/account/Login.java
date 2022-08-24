@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -25,8 +27,8 @@ public class Login extends AppCompatActivity {
     EditText userMail, userPassword;
     TextView signUp, findIDPw;
     Button loginBnt;
-    private FirebaseAuth mFirebaseAuth;         //파이어베이스 인증처리
-    private DatabaseReference mDatabaseRef;
+    FirebaseAuth mFirebaseAuth;         //파이어베이스 인증처리
+    DatabaseReference mDatabaseRef;
     FirebaseUser user;
 
     @Override
@@ -74,7 +76,7 @@ public class Login extends AppCompatActivity {
 
     public void SHButton(View view){
         userMail.setText("1022lsh@naver.com");
-        userPassword.setText("seunghee6224");
+        userPassword.setText("123456789");
         UserLogin();
     }
 

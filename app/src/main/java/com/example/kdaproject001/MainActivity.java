@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity{
     ViewPager pager;
     TextView textText;
     String[] noticeTitle = new String[5];
+    String[] noticeUrl = new String[5];
 
 
     @Override
@@ -58,7 +59,6 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         makeNotice();
-
 
         findViewById(R.id.move_to_board_btn).setOnClickListener(moveActivityClickListener);
         findViewById(R.id.schedule_btn).setOnClickListener(moveActivityClickListener);
@@ -121,12 +121,14 @@ public class MainActivity extends AppCompatActivity{
                 Document doc = Jsoup.connect(url).get();
                 Elements titleEle = doc.select(".lft a");//공지사항의 제목
                 Elements dateEle = doc.select(".tbl-type02* tr td");//첫행의 날짜
+
                 String date = dateEle.get(9).text();
                // String[] noticeTitle = new String[titleEle.size()];
 
                 for (int i = 0; i < 5; ++i){
                     noticeTitle[i] = titleEle.get(i).text().replace("&nbsp", "");
                     Log.e("결과", noticeTitle[i]);
+
                 }
                 Message msg = handler.obtainMessage();
                 handler.sendMessage(msg);
