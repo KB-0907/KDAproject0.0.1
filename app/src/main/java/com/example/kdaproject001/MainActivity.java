@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.kdaproject001.board.BoardListActivity;
 import com.example.kdaproject001.mainViewPager.CreditFragment;
 import com.example.kdaproject001.mainViewPager.ScheduleFragment;
+import com.example.kdaproject001.myInfo.MyInfoActivity;
 import com.example.kdaproject001.schedule.scheduleActivity;
 import com.example.kdaproject001.todo.ToDoActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity{
         findViewById(R.id.schedule_btn).setOnClickListener(moveActivityClickListener);
         findViewById(R.id.move_to_do_btn).setOnClickListener(moveActivityClickListener);
         findViewById(R.id.move_to_grade_planner_btn).setOnClickListener(moveActivityClickListener);
-        findViewById(R.id.myPage).setOnClickListener(moveActivityClickListener);
+        findViewById(R.id.MyInfo_btn).setOnClickListener(moveActivityClickListener);
 
         pager = findViewById(R.id.pager);
         pager.setOffscreenPageLimit(2);
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity{
             case R.id.move_to_grade_planner_btn:
                 moveActivity(CreditActivity.class);
                 break;
-            case R.id.myPage:
+            case R.id.MyInfo_btn:
                 moveActivity(MyInfoActivity.class);
                 break;
         }
