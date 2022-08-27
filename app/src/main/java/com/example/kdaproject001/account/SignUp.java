@@ -24,7 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 public class SignUp extends AppCompatActivity {
     EditText webMail, PassWd, PWCheck;
     Button signBtn, checkBtn;
-    String email;
 
     DatabaseReference mDatabaseRef;     //실시간 데이터베이스
 
@@ -50,61 +49,77 @@ public class SignUp extends AppCompatActivity {
         signBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String strEmail = webMail.getText().toString() + "@iit.kw.ac.kr";
-                String strPwd = PassWd.getText().toString();
-                String strPwdCh = PWCheck.getText().toString();
-
-                if (strEmail.length() > 0 && strPwd.length() > 0 && strPwdCh.length() > 0) {
-                    if (strPwd.equals(strPwdCh)) {
-                        FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
-                        mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPwd)
-                                .addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        if (task.isSuccessful()) {
-                                            FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
-                                            UserAccount account = new UserAccount();
-                                            account.setEmailId(firebaseUser.getEmail());
-                                            account.setPassword(strPwd);
-                                            account.setIdToken(firebaseUser.getUid());
-                                            //파이어베이스 회원가입 시 비밀번호는 최소 6자리
-                                            mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account); //database insert
-
-                                            firebaseUser.sendEmailVerification()
-                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                        @Override
-                                                        public void onComplete(@NonNull Task<Void> task) {
-                                                            if (task.isSuccessful()) {
-                                                                Log.d("TAG", "Email sent.");
-                                                                startToast("웹메일 인증을 완료해주세요;.");
-
-                                                            }else {
-                                                                Log.d("TAG", "실패.");
-
-                                                            }
-                                                        }
-                                                    });
-
-                                        } else {
-                                            if (task.getException() != null) {
-                                                Log.w("TAG", "createUserWithEmail:failure", task.getException());
-                                                Log.d("TAG", "가입 실패.");
-
-                                            }
-                                        }
-                                    }
-                                });
-                    } else {
-                        startToast("비밀번호가 일치하지 않습니다.");
-                    }
-                }else {
-                    startToast("이메일 또는 비밀번호를 정확히 입력해주세요.");
-                }
+                signUpCheck();
             }
         });
     }
+
     private void checkInfo(){
     }
+
+    private void signUpCheck(){
+        String strEmail = webMail.getText().toString() + "@iit.kw.ac.kr";
+        String strPwd = PassWd.getText().toString();
+        String strPwdCh = PWCheck.getText().toString();
+
+        if (strEmail.length() > 0 && strPwd.length() > 0 && strPwdCh.length() > 0) {
+            if (strPwd.equals(strPwdCh)) {
+                signUpFirebase(strEmail, strPwd);
+            } else {
+                startToast("비밀번호가 일치하지 않습니다.");
+            }
+        }else {
+            startToast("이메일과 비밀번호 모두 입력해주세요.");
+        }
+
+    }
+
+    private void signUpFirebase(String email, String password){
+        FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
+                            UserAccount account = new UserAccount();
+                            account.setEmailId(firebaseUser.getEmail());
+                            account.setPassword(password);
+                            account.setIdToken(firebaseUser.getUid());
+                            //파이어베이스 회원가입 시 비밀번호는 최소 6자리
+                            mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account); //database insert
+                            firebaseUser.sendEmailVerification()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Log.d("TAG", "Email sent.");
+                                                startToast("웹메일 인증을 완료해주세요;.");
+
+                                            }else {
+                                                Log.d("TAG", "실패.");
+
+                                            }
+                                        }
+                                    });
+
+                        } else {
+                            if (task.getException() != null) {
+                                Log.w("TAG", "createUserWithEmail:failure", task.getException());
+                                Log.d("TAG", "가입 실패.");
+
+                            }
+                        }
+                    }
+                });
+        boolean check = mFirebaseAuth.getCurrentUser().isEmailVerified();
+        if (check == true){
+            startToast("인증됨");
+        }else {
+            startToast("인증 안된 계정");
+        }
+    }
+
     public void startToast(String msg){
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
