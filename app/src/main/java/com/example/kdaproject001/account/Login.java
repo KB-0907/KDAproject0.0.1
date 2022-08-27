@@ -66,6 +66,14 @@ public class Login extends AppCompatActivity {
 
             }
         });
+
+        ((TextView)findViewById(R.id.move_to_find_password)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), FindPwd.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void KBButton(View view){

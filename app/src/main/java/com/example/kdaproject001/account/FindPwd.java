@@ -3,8 +3,10 @@ package com.example.kdaproject001.account;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,9 +18,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.regex.Pattern;
-
-public class FindIdPwd extends AppCompatActivity {
+public class FindPwd extends AppCompatActivity {
 
     EditText editTextPwdResetEmail;
     Button buttonPwdResetEmail;
@@ -40,7 +40,7 @@ public class FindIdPwd extends AppCompatActivity {
                 String email = editTextPwdResetEmail.getText().toString();
 
                 if(TextUtils.isEmpty(email)){
-                    Toast.makeText(FindIdPwd.this,"이메일을 입력해주세요.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FindPwd.this,"이메일을 입력해주세요.",Toast.LENGTH_SHORT).show();
                     editTextPwdResetEmail.setError("Email is required");
                     editTextPwdResetEmail.requestFocus();
                 }else{
@@ -59,8 +59,14 @@ public class FindIdPwd extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(FindIdPwd.this,"귀하의 이메일로 비빌번호 재설정 메일을 보냈습니다.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(FindPwd.this,"귀하의 이메일로 비빌번호 재설정 메일을 보냈습니다.",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(),Login.class);
 
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
+                } else{
+                    Log.e("passwd", "Error", task.getException());
                 }
             }
         });
