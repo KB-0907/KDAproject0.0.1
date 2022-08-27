@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +18,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -26,6 +29,7 @@ public class Login extends AppCompatActivity {
     Button loginBnt;
     FirebaseAuth mFirebaseAuth;         //파이어베이스 인증처리
     DatabaseReference mDatabaseRef;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,15 +55,17 @@ public class Login extends AppCompatActivity {
                 UserLogin();
             }
         }); //로그인 요청
-
-        findIDPw.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent findIntent = new Intent(Login.this, FindIdPwd.class);
-                startActivity(findIntent);
+                user = FirebaseAuth.getInstance().getCurrentUser(); //파이어 베이스에서 현재 로그인한 유저의 UID
+                if (user == null){
+                    Toast.makeText(Login.this, "로그아웃 안댐.", Toast.LENGTH_SHORT).show();
+                }
+                Toast.makeText(Login.this, user.getUid(), Toast.LENGTH_SHORT).show();
+
             }
         });
-
     }
 
     public void KBButton(View view){

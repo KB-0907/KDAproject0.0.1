@@ -2,6 +2,7 @@ package com.example.kdaproject001.todo;
 // 도레미파솔라시
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +26,7 @@ import com.example.kdaproject001.board.FreeBoardListActivity;
 import com.example.kdaproject001.board.ModifyPostActivity;
 import com.example.kdaproject001.board.PostAdapter;
 import com.example.kdaproject001.board.PostInfo;
+import com.example.kdaproject001.comments.CommentReportFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -73,6 +75,7 @@ public class ToDoActivity extends AppCompatActivity {
         examRCV = findViewById(R.id.exam_RCV);
         findViewById(R.id.add_assignment).setOnClickListener(onClickListener);
         findViewById(R.id.add_exam).setOnClickListener(onClickListener);
+
 
         generateAssignRCV();
         generateExamRCV();

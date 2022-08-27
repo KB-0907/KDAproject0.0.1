@@ -3,6 +3,7 @@ package com.example.kdaproject001.todo;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,7 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ToDoMakeActivity extends AppCompatActivity {
+public class ToDoMakeActivity extends Activity {
     TimePicker timePicker;
     TextView deadline;
     EditText ToDoTitle;
@@ -38,7 +39,6 @@ public class ToDoMakeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_to_do_make);
 
         timePicker = findViewById(R.id.create_timepicker);

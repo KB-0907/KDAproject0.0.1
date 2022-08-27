@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kdaproject001.R;
@@ -25,16 +26,14 @@ public class SignUp extends AppCompatActivity {
     Button signBtn, checkBtn;
     String email;
 
-    private FirebaseAuth mFirebaseAuth;         //파이어베이스 인증처리
-    private DatabaseReference mDatabaseRef;     //실시간 데이터베이스
+    DatabaseReference mDatabaseRef;     //실시간 데이터베이스
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sing_up);
 
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("KDA");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("KAD");
         webMail = findViewById(R.id.mail);
         PassWd = findViewById(R.id.pw);
         PWCheck = findViewById(R.id.pwCheck);
@@ -51,12 +50,13 @@ public class SignUp extends AppCompatActivity {
         signBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String strEmail = webMail.getText().toString();
+                String strEmail = webMail.getText().toString() + "@iit.kw.ac.kr";
                 String strPwd = PassWd.getText().toString();
                 String strPwdCh = PWCheck.getText().toString();
 
                 if (strEmail.length() > 0 && strPwd.length() > 0 && strPwdCh.length() > 0) {
                     if (strPwd.equals(strPwdCh)) {
+                        FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
                         mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPwd)
                                 .addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
                                     @Override
@@ -67,13 +67,29 @@ public class SignUp extends AppCompatActivity {
                                             account.setEmailId(firebaseUser.getEmail());
                                             account.setPassword(strPwd);
                                             account.setIdToken(firebaseUser.getUid());
-
+                                            //파이어베이스 회원가입 시 비밀번호는 최소 6자리
                                             mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account); //database insert
 
-                                            startToast("가입에 성공하였습니다.");
-                                            finish();
+                                            firebaseUser.sendEmailVerification()
+                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if (task.isSuccessful()) {
+                                                                Log.d("TAG", "Email sent.");
+                                                                startToast("웹메일 인증을 완료해주세요;.");
+
+                                                            }else {
+                                                                Log.d("TAG", "실패.");
+
+                                                            }
+                                                        }
+                                                    });
+
                                         } else {
                                             if (task.getException() != null) {
+                                                Log.w("TAG", "createUserWithEmail:failure", task.getException());
+                                                Log.d("TAG", "가입 실패.");
+
                                             }
                                         }
                                     }
@@ -87,14 +103,8 @@ public class SignUp extends AppCompatActivity {
             }
         });
     }
-
     private void checkInfo(){
-
-
     }
-
-
-
     public void startToast(String msg){
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
