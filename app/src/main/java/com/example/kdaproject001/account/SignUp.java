@@ -34,7 +34,7 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sing_up);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("KAD");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("KDA");
         webMail = findViewById(R.id.mail);
         PassWd = findViewById(R.id.pw);
         PWCheck = findViewById(R.id.pwCheck);

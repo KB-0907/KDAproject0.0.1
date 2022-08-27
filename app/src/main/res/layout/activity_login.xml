@@ -48,18 +48,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="로그인"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintBottom_toTopOf="@+id/move_to_find_ID_Password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Password" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/move_to_find_ID_Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="아이디 혹은 비밀번호를 잊어버리 셨나요? 찾기"
+        android:text="비밀번호를 잊어버리셨나요? 찾기"
         app:layout_constraintBottom_toTopOf="@+id/signUpText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

@@ -35,15 +35,16 @@
             android:textColor="#FF9A2929"
             android:textSize="25sp" />
 
-        <Button
-            android:id="@+id/button7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="My" />
+        <ImageButton
+            android:id="@+id/MyInfo_btn"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="#FFFFFF"
+            app:srcCompat="@drawable/profile" />
     </LinearLayout>
 
     <ScrollView
-        android:id="@+id/mianScrollView"
+        android:id="@+id/mainScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,7 +80,7 @@
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mianScrollView">
+        app:layout_constraintTop_toBottomOf="@+id/mainScrollView">
 
         <LinearLayout
             android:layout_width="match_parent"

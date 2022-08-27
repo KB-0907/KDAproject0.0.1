@@ -24,8 +24,8 @@ public class Login extends AppCompatActivity {
     EditText userMail, userPassword;
     TextView signUp, findIDPw;
     Button loginBnt;
-    private FirebaseAuth mFirebaseAuth;         //파이어베이스 인증처리
-    private DatabaseReference mDatabaseRef;
+    FirebaseAuth mFirebaseAuth;         //파이어베이스 인증처리
+    DatabaseReference mDatabaseRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,14 @@ public class Login extends AppCompatActivity {
             }
         }); //로그인 요청
 
+        findIDPw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent findIntent = new Intent(Login.this, FindIdPwd.class);
+                startActivity(findIntent);
+            }
+        });
+
     }
 
     public void KBButton(View view){
@@ -62,7 +70,7 @@ public class Login extends AppCompatActivity {
 
     public void SHButton(View view){
         userMail.setText("1022lsh@naver.com");
-        userPassword.setText("seunghee6224");
+        userPassword.setText("123456789");
         UserLogin();
     }
 

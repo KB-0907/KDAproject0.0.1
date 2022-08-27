@@ -4,64 +4,70 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.2068345323741007" />
+        <entry key="app/src/main/res/drawable-v23/border_layout.xml" value="0.2525" />
         <entry key="app/src/main/res/drawable-v24/border.xml" value="0.242" />
-        <entry key="app/src/main/res/drawable/add.xml" value="0.2055" />
         <entry key="app/src/main/res/drawable/before.xml" value="0.193" />
-        <entry key="app/src/main/res/drawable/blankradius.xml" value="0.2315" />
+        <entry key="app/src/main/res/drawable/blankradius.xml" value="0.1702312622070313" />
         <entry key="app/src/main/res/drawable/board.xml" value="0.242" />
-        <entry key="app/src/main/res/drawable/boardsortradius.xml" value="0.204" />
+        <entry key="app/src/main/res/drawable/border_layout.xml" value="0.2525" />
         <entry key="app/src/main/res/drawable/bottom_border.xml" value="0.1945" />
+        <entry key="app/src/main/res/drawable/button_layout.xml" value="0.2525" />
         <entry key="app/src/main/res/drawable/button_squares.xml" value="0.193" />
-        <entry key="app/src/main/res/drawable/comment.xml" value="0.204" />
         <entry key="app/src/main/res/drawable/corner_border.xml" value="0.1945" />
+        <entry key="app/src/main/res/drawable/grade_planner.xml" value="0.2535" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.221" />
-        <entry key="app/src/main/res/drawable/layoutradius.xml" value="1.1077603759765626" />
-        <entry key="app/src/main/res/drawable/like.xml" value="0.204" />
+        <entry key="app/src/main/res/drawable/like.xml" value="0.119" />
         <entry key="app/src/main/res/drawable/list_border.xml" value="0.1945" />
         <entry key="app/src/main/res/drawable/logo_2.xml" value="0.221" />
-        <entry key="app/src/main/res/drawable/recyclerangle.xml" value="0.2055" />
+        <entry key="app/src/main/res/drawable/profile.xml" value="0.296" />
         <entry key="app/src/main/res/drawable/right_border.xml" value="0.1945" />
         <entry key="app/src/main/res/drawable/school_calendar.xml" value="0.193" />
         <entry key="app/src/main/res/drawable/selected_border.xml" value="0.1945" />
         <entry key="app/src/main/res/drawable/table.xml" value="0.193" />
+        <entry key="app/src/main/res/drawable/test_calendar.xml" value="0.1515" />
         <entry key="app/src/main/res/drawable/thick_border.xml" value="0.1945" />
+        <entry key="app/src/main/res/drawable/to_do_setting.xml" value="0.2305" />
         <entry key="app/src/main/res/drawable/write_board.xml" value="0.193" />
         <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.214190093708166" />
         <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.21209016393442623" />
         <entry key="app/src/main/res/layout/activity_acadamic_board.xml" value="0.3333333333333333" />
-        <entry key="app/src/main/res/layout/activity_board_list.xml" value="0.34970559539344814" />
+        <entry key="app/src/main/res/layout/activity_board_list.xml" value="0.2902542114257813" />
         <entry key="app/src/main/res/layout/activity_borad.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/activity_borad_list.xml" value="0.3534022569897931" />
         <entry key="app/src/main/res/layout/activity_calendar.xml" value="0.16210739614994935" />
+        <entry key="app/src/main/res/layout/activity_change_pwd.xml" value="0.3945205688476563" />
         <entry key="app/src/main/res/layout/activity_create_post.xml" value="0.16210739614994935" />
         <entry key="app/src/main/res/layout/activity_create_schedule.xml" value="0.3285568237304688" />
-        <entry key="app/src/main/res/layout/activity_credit.xml" value="0.2971864576276801" />
-        <entry key="app/src/main/res/layout/activity_free_borad_list.xml" value="0.42609853528628494" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.29450988769531267" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2898770567217638" />
+        <entry key="app/src/main/res/layout/activity_credit.xml" value="0.2821304321289063" />
+        <entry key="app/src/main/res/layout/activity_find_id_pwd.xml" value="0.22826086956521738" />
+        <entry key="app/src/main/res/layout/activity_find_idpwd.xml" value="0.22826086956521738" />
+        <entry key="app/src/main/res/layout/activity_free_borad_list.xml" value="0.3288966417554181" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.5453643798828125" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.4514373779296875" />
         <entry key="app/src/main/res/layout/activity_make_schedule.xml" value="0.3115942028985507" />
         <entry key="app/src/main/res/layout/activity_modify_post.xml" value="0.3333333333333333" />
-        <entry key="app/src/main/res/layout/activity_my_info.xml" value="0.30753503329512" />
+        <entry key="app/src/main/res/layout/activity_my_info.xml" value="0.36726226806640627" />
         <entry key="app/src/main/res/layout/activity_post_item.xml" value="0.31696139010011004" />
         <entry key="app/src/main/res/layout/activity_post_item2.xml" value="0.33297531607182435" />
         <entry key="app/src/main/res/layout/activity_schedule.xml" value="0.2750438809998734" />
         <entry key="app/src/main/res/layout/activity_schedule_onbuttonclicked1.xml" value="0.22916666666666666" />
         <entry key="app/src/main/res/layout/activity_sing_up.xml" value="0.35073349478276183" />
-        <entry key="app/src/main/res/layout/activity_to_do.xml" value="0.32395474646337463" />
+        <entry key="app/src/main/res/layout/activity_to_do.xml" value="0.26249237060546876" />
         <entry key="app/src/main/res/layout/activity_to_do_make.xml" value="0.3007125606381796" />
         <entry key="app/src/main/res/layout/activity_watch_post.xml" value="0.2553191489361702" />
         <entry key="app/src/main/res/layout/activity_wirte_content.xml" value="0.15729166666666666" />
         <entry key="app/src/main/res/layout/activity_write_content.xml" value="0.31927083333333334" />
         <entry key="app/src/main/res/layout/activity_write_post.xml" value="0.2767210144927536" />
+        <entry key="app/src/main/res/layout/border_layout.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/comment_item.xml" value="0.6880351367088557" />
         <entry key="app/src/main/res/layout/fgfgu.xml" value="0.3875838926174497" />
-        <entry key="app/src/main/res/layout/fragment_credit.xml" value="0.7288639897885529" />
+        <entry key="app/src/main/res/layout/fragment_credit.xml" value="0.4845360824742268" />
         <entry key="app/src/main/res/layout/fragment_schedule.xml" value="0.43085221000339674" />
         <entry key="app/src/main/res/layout/fragment_todo.xml" value="0.5637141466382306" />
-        <entry key="app/src/main/res/layout/item_assignment.xml" value="0.31363088057901084" />
-        <entry key="app/src/main/res/layout/item_comment.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_assignment.xml" value="0.3" />
+        <entry key="app/src/main/res/layout/item_comment.xml" value="0.33129272460937503" />
         <entry key="app/src/main/res/layout/item_exam.xml" value="0.3321666064354183" />
-        <entry key="app/src/main/res/layout/item_post.xml" value="0.4762942327969316" />
+        <entry key="app/src/main/res/layout/item_post.xml" value="0.15476190476190477" />
         <entry key="app/src/main/res/menu/post_pop_menu.xml" value="0.3123076923076923" />
       </map>
     </option>
@@ -75,7 +81,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.2971864576276801" />
+        <option name="scale" value="0.16210739614994935" />
       </ProjectState>
     </option>
   </component>

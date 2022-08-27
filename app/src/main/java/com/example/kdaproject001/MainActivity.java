@@ -11,11 +11,12 @@ import android.widget.ImageButton;
 import com.example.kdaproject001.board.BoardListActivity;
 import com.example.kdaproject001.mainViewPager.CreditFragment;
 import com.example.kdaproject001.mainViewPager.ScheduleFragment;
+import com.example.kdaproject001.myInfo.MyInfoActivity;
 import com.example.kdaproject001.schedule.scheduleActivity;
 import com.example.kdaproject001.todo.ToDoActivity;
 
 public class MainActivity extends AppCompatActivity{
-    ImageButton boardBnt, schBtn, TodoBtn, creditBtn;
+    ImageButton boardBnt, schBtn, TodoBtn, creditBtn, MyInfoBtn;
     ViewPager pager;
 
 
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity{
         schBtn = findViewById(R.id.schedule_btn);
         TodoBtn = findViewById(R.id.move_to_do_btn);
         creditBtn = findViewById(R.id.move_to_grade_planner_btn);
+        MyInfoBtn = findViewById(R.id.MyInfo_btn);
         pager = findViewById(R.id.pager);
         pager.setOffscreenPageLimit(2);
 
@@ -64,13 +66,19 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(schIntent);
             }
         });
+
+        MyInfoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent MyInfoIntent = new Intent(getApplicationContext(), MyInfoActivity.class);
+                startActivity(MyInfoIntent);
+            }
+        });
     }
 
     public void moveTodoActivity(View view){
         Intent todoIntent = new Intent(getApplicationContext(), ToDoActivity.class);
         startActivity(todoIntent);
     }
-
-
 
 }

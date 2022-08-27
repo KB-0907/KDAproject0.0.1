@@ -66,21 +66,30 @@
                         android:id="@+id/textView27"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="2dp"
                         android:layout_weight="1"
-                        android:text="ID" />
+                        android:text="ID"
+                        android:textSize="19sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
                         android:layout_weight="1"
-                        android:text="이름 / 닉네임" />
+                        android:text="이름"
+                        android:textSize="19sp" />
 
                     <TextView
                         android:id="@+id/textView29"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
                         android:layout_weight="1"
-                        android:text="xx 학번" />
+                        android:text="학번"
+                        android:textSize="19sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -96,13 +105,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="8dp"
                     android:text="계정"
-                    android:textSize="24sp" />
+                    android:textSize="23dp" />
 
                 <TextView
-                    android:id="@+id/textView38"
+                    android:id="@+id/move_to_change_pwd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -112,7 +121,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/textView79"
+                    android:id="@+id/move_to_use_rules"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -134,13 +143,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="8dp"
                     android:text="기타 설정"
-                    android:textSize="24sp" />
+                    android:textSize="23dp" />
 
                 <TextView
-                    android:id="@+id/textView67"
+                    android:id="@+id/move_to_logout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -150,7 +159,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/textView68"
+                    android:id="@+id/move_to_withdrawal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
