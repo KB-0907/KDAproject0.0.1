@@ -55,12 +55,13 @@ public class Login extends AppCompatActivity {
                 UserLogin();
             }
         }); //로그인 요청
+
         findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 user = FirebaseAuth.getInstance().getCurrentUser(); //파이어 베이스에서 현재 로그인한 유저의 UID
                 if (user == null){
-                    Toast.makeText(Login.this, "로그아웃 안댐.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "로그아웃 댐.", Toast.LENGTH_SHORT).show();
                 }
                 Toast.makeText(Login.this, user.getUid(), Toast.LENGTH_SHORT).show();
 

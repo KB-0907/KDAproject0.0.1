@@ -21,6 +21,7 @@
         <entry key="app/src/main/res/drawable/list_border.xml" value="0.1945" />
         <entry key="app/src/main/res/drawable/logo_2.xml" value="0.221" />
         <entry key="app/src/main/res/drawable/mainviewpagerbg.xml" value="0.1615" />
+        <entry key="app/src/main/res/drawable/profile.xml" value="0.1425" />
         <entry key="app/src/main/res/drawable/recyclerangle.xml" value="0.2055" />
         <entry key="app/src/main/res/drawable/right_border.xml" value="0.1945" />
         <entry key="app/src/main/res/drawable/school_calendar.xml" value="0.193" />
@@ -35,9 +36,11 @@
         <entry key="app/src/main/res/layout/activity_borad.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/activity_borad_list.xml" value="0.3534022569897931" />
         <entry key="app/src/main/res/layout/activity_calendar.xml" value="0.16210739614994935" />
-        <entry key="app/src/main/res/layout/activity_create_post.xml" value="0.16210739614994935" />
+        <entry key="app/src/main/res/layout/activity_change_pwd.xml" value="0.28940217391304346" />
+        <entry key="app/src/main/res/layout/activity_create_post.xml" value="0.33556015493901187" />
         <entry key="app/src/main/res/layout/activity_create_schedule.xml" value="0.3285568237304688" />
-        <entry key="app/src/main/res/layout/activity_credit.xml" value="0.2971864576276801" />
+        <entry key="app/src/main/res/layout/activity_credit.xml" value="0.35766546530801735" />
+        <entry key="app/src/main/res/layout/activity_find_id_pwd.xml" value="0.28940217391304346" />
         <entry key="app/src/main/res/layout/activity_free_borad_list.xml" value="0.42609853528628494" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.29450988769531267" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.39081085205078125" />
@@ -79,7 +82,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.28351449275362317" />
+        <option name="scale" value="0.35766546530801735" />
       </ProjectState>
     </option>
   </component>

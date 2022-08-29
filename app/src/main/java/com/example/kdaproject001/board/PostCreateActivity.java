@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class CreatePostActivity extends AppCompatActivity {
+public class PostCreateActivity extends AppCompatActivity {
     Button writePostBtn;
     private FirebaseUser user;
     String boardSort;

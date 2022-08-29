@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".board.ModifyPostActivity">
+    tools:context=".board.PostModifyActivity">
 
     <EditText
         android:id="@+id/mo_post_title"

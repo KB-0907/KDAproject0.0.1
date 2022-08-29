@@ -23,8 +23,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ModifyPostActivity extends AppCompatActivity {
-    public final static String TAG = "ModifyPostActivity";
+public class PostModifyActivity extends AppCompatActivity {
+    public final static String TAG = "PostModifyActivity";
     FirebaseFirestore db = FirebaseFirestore.getInstance(); //파이어 베이스 파이어스토어를 사용하기 위한 변수 생성 및 할당
     Button modifyBtn;
     EditText moTitle, moContents;

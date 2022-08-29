@@ -81,14 +81,19 @@ public class SignUp extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
                             FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
+
                             UserAccount account = new UserAccount();
                             account.setEmailId(firebaseUser.getEmail());
                             account.setPassword(password);
                             account.setIdToken(firebaseUser.getUid());
+                            account.setAuthentication(false);
                             //파이어베이스 회원가입 시 비밀번호는 최소 6자리
                             mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account); //database insert
-                            firebaseUser.sendEmailVerification()
+                            finish();
+
+                         /*   firebaseUser.sendEmailVerification()
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
@@ -101,7 +106,7 @@ public class SignUp extends AppCompatActivity {
 
                                             }
                                         }
-                                    });
+                                    });*/
 
                         } else {
                             if (task.getException() != null) {
@@ -112,12 +117,14 @@ public class SignUp extends AppCompatActivity {
                         }
                     }
                 });
-        boolean check = mFirebaseAuth.getCurrentUser().isEmailVerified();
+       /* boolean check = mFirebaseAuth.getCurrentUser().isEmailVerified();
         if (check == true){
             startToast("인증됨");
+
+
         }else {
             startToast("인증 안된 계정");
-        }
+        }*/
     }
 
     public void startToast(String msg){

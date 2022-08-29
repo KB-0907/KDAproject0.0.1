@@ -36,7 +36,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.regex.Pattern;
 
-public class ChangePwd extends AppCompatActivity {
+public class  ChangePwd extends AppCompatActivity {
     TextView textViewCurrentPwd, textViewNewPwd, textViewCheckPwd;
     ProgressBar progressBar;
     Button saveBtn, cancelBtn;
@@ -75,7 +75,7 @@ public class ChangePwd extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
+                    Log.e ("firebase", "Error getting data", task.getException());
                 }
                 else {
                     Log.d("firebase", String.valueOf(task.getResult().getValue()));

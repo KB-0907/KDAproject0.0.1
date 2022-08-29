@@ -39,13 +39,13 @@
             android:exported="false"
             android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar" />
         <activity
-            android:name=".board.ModifyPostActivity"
+            android:name=".board.PostModifyActivity"
             android:exported="false" />
         <activity
             android:name=".board.BoardListActivity"
             android:exported="false" />
         <activity
-            android:name=".board.CreatePostActivity"
+            android:name=".board.PostCreateActivity"
             android:exported="false" />
         <activity
             android:name=".board.FreeBoardListActivity"

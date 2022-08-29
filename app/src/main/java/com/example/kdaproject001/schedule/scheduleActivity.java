@@ -16,7 +16,6 @@ public class scheduleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
-        makeSchBtn = findViewById(R.id.makeSchedule);
 
         makeSchBtn.setOnClickListener(new View.OnClickListener() {
             @Override

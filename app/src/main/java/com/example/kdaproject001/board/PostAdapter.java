@@ -44,6 +44,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
         holder.postItemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//게시판 올린 포스트 클릭시 작성된 글 보기 화면으로 이동
+
                 postClick(postInfo);
             }
         });

@@ -91,7 +91,7 @@ public class FreeBoardListActivity extends AppCompatActivity {
     }
 
     public void CreatePostBtn(View view){
-        Intent intent = new Intent(getApplicationContext(), CreatePostActivity.class);
+        Intent intent = new Intent(getApplicationContext(), PostCreateActivity.class);
         intent.putExtra("boardSort", boardSort);
         startActivity(intent);
     }

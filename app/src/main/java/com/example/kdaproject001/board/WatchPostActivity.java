@@ -168,7 +168,7 @@ public class WatchPostActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.modify:
-                        Intent intent = new Intent(getApplicationContext(), ModifyPostActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), PostModifyActivity.class);
                         intent.putExtra("PostID", getPostId);
                         intent.putExtra("boardSort", boardSort);
                         startActivity(intent);
