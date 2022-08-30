@@ -111,7 +111,8 @@ public class MainActivity extends AppCompatActivity{
                 if (auth == true){
                     moveActivity(CreditActivity.class);
                 } else {
-                    //이메일 인증 액티비티로
+                    Intent i = new Intent(getApplicationContext(), EmailCertification.class);
+                    startActivity(i);
                 }
 
                 break;

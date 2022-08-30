@@ -22,6 +22,11 @@
             android:exported="false" />
 
         <activity
+            android:name=".EmailCertification"
+            android:exported="false"
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar" />
+
+        <activity
             android:name=".account.Login"
             android:exported="true">
             <intent-filter>

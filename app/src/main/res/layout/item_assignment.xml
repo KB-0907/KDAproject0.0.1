@@ -34,6 +34,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_weight="0"
                 android:hint="과제 제목"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 android:maxLength="16"
                 android:textColor="#000000"
                 android:textSize="18sp" />

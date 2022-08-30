@@ -45,7 +45,7 @@
             android:layout_marginStart="10dp"
             android:text="* 계정 ID는 이메일 형식입니다."
             android:textColor="#ff0000"
-            android:layout_marginBottom="30dp"/>
+            android:layout_marginBottom="10dp"/>
 
         <EditText
             android:id="@+id/pw"

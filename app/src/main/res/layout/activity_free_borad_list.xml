@@ -17,11 +17,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+        <ImageButton
+            android:id="@+id/before2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/before"
+            android:layout_margin="5dp"
+             />
 
         <TextView
             android:id="@+id/board_sort_title"
@@ -32,13 +34,18 @@
             android:background="#FFFFFF"
             android:gravity="center"
             android:text="자유게시판"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textSize="25sp" />
 
         <ImageButton
             android:id="@+id/post_menu23"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="?android:attr/actionModeWebSearchDrawable" />
+            android:layout_marginTop="7dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+
+            android:background="@drawable/search"/>
     </LinearLayout>
 
     <LinearLayout
@@ -56,10 +63,10 @@
             android:id="@+id/post_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:nestedScrollingEnabled="false"
+            android:background="#FFFFFF"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:background="#FFFFFF" />
+            android:nestedScrollingEnabled="false" />
     </LinearLayout>
 
     <Button

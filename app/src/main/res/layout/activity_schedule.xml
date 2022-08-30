@@ -21,24 +21,43 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="뒤" />
+            <ImageButton
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/before"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="3dp"/>
+
 
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_weight="1"
-                android:text="시간표" />
+                android:gravity="center"
+                android:text="시간표"
+                android:paddingTop="3dp"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:textSize="25dp" />
 
-            <Button
+            <ImageButton
+                android:id="@+id/add_class_tv"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="6dp"
+                android:paddingStart="5dp"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/editing" />
+
+            <ImageButton
                 android:id="@+id/save_schedule"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="저장" />
+                android:layout_width="38dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="9dp"
+                android:background="@drawable/save" />
 
         </LinearLayout>
 
