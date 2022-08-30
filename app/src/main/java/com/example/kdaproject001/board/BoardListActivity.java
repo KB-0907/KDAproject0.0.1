@@ -10,6 +10,7 @@ import com.example.kdaproject001.R;
 public class BoardListActivity extends AppCompatActivity {
     String boardSort;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,8 @@ public class BoardListActivity extends AppCompatActivity {
             case R.id.freeBoard:
                 boardSort = "free";
                 moveToBoard(boardSort);
+
+
                 break;
             case R.id.academicBoard:
                 boardSort = "academic";

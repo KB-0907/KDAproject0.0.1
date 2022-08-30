@@ -56,6 +56,9 @@
             android:id="@+id/post_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:nestedScrollingEnabled="false"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:background="#FFFFFF" />
     </LinearLayout>
 

@@ -112,7 +112,6 @@ public class SignUp extends AppCompatActivity {
                             if (task.getException() != null) {
                                 Log.w("TAG", "createUserWithEmail:failure", task.getException());
                                 Log.d("TAG", "가입 실패.");
-
                             }
                         }
                     }

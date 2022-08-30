@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MyInfoActivity extends AppCompatActivity {
-    TextView changePwd,move_to_use_rules,move_to_logout,move_to_withdrawal;
+    TextView changePwd,useRules,move_to_logout,move_to_withdrawal;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
@@ -33,8 +33,14 @@ public class MyInfoActivity extends AppCompatActivity {
             }
         });
 
-
-
+        useRules = findViewById(R.id.move_to_use_rules);
+        useRules.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent UseIntent = new Intent(getApplicationContext(), UseRules.class);
+                startActivity(UseIntent);
+            }
+        });
     }
 }
 

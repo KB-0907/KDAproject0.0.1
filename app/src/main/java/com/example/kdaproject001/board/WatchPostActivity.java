@@ -111,6 +111,7 @@ public class WatchPostActivity extends AppCompatActivity {
                                             document.getId(),
                                             document.getData().get("comPostID").toString(),
                                             (Long) document.getData().get("comCreated")));
+                                    break;
                                 }else {
                                     Log.d("결과", "실패");
                                 }

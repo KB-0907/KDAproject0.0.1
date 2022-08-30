@@ -85,7 +85,7 @@ public class Login extends AppCompatActivity {
 
     public void SHButton(View view){
         userMail.setText("1022lsh@naver.com");
-        userPassword.setText("123456789");
+        userPassword.setText("222222");
         UserLogin();
     }
 

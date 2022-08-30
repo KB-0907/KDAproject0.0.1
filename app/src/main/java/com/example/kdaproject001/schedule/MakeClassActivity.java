@@ -81,7 +81,6 @@ public class MakeClassActivity extends Activity implements View.OnClickListener 
     }
     private void initView(){
         submitBtn.setOnClickListener(this);
-        deleteBtn.setOnClickListener(this);
 
         daySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

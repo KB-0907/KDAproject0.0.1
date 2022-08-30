@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".myInfo.UseRules" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView_MainTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="9"
+            android:text="이용 규칙"
+            android:textColor="#000000"
+            android:textSize="26sp" />
+
+        <ImageButton
+            android:id="@+id/back2_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/before" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp">
+
+            <TextView
+                android:id="@+id/textView_sub1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:text=" \n 위티는 누구나 기분 좋게 리플러를 이용할 수 있도록 하기 위해 본 커뮤니티 이용규칙을 제정해 운영합니다.\n
+                                \n 모든 리플러 이용자는 커뮤니티 이용 전 반드시 본 규칙을 숙지해야 합니다.
+\n 커뮤니티 이용규칙은 불법 행위, 각종 차별 및 갈등 조장, 타인의 권리 침해 등 커뮤니티 분위기 형성과 운영에 악영향을 미치는 행위들을 제한하기 위해 지속적으로 개정됩니다. \n\n 중대한 변경사항이 있는 경우에는 공지사항을 통해 고지하므로 반드시 확인해주시기 바랍니다.
+ 커뮤니티 이용규칙에서 사용된 용어의 정의는 서비스 이용약관을 따릅니다.\n" />
+
+            <TextView
+                android:id="@+id/textView_sub2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="신고처리 시스템"
+                android:textColor="#000000"
+                android:layout_marginStart="5dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView_sub3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:text="  \n
+1. 모든 게시물은 이용자의 신고를 기반으로 하는 신고처리 시스템을 통해 처리됩니다. 커뮤니티 이용규칙에 어긋난다고 판단되는 게시글, 댓글, 키워드 등을 발견하셨을 경우, 신고 버튼을 눌러 신고해주시기 바랍니다.\n\n
+2. 커뮤니티 이용규칙에 어긋나거나, 다른 이용자에게 신고를 받을 수 있는 게시물을 작성해서는 안 됩니다. 신고 누적으로 인해 발생한 피해는 어떤 상황에서도 책임을 지지 않습니다. \n\n
+3. 신고가 누적되었거나 커뮤니티 이용규칙을 위반한 이용자는 작성한 게시물이 삭제될 수 있으며, 행위의 경중과 반복 여부에 따라 최대 영구정지의 글쓰기 및 키워드 등록의 이용제한, 전체 서비스 접근 제한 등의 제재가 가해질 수 있습니다. \n\n
+4. 모든 처리는 신고처리 시스템을 통하므로, 신고자 및 신고 사유를 확인하거나 접근 제한을 해제하는 것은 불가능합니다. \n\n "  />
+
+            <TextView
+                 android:id="@+id/textView_sub4"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:textSize="22sp"
+                 android:textColor="#000000"
+                 android:layout_marginStart="5dp"
+                 android:text="금지행위"  />
+
+
+            <TextView
+                android:id="@+id/textView_sub5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" \n1. 인종차별, 테러 등 국제 평화 및 국제질서를 현저히 해할 우려가 있는 행위\n
+2. 외국의 국가, 국장 등을 모독함으로써 국익에 반하거나 국가 간의 우의를 현저히 해할 우려가 있는 행위\n
+3.  그 밖에 외국의 정치, 종교, 문화, 사회에 대한 비방, 비하, 멸시 등 국가 간의 우의를 현저히 해할 우려가 있는 행위 \n"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/textView_sub6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="#000000"
+                android:layout_marginStart="5dp"
+                android:text="범죄 기타 법령에 위반되는 행위"  />
+
+            <TextView                                                            
+                android:id="@+id/textView_sub7"                                  
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:text=" \n 1. 범죄를 목적으로 하거나 예비, 음모, 교사, 방조할 우려가 현저한 행위\n
+2. 범죄인 수단이나 방법 또는 범죄에 이르는 과정이나 결과를 구체적으로 묘사하여 범죄를 조장할 우려가 있는 행위\n
+3. 범죄, 범죄인 또는 범죄단체 등을 미화하여 범죄를 정당하다고 보이게 할 우려가 있는 행위\n
+4. 그 밖에 범죄 및 법령에 위반되는 위법행위를 조장하여 건전한 법질서를 현저히 해할 우려가 있는 행위\n" />
+
+
+
+            <TextView
+                android:id="@+id/textView_sub30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="#000000"
+                android:layout_marginStart="5dp"
+                android:text="악용 행위"  />
+
+            <TextView
+                android:id="@+id/textView_sub31"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:text=" \n 1. 익명을 이용한 여론 조작 행위\n
+2. 신고 및 투표 제도 악용 행위\n
+3.운영자 또는 이에 준하는 자격을 사칭하여 권한을 행사하는 행위\n
+4.내용 없는 외부 링크 게시, 외부 서비스 이용 강제·유도 등 서비스 이탈 유도 행위 \n" />
+
+            <TextView
+                android:id="@+id/textView_sub28"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginStart="5dp"
+                android:textColor="#000000"
+                android:text="정치·사회 관련 행위"  />
+
+            <TextView
+                android:id="@+id/textView_sub29"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:text=" \n 1. 언론·시민단체 등 관련 단체 옹호, 추천, 반대, 비하 행위
+
+특정 정당·후보에 대한 지지, 비방, 투표 독려 행위
+
+\n3. 다른 이용자를 특정 정치 단체 관련자 및 특정 이념 옹호자로 몰아가는 행위
+\n4. 다양한 의견을 배척하고 여론을 하나로 수렴하는 행위
+\n5. 다른 이용자나 게시물에 대한 욕설, 비난, 비꼬는 행위
+\n6. 기타 정치·사회 관련 갈등을 조장할 수 있는 행위 일체
+\n7. 국가기관(정부·공무원), 정치 관련 단체(정치인·정당·시민단체), 언론, 시민단체에 대한 언급 혹은 이와 관련한 행위
+\n8. 정책·외교 또는 정치·정파에 대한 의견, 주장 및 이념, 가치관을 드러내는 행위
+\n9. 성별, 종교, 인종, 출신, 지역, 직업, 이념 등 사회적 이슈에 대한 언급 혹은 이와 관련한 행위
+\n10.위와 같은 내용으로 유추될 수 있는 비유, 은어 사용 행위\n" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <TextView
+                android:id="@+id/textView_sub32"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginStart="5dp"
+                android:textColor="#000000"
+                android:text="허위사실 유포 및 명예훼손 게시물에 대한 게시중단 요청"  />
+
+            <TextView
+                android:id="@+id/textView_sub33"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:text=" \n 1. 모든 게시물은 신고처리시스템에 의해 자동으로 처리되며, 요청에 따라 사전 검토되거나 임의로 처리되지 않습니다.\n
+2. 리플러의 게시물로 인해, 저작권침해, 명예훼손, 기타 권리침해를 당했다고 판단되실 경우, 추가적인 권리침해를 방지하기 위해 고객센터에서 해당 게시물에 대한 게시중단 요청을 할 수 있습니다.\n
+3. 이후 담당자의 확인을 통해 게시중단 조치가 이루어지며, 게시중단 사유가 공개됩니다. \n\n " />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
