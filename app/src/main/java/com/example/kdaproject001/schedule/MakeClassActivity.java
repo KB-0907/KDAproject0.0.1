@@ -20,13 +20,10 @@ import com.example.kdaproject001.R;
 import java.util.ArrayList;
 
 public class MakeClassActivity extends Activity implements View.OnClickListener {
-    //EditActivity
     public static final int RESULT_OK_ADD = 1;
     public static final int RESULT_OK_EDIT = 2;
     public static final int RESULT_OK_DELETE = 3;
-
     private Context context;
-
     private Button deleteBtn;
     private Button submitBtn;
     private EditText subjectEdit;
@@ -35,10 +32,7 @@ public class MakeClassActivity extends Activity implements View.OnClickListener 
     private Spinner daySpinner;
     private TextView startTv;
     private TextView endTv;
-
-    //request mode
     private int mode;
-
     private Schedule schedule;
     private int editIdx;
 
@@ -76,7 +70,6 @@ public class MakeClassActivity extends Activity implements View.OnClickListener 
 
         if(mode == ScheduleActivity.REQUEST_EDIT){
             loadScheduleData();
-            deleteBtn.setVisibility(View.VISIBLE);
         }
     }
     private void initView(){

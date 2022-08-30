@@ -52,6 +52,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textSize="20sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
                 android:text="추가/수정" />
         </LinearLayout>
     </LinearLayout>
@@ -60,9 +63,6 @@
         android:id="@+id/timetable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:header_highlight_image="@drawable/profile"
-        app:header_highlight_image_size="36dp"
-        app:header_highlight_type="image"
         app:header_title="@array/header_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout14" />
