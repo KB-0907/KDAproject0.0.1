@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +29,8 @@ public class CreditActivity extends AppCompatActivity {
     EditText major_credit,general_credit,culture_credit,certificate_credit1,certificate_credit2,certificate_credit3,etc_credit,self_learn_credit,certificate_name1,certificate_name2,certificate_name3;
     TextView totalCredit,totalCertificate,final_total_credit,self_learn_credit_name,etc_name;
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    Button button, allClear;
+    Button allClear;
+    ImageButton button;
     FirebaseFirestore db = FirebaseFirestore.getInstance(); //파이어 베이스 파이어스토어를 사용하기 위한 변수 생성 및 할당
 
 
