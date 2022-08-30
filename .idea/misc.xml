@@ -50,12 +50,13 @@
         <entry key="app/src/main/res/layout/activity_free_borad_list.xml" value="0.42609853528628494" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.29450988769531267" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.39081085205078125" />
-        <entry key="app/src/main/res/layout/activity_make_schedule.xml" value="0.6631994275079258" />
+        <entry key="app/src/main/res/layout/activity_make_class.xml" value="0.22896418238120964" />
+        <entry key="app/src/main/res/layout/activity_make_schedule.xml" value="0.4864400891290196" />
         <entry key="app/src/main/res/layout/activity_modify_post.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/activity_my_info.xml" value="0.30753503329512" />
         <entry key="app/src/main/res/layout/activity_post_item.xml" value="0.31696139010011004" />
         <entry key="app/src/main/res/layout/activity_post_item2.xml" value="0.33297531607182435" />
-        <entry key="app/src/main/res/layout/activity_schedule.xml" value="0.2750438809998734" />
+        <entry key="app/src/main/res/layout/activity_schedule.xml" value="0.3419847328244275" />
         <entry key="app/src/main/res/layout/activity_schedule_onbuttonclicked1.xml" value="0.22916666666666666" />
         <entry key="app/src/main/res/layout/activity_sing_up.xml" value="0.35073349478276183" />
         <entry key="app/src/main/res/layout/activity_to_do.xml" value="0.32395474646337463" />

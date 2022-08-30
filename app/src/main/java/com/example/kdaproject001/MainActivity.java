@@ -11,14 +11,12 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.kdaproject001.board.BoardListActivity;
 import com.example.kdaproject001.mainViewPager.CreditFragment;
 import com.example.kdaproject001.mainViewPager.ScheduleFragment;
-import com.example.kdaproject001.myInfo.ChangePwd;
 import com.example.kdaproject001.myInfo.MyInfoActivity;
-import com.example.kdaproject001.schedule.scheduleActivity;
+import com.example.kdaproject001.schedule.ScheduleActivity;
 import com.example.kdaproject001.todo.ToDoActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -30,30 +28,15 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 
-import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
-import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
 public class MainActivity extends AppCompatActivity{
@@ -101,7 +84,7 @@ public class MainActivity extends AppCompatActivity{
                 moveActivity(BoardListActivity.class);
                 break;
             case R.id.schedule_btn:
-                moveActivity(scheduleActivity.class);
+                moveActivity(ScheduleActivity.class);
                 break;
             case R.id.move_to_do_btn:
                 moveActivity(ToDoActivity.class);

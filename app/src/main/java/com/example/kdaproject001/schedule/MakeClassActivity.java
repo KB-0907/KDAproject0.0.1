@@ -2,6 +2,7 @@ package com.example.kdaproject001.schedule;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -14,14 +15,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.example.kdaproject001.MainActivity;
 import com.example.kdaproject001.R;
-import com.example.kdaproject001.schedule.Schedule;
-import com.example.kdaproject001.schedule.Time;
 
 import java.util.ArrayList;
 
-public class MakeSchedule extends AppCompatActivity implements View.OnClickListener {
+public class MakeClassActivity extends Activity implements View.OnClickListener {
     //EditActivity
     public static final int RESULT_OK_ADD = 1;
     public static final int RESULT_OK_EDIT = 2;
@@ -47,14 +45,14 @@ public class MakeSchedule extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_make_schedule);
+        setContentView(R.layout.activity_make_class);
         init();
     }
 
     private void init(){
         this.context = this;
         deleteBtn = findViewById(R.id.delete_btn);
-        submitBtn = findViewById(R.id.submit_btn);
+        submitBtn = findViewById(R.id.submit_class);
         subjectEdit = findViewById(R.id.subject_edit);
         classroomEdit = findViewById(R.id.classroom_edit);
         professorEdit = findViewById(R.id.professor_edit);
@@ -74,9 +72,9 @@ public class MakeSchedule extends AppCompatActivity implements View.OnClickListe
     /** check whether the mode is ADD or EDIT */
     private void checkMode(){
         Intent i = getIntent();
-        mode = i.getIntExtra("mode", CreateSchedule.REQUEST_ADD);
+        mode = i.getIntExtra("mode", ScheduleActivity.REQUEST_ADD);
 
-        if(mode == CreateSchedule.REQUEST_EDIT){
+        if(mode == ScheduleActivity.REQUEST_EDIT){
             loadScheduleData();
             deleteBtn.setVisibility(View.VISIBLE);
         }
@@ -101,6 +99,7 @@ public class MakeSchedule extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
                 TimePickerDialog dialog = new TimePickerDialog(context,listener,schedule.getStartTime().getHour(), schedule.getStartTime().getMinute(), false);
                 dialog.show();
+
             }
 
             private TimePickerDialog.OnTimeSetListener listener = new TimePickerDialog.OnTimeSetListener() {
@@ -133,8 +132,8 @@ public class MakeSchedule extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.submit_btn:
-                if(mode == CreateSchedule.REQUEST_ADD){
+            case R.id.submit_class:
+                if(mode == ScheduleActivity.REQUEST_ADD){
                     inputDataProcessing();
                     Intent i = new Intent();
                     ArrayList<Schedule> schedules = new ArrayList<Schedule>();
@@ -144,7 +143,7 @@ public class MakeSchedule extends AppCompatActivity implements View.OnClickListe
                     setResult(RESULT_OK_ADD,i);
                     finish();
                 }
-                else if(mode == CreateSchedule.REQUEST_EDIT){
+                else if(mode == ScheduleActivity.REQUEST_EDIT){
                     inputDataProcessing();
                     Intent i = new Intent();
                     ArrayList<Schedule> schedules = new ArrayList<Schedule>();
