@@ -40,8 +40,7 @@ import java.util.ArrayList;
 public class WatchPostActivity extends AppCompatActivity {
     public final static String TAG = "WatchPostActivity";
     TextView postTitle, postContents;
-    Button coReBtn;
-    ImageButton postMenu;
+    ImageButton coReBtn,postMenu;
     FirebaseFirestore db = FirebaseFirestore.getInstance(); //파이어 베이스 파이어스토어를 사용하기 위한 변수 생성 및 할당
     String postUserID;
     private FirebaseUser commentUser;

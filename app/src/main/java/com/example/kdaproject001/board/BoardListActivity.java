@@ -5,11 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
+
 import com.example.kdaproject001.R;
 
 public class BoardListActivity extends AppCompatActivity {
     String boardSort;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +25,10 @@ public class BoardListActivity extends AppCompatActivity {
     }
 
     View.OnClickListener onBoardClickListener = v -> {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.freeBoard:
                 boardSort = "free";
                 moveToBoard(boardSort);
-
 
                 break;
             case R.id.academicBoard:
@@ -48,7 +48,10 @@ public class BoardListActivity extends AppCompatActivity {
                 moveToBoard(boardSort);
                 break;
         }
+
     };
+
+
 
     private void moveToBoard(String boardSort){
         Intent boardIntent = new Intent(getApplicationContext(), FreeBoardListActivity.class);
@@ -56,5 +59,5 @@ public class BoardListActivity extends AppCompatActivity {
         startActivity(boardIntent);
     }
 
-    public void finishAct(View view) { finish(); }
+    public void finishAct() { finish(); }
 }

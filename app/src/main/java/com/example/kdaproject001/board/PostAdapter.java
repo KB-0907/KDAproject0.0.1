@@ -29,7 +29,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
     private Activity activity;
     private Context context;
     boolean auth;
-    long delay;
+
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference("KAD");
 
