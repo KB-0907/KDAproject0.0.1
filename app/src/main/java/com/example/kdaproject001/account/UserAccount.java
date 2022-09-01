@@ -12,6 +12,8 @@ public class UserAccount {
     private String emailId;
     private String password;
     private String idToken;
+    private String studentId;
+    private String department;
     boolean Authentication;
 
     public UserAccount(){} //파이어 베이스 데이터베이스 필수
@@ -46,5 +48,17 @@ public class UserAccount {
 
     public void setAuthentication(boolean authentication) {
         Authentication = authentication;
+    }
+
+    public String getStudentId() { return studentId; }
+
+    public void setStudentId(String studentId){
+        this.studentId = studentId;
+    }
+
+    public String getDepartment() {return department;}
+
+    public void setDepartment(String department){
+        this.department = department;
     }
 }

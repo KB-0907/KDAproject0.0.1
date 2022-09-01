@@ -22,7 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity {
-    EditText webMail, PassWd, PWCheck;
+    EditText webMail, PassWd, PWCheck,Department,StudentID,StudentName;
     Button signBtn, checkBtn;
 
     DatabaseReference mDatabaseRef;     //실시간 데이터베이스
@@ -38,6 +38,10 @@ public class SignUp extends AppCompatActivity {
         PWCheck = findViewById(R.id.pwCheck);
         signBtn = findViewById(R.id.signUp);
         checkBtn = findViewById(R.id.check);
+        StudentID = findViewById(R.id.get_student_id);
+        Department = findViewById(R.id.get_department);
+        StudentName = findViewById(R.id.get_name);
+
 
         checkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,21 +65,29 @@ public class SignUp extends AppCompatActivity {
         String strEmail = webMail.getText().toString() + "@iit.kw.ac.kr";
         String strPwd = PassWd.getText().toString();
         String strPwdCh = PWCheck.getText().toString();
+        String strStudentId = StudentID.getText().toString();
+        String strDepartment = Department.getText().toString();
+        String strName = StudentName.getText().toString();
 
-        if (strEmail.length() > 0 && strPwd.length() > 0 && strPwdCh.length() > 0) {
-            if (strPwd.equals(strPwdCh)) {
-                signUpFirebase(strEmail, strPwd);
-            } else {
-                startToast("비밀번호가 일치하지 않습니다.");
-            }
-        }else {
-            startToast("이메일과 비밀번호 모두 입력해주세요.");
+        //  웹메일 아이디가 4자 이상, 비번, 비번확인은 6자 이상,
+        if (strEmail.length() > 16 && strPwd.length() > 5 && strPwdCh.length() > 5 && strStudentId.length() > 9 && strDepartment.length()>4 && strName.length()>1) {
+            if (strPwd.equals(strPwdCh)) { signUpFirebase(strEmail,strPwd); }
+            else { Log.e("뭐냐", "진짜 뭐지"); }
         }
+        if (strEmail.length()<=16){ startToast("웹메일 아이디는 최소 4자리 이상입니다."); }
+        else if (strPwd.length()<=5){ startToast("비밀번호는 최소 6자리 이상입니다."); }
+        else if (strStudentId.length()<=9){ startToast("학번은 최소 10자리 이상입니다."); }
+        else if (strDepartment.length()<=4){ startToast("학과는 최소 4글자 이상입니다."); }
+        else if (strName.length()<=1){ startToast("성명은 최소 2글자 이상입니다."); }
+        else { startToast("비밀번호가 일치하지 않습니다."); }
 
     }
 
+
     private void signUpFirebase(String email, String password){
         FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
+        String strStudentId = StudentID.getText().toString();
+        String strDepartment = Department.getText().toString();
         mFirebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -89,6 +101,8 @@ public class SignUp extends AppCompatActivity {
                             account.setPassword(password);
                             account.setIdToken(firebaseUser.getUid());
                             account.setAuthentication(false);
+                            account.setStudentId(strStudentId);
+                            account.setDepartment(strDepartment);
                             //파이어베이스 회원가입 시 비밀번호는 최소 6자리
                             mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account); //database insert
                             finish();
@@ -125,6 +139,7 @@ public class SignUp extends AppCompatActivity {
             startToast("인증 안된 계정");
         }*/
     }
+
 
     public void startToast(String msg){
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
