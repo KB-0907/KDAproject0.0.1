@@ -1,12 +1,14 @@
 package com.example.kdaproject001.schedule;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 
 //for(대입받을 변수정의 : 배열명)
@@ -44,7 +46,7 @@ public class SaveManager {
             return obj1.toString();
         }
 
-        public static HashMap<Integer,Sticker> loadSticker(String json){
+        public static HashMap<Integer,Sticker> loadSticker(String json){ //이걸 뷰페이저에서 실행
             HashMap<Integer, Sticker> stickers = new HashMap<Integer,Sticker>();
             JsonParser parser = new JsonParser();
             JsonObject obj1 = (JsonObject)parser.parse(json);

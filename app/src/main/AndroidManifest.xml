@@ -16,16 +16,27 @@
         android:theme="@style/Theme.Design.Light.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".myInfo.Suggest"
+            android:exported="false" />
+        <activity
+            android:name=".myInfo.UseRules"
+            android:exported="false" />
+        <!--
+         Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713
+        ca-app-pub-5710808848357990~1031327758
+        -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713" />
 
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-
         <activity
             android:name=".EmailCertification"
             android:exported="false"
             android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar" />
-
         <activity
             android:name=".account.Login"
             android:exported="true">
@@ -41,7 +52,6 @@
         <activity
             android:name=".account.SignUp"
             android:exported="false" />
-
         <activity
             android:name=".board.WatchPostActivity"
             android:exported="false" />
@@ -57,23 +67,20 @@
         <activity
             android:name=".board.FreeBoardListActivity"
             android:exported="false" />
-
-
         <activity
             android:name=".schedule.MakeClassActivity"
             android:exported="false"
             android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar" />
         <activity
             android:name=".schedule.ScheduleActivity"
-            android:exported="false" />
-
+            android:exported="false"
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".myInfo.ChangePwd"
             android:exported="false" />
         <activity
             android:name=".myInfo.MyInfoActivity"
             android:exported="false" />
-
         <activity
             android:name=".todo.ToDoActivity"
             android:exported="false" />
@@ -81,12 +88,13 @@
             android:name=".todo.ToDoMakeActivity"
             android:exported="false"
             android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar" />
-
         <activity
             android:name=".CreditActivity"
             android:exported="false" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
 </manifest>

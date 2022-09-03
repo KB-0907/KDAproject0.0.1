@@ -51,7 +51,6 @@ public class  ChangePwd extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_pwd);
 
-
         mFirebaseAuth = FirebaseAuth.getInstance();
 
         saveBtn = findViewById(R.id.save2_btn);
@@ -59,6 +58,15 @@ public class  ChangePwd extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 UpdatePwd();
+                finish();
+            }
+        });
+
+        cancelBtn = findViewById(R.id.cancel2_btn);
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
@@ -79,7 +87,7 @@ public class  ChangePwd extends AppCompatActivity {
                 }
                 else {
                     Log.d("firebase", String.valueOf(task.getResult().getValue()));
-                    if (editTextCurrentPwd.length() > 0 && editTextNewPwd.length() > 0 && editTextCheckPwd.length() > 0) {
+                    if (editTextCurrentPwd.length() > 5 && editTextNewPwd.length() > 5 && editTextCheckPwd.length() > 5) {
                         if (editTextNewPwd.equals(editTextCheckPwd) &&
                                 (editTextCurrentPwd.equals(String.valueOf(task.getResult().child("password").getValue())))) {
 
@@ -89,55 +97,23 @@ public class  ChangePwd extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()){
                                                 Log.e("firebase", "변경");
-
                                                 mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("password").setValue(editTextNewPwd);
+                                                finish();
                                             }
                                         }
                                     });
-
-                           /* mFirebaseAuth.confirmPasswordReset(editTextCurrentPwd, editTextNewPwd)
-                                    .addOnCompleteListener(ChangePwd.this, new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()) {
-                                                UserAccount account = new UserAccount();
-                                                account.setEmailId();
-                                                account.setPassword(editTextNewPwd);
-                                                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("password").setValue(account);
-                                                finish();
-
-                                            } else {
-                                                if (task.getException() != null) {
-                                                }
-                                            }
-                                        }
-                                    });*/
-                        } else {
-                            Toast.makeText(ChangePwd.this,"비밀번호가 일치하지 않습니다.",Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(ChangePwd.this,"비밀번호가 ",Toast.LENGTH_SHORT).show();
-
+                                }
+                        else { startToast("새 비밀번호와 확인 비밀번호가 일치하지 않거나,\n 현재 비밀번호가 잘못되었습니다."); }
+                    }
+                    else {
+                        if (editTextCurrentPwd.length()<=5 && editTextCheckPwd.length()<=5 && editTextNewPwd.length()<=5){ startToast("비밀번호는 최소 6자리 이상입니다."); }
                     }
                 }
             }
         });
     }
+
+    public void startToast(String msg){
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
 }
-
-/*
-firebaseAuth.getCurrentUser().updatePassword(new_pwd)
-        .addOnSuccessListener(new OnSuccessListener<Void>() {
-@Override
-public void onSuccess(Void unused) {
-        }
-        })
-        .addOnFailureListener(new OnFailureListener() {
-@Override
-public void onFailure(@NonNull Exception e) {
-        e.printStackTrace();
-        }
-        });
-
- */
-

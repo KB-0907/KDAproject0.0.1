@@ -1,22 +1,57 @@
 package com.example.kdaproject001.myInfo;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.kdaproject001.CreditActivity;
 import com.example.kdaproject001.R;
+import com.example.kdaproject001.account.Login;
+import com.example.kdaproject001.account.UserAccount;
+import com.example.kdaproject001.board.BoardListActivity;
+import com.example.kdaproject001.schedule.ScheduleActivity;
+import com.example.kdaproject001.todo.ToDoActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
+import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class MyInfoActivity extends AppCompatActivity {
-    TextView changePwd,useRules,move_to_logout,move_to_withdrawal;
+import java.util.HashMap;
+import java.util.Map;
+
+public class MyInfoActivity<ID> extends AppCompatActivity {
+    TextView withdrawal, Name, StudentID, Department;
+    FirebaseAuth mFirebaseAuth;         //파이어베이스 인증처리wal;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseUser firebaseUser = mFirebaseAuth.getInstance().getCurrentUser();
+    DatabaseReference mDatabaseRef;
+    String DefaultID, getPostID, boardSort;
+    ImageButton beforeBtn;
+    Class moveClass;
 
 
     @Override
@@ -24,44 +59,101 @@ public class MyInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_info);
 
-        changePwd = findViewById(R.id.move_to_change_pwd);
-        changePwd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent changeIntent = new Intent(MyInfoActivity.this, ChangePwd.class);
-                startActivity(changeIntent);
-            }
-        });
+        showInfo();
 
-        useRules = findViewById(R.id.move_to_use_rules);
-        useRules.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.before_btn).setOnClickListener(moveActivityClickListener);
+        findViewById(R.id.move_to_change_pwd).setOnClickListener(moveActivityClickListener);
+        findViewById(R.id.move_to_use_rules).setOnClickListener(moveActivityClickListener);
+        findViewById(R.id.move_to_logout).setOnClickListener(moveActivityClickListener);
+        findViewById(R.id.move_to_suggest).setOnClickListener(moveActivityClickListener);
+
+    }
+
+
+
+    private void moveActivity(Class moveClass){
+        Intent moveIntent = new Intent(getApplicationContext(), moveClass);
+        startActivity(moveIntent);
+    }
+
+
+    View.OnClickListener moveActivityClickListener = v -> {
+        switch (v.getId()){
+            case R.id.before_btn:
+                finish();
+                break;
+            case R.id.move_to_change_pwd:
+                moveActivity(ChangePwd.class);
+                break;
+            case R.id.move_to_use_rules:
+                moveActivity(UseRules.class);
+                break;
+            case R.id.move_to_logout:
+                moveActivity(Login.class);
+                break;
+            case R.id.move_to_suggest:
+                moveActivity(Suggest.class);
+                break;
+        }       // 회원 탈퇴는 xml 에서 onClick 으로 설정했음
+    };
+
+
+
+    public void showInfo () {
+        String Name = ((TextView) findViewById(R.id.textView_Name)).toString();
+        String StudentID = ((TextView) findViewById(R.id.textView_student_ID)).toString();
+        String Department = ((TextView) findViewById(R.id.textView_department)).toString();
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("KAD");
+
+        mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
-            public void onClick(View v) {
-                Intent UseIntent = new Intent(getApplicationContext(), UseRules.class);
-                startActivity(UseIntent);
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                /* if (task.isSuccessful()) {
+                    Log.e("firebase", "Name");
+
+                    UserAccount userAccount = new UserAccount(Name , StudentID, Department);
+                    mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(userAccount);
+
+                }
+
+                 */
             }
         });
     }
+
+    public void OnClickHandler(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("경고").setMessage("정말로 회원 탈퇴를 하시겠습니까?");
+
+        builder.setPositiveButton("예", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                user.delete()
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    FirebaseAuth.getInstance().signOut();
+                                    Intent moveIntent = new Intent(getApplicationContext(),Login.class);
+                                    startActivity(moveIntent);
+                                }
+                            }
+                        });
+            }
+        });
+
+        builder.setNegativeButton("아니오", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
 }
 
-/*
 
-fAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = fAuth.getCurrentUser();
-
-
-        move_to_change_pwd.setOnClickListener(v -> {
-final EditText resetPassword = new EditText(v.getContext());
-
-final AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
-        passwordResetDialog.setTitle("비밀번호를 초기화하시겠습니까?");
-        passwordResetDialog.setMessage("비밀번호는 10자리 이상으로 해주세요.");
-        passwordResetDialog.setView(resetPassword);
-
-        passwordResetDialog.setPositiveButton("변경", onClick (dialog, which) -> {
-        String newPassword = resetPassword.getText().toString();
-        })
-
-        };
-
- */

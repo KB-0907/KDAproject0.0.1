@@ -74,6 +74,14 @@
             android:inputType="textPassword" />
 
         <EditText
+            android:id="@+id/get_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="이름"
+            android:inputType="textPersonName" />
+
+        <EditText
             android:id="@+id/get_student_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -87,15 +95,6 @@
             android:id="@+id/get_department"
             android:ems="10"
             android:hint="학과"
-            android:inputType="textPersonName"
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/get_name"
-            android:ems="10"
-            android:hint="성명"
             android:inputType="textPersonName"
             />
 

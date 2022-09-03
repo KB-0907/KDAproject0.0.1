@@ -26,7 +26,7 @@
 
 
         <TextView
-            android:id="@+id/textView26"
+            android:id="@+id/textView4246"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="10"
@@ -34,7 +34,7 @@
             android:paddingStart="5dp"
             android:paddingTop="5sp"
             android:paddingBottom="5sp"
-            android:text="내 정보"
+            android:text="마이 페이지"
             android:textAlignment="textStart"
             android:textSize="26sp" />
 
@@ -63,16 +63,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView27"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="1dp"
-                        android:layout_marginBottom="2dp"
-                        android:layout_weight="1"
-                        android:text="ID"
-                        android:textSize="19sp" />
-
-                    <TextView
+                        android:id="@+id/textView_Name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="1dp"
@@ -82,7 +73,7 @@
                         android:textSize="19sp" />
 
                     <TextView
-                        android:id="@+id/textView29"
+                        android:id="@+id/textView_student_ID"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="1dp"
@@ -90,13 +81,26 @@
                         android:layout_weight="1"
                         android:text="학번"
                         android:textSize="19sp" />
+
+                    <TextView
+                        android:id="@+id/textView_department"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_weight="1"
+                        android:text="ID"
+                        android:textSize="19sp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/boardsortradius"
                 android:orientation="vertical">
 
@@ -107,29 +111,51 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="8dp"
+                    android:textColor="#000000"
                     android:text="계정"
                     android:textSize="23dp" />
 
-                <TextView
-                    android:id="@+id/move_to_change_pwd"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="비밀번호 변경"
-                    android:textSize="18sp" />
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/move_to_change_pwd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="비밀번호 변경"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/move_to_logout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="로그아웃"
+                        android:textSize="18sp" />
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/move_to_use_rules"
-                    android:layout_width="match_parent"
+                    android:id="@+id/move_to_withdrawal"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="8dp"
-                    android:text="이용 규칙"
+                    android:text="회원 탈퇴"
+                    android:onClick="OnClickHandler"
                     android:textSize="18sp" />
             </LinearLayout>
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -145,31 +171,69 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="8dp"
-                    android:text="기타 설정"
+                    android:text="설정"
+                    android:textColor="#000000"
                     android:textSize="23dp" />
 
                 <TextView
-                    android:id="@+id/move_to_logout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="로그아웃"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/move_to_withdrawal"
+                    android:id="@+id/move_to_use_rules"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="8dp"
-                    android:text="회원 탈퇴"
+                    android:text="이용 규칙"
                     android:textSize="18sp" />
+
+
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/boardsortradius"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView123"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="#000000"
+                    android:text="기타"
+                    android:textSize="23dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/move_to_suggest"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_weight="1"
+                        android:text="문의/건의하기"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/move_to_notice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_weight="1"
+                        android:text="공지사항"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>

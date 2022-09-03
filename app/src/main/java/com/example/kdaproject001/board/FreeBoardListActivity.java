@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.kdaproject001.R;
@@ -30,6 +31,7 @@ public class FreeBoardListActivity extends AppCompatActivity {
     RecyclerView postRecyclerView;
     String boardSort;
     TextView boardSortTitle;
+    ImageButton backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,14 @@ public class FreeBoardListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_free_borad_list);
         postRecyclerView = findViewById(R.id.post_recyclerview);
         boardSortTitle = findViewById(R.id.board_sort_title);
+
+        backBtn = findViewById(R.id.before_btn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp"
     android:background="#FFFFFF"
     android:orientation="vertical"
     app:guidelineUseRtl="true"
@@ -15,14 +14,17 @@
         android:id="@+id/linearLayout11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:background="@drawable/activityheader"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/credit_back_btn"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
             android:onClick="finishAct"
             android:src="@drawable/before" />
 
@@ -30,10 +32,9 @@
         <TextView
             android:id="@+id/credit_title"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_weight="10"
-            android:fontFamily="cursive"
-            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
             android:text="학점 플래너"
             android:textAlignment="center"
             android:textColor="#000000"
@@ -41,10 +42,10 @@
 
         <ImageButton
             android:id="@+id/save_btn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_weight="0"
-            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="15dp"
             android:background="@drawable/save" />
 
     </LinearLayout>
@@ -53,7 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/boardsortradius"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         android:elevation="5dp"
         android:orientation="vertical">
 
@@ -68,7 +69,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:layout_margin="5dp">
+                android:padding="5dp"
+                >
 
                 <TextView
                     android:id="@+id/final_total_credit"
@@ -88,6 +90,11 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#66bdbdbd" />
 
         <LinearLayout
             android:id="@+id/linearLayout4"
@@ -206,6 +213,10 @@
 
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#66bdbdbd" />
 
         <LinearLayout
             android:id="@+id/linearLayout15"
@@ -341,6 +352,11 @@
             </TableLayout>
 
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#66bdbdbd" />
 
         <LinearLayout
             android:layout_width="match_parent"
