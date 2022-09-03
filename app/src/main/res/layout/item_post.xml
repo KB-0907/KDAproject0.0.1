@@ -95,11 +95,11 @@
     </LinearLayout>
 
     <View
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_gravity="bottom"
-        android:background="#FF9A2929" />
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="#DCDADA" />
 
 </androidx.cardview.widget.CardView>

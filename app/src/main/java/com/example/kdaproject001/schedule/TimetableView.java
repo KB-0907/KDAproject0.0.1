@@ -28,14 +28,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class TimetableView extends LinearLayout {
-    private static final int DEFAULT_ROW_COUNT = 13;
-    private static final int DEFAULT_COLUMN_COUNT = 6;
-    private static final int DEFAULT_CELL_HEIGHT_DP = 50;
-    private static final int DEFAULT_SIDE_CELL_WIDTH_DP = 30;
+    private static final int DEFAULT_ROW_COUNT = 13; //시간 9~8
+    private static final int DEFAULT_COLUMN_COUNT = 6; //요일
+    private static final int DEFAULT_CELL_HEIGHT_DP = 50; // 셀 높이
+    private static final int DEFAULT_SIDE_CELL_WIDTH_DP = 20; // 시간 셀 너비
     private static final int DEFAULT_START_TIME = 9;
-    private static final int DEFAULT_SIDE_HEADER_FONT_SIZE_DP = 13;
-    private static final int DEFAULT_HEADER_FONT_SIZE_DP = 15;
-    private static final int DEFAULT_HEADER_HIGHLIGHT_FONT_SIZE_DP = 15;
+    private static final int DEFAULT_SIDE_HEADER_FONT_SIZE_DP = 13; // 시간 글자 사이즈
+    private static final int DEFAULT_HEADER_FONT_SIZE_DP = 15; // 요일 글자 사이즈
+    private static final int DEFAULT_HEADER_HIGHLIGHT_FONT_SIZE_DP = 15; // 금일 요일 글자 사이즈
     private static final int DEFAULT_STICKER_FONT_SIZE_DP = 13;
 
     private int rowCount;
@@ -176,7 +176,7 @@ public class TimetableView extends LinearLayout {
         return SaveManager.saveSticker(stickers);
     }
 
-    public void load(String data) {
+    public void load(String data) {//뷰페이저에 가져가서 실행
         removeAll();
         stickers = SaveManager.loadSticker(data);
         int maxKey = 0;
@@ -219,10 +219,9 @@ public class TimetableView extends LinearLayout {
         View element = row.getChildAt(idx);
         if(highlightMode == HighlightMode.COLOR) {
             TextView tx = (TextView)element;
-            tx.setTextColor(Color.parseColor("#000000"));
+           // tx.setTextColor(Color.parseColor("#000000"));
             tx.setBackgroundColor(headerHighlightColor);
-            tx.setTypeface(null, Typeface.BOLD);
-            tx.setTextSize(TypedValue.COMPLEX_UNIT_DIP, DEFAULT_HEADER_HIGHLIGHT_FONT_SIZE_DP);
+          //  tx.setTypeface(null, Typeface.BOLD);
         }
         else if(highlightMode == HighlightMode.IMAGE){
             RelativeLayout outer = new RelativeLayout(context);
@@ -262,7 +261,7 @@ public class TimetableView extends LinearLayout {
                     tv.setText(getHeaderTime(i));
                     tv.setTextColor(getResources().getColor(R.color.colorHeaderText));
                     tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, DEFAULT_SIDE_HEADER_FONT_SIZE_DP);
-                    tv.setBackgroundColor(getResources().getColor(R.color.colorHeader));
+                    tv.setBackgroundColor(getResources().getColor(R.color.colorBackground));
                     tv.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
                     tv.setLayoutParams(createTableRowParam(sideCellWidth, cellHeight));
                 } else {
@@ -290,7 +289,8 @@ public class TimetableView extends LinearLayout {
             tv.setTextColor(getResources().getColor(R.color.colorHeaderText));
             tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, DEFAULT_HEADER_FONT_SIZE_DP);
             tv.setText(headerTitle[i]);
-            tv.setGravity(Gravity.CENTER);
+            tv.setPadding(0,0,0,10);
+            tv.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
 
             tableRow.addView(tv);
         }
@@ -312,7 +312,7 @@ public class TimetableView extends LinearLayout {
         Display display = ((Activity) context).getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        int cell_w = (size.x-getPaddingLeft() - getPaddingRight()- sideCellWidth) / (columnCount - 1);
+        int cell_w = (size.x-getPaddingLeft() - getPaddingRight()- sideCellWidth + 50) / (columnCount);
         return cell_w;
     }
 

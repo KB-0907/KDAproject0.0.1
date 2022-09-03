@@ -22,7 +22,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.regex.Pattern;
 
 public class FindPwd extends AppCompatActivity {
-
     EditText editTextPwdResetEmail;
     Button buttonPwdResetEmail;
     ProgressBar progressBar;
@@ -46,7 +45,7 @@ public class FindPwd extends AppCompatActivity {
                     editTextPwdResetEmail.setError("이메일을 입력해주세요.");
                     editTextPwdResetEmail.requestFocus();
                 }else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                    editTextPwdResetEmail.setError("회원가입한 이메일과 일치하지 않습니다.");
+                    editTextPwdResetEmail.setError("정확한 웹메일 주소를 입력해주세요.");
                     editTextPwdResetEmail.requestFocus();
                 }
                 else{
@@ -55,8 +54,8 @@ public class FindPwd extends AppCompatActivity {
                 }
             }
         });
-
     }
+
     private void resetPassword(String email){
         authProfile = FirebaseAuth.getInstance();
         authProfile.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -70,7 +69,10 @@ public class FindPwd extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else{
+                    progressBar.setVisibility(View.INVISIBLE);
+                    editTextPwdResetEmail.setError(email + "로 가입된 정보가 없습니다.");
                     Log.e("passwd", "Error", task.getException());
+
                 }
             }
         });

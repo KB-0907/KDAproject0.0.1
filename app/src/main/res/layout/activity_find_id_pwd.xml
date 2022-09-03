@@ -19,12 +19,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:text="본인의 정과원 웹메일을 입력해주세요."
+            android:text="정과원 웹메일을 입력해주세요."
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textSize="24sp" />
+            android:textSize="23sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -56,7 +56,7 @@
             android:layout_marginStart="70dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="70dp"
-            android:text="인중 이메일 전송" />
+            android:text="인증 메일 전송" />
 
         <ProgressBar
             android:layout_width="match_parent"

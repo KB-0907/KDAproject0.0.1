@@ -3,7 +3,6 @@ package com.example.kdaproject001;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,16 +10,18 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.kdaproject001.board.BoardListActivity;
 import com.example.kdaproject001.mainViewPager.CreditFragment;
 import com.example.kdaproject001.mainViewPager.ScheduleFragment;
-import com.example.kdaproject001.myInfo.ChangePwd;
 import com.example.kdaproject001.myInfo.MyInfoActivity;
 import com.example.kdaproject001.schedule.ScheduleActivity;
-import com.example.kdaproject001.schedule.ScheduleActivity;
 import com.example.kdaproject001.todo.ToDoActivity;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.RequestConfiguration;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,33 +29,18 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
+import java.util.Arrays;
+import java.util.List;
 
-import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
-import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
 public class MainActivity extends AppCompatActivity{
@@ -65,20 +51,32 @@ public class MainActivity extends AppCompatActivity{
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference("KAD");
     boolean auth;
+    private AdView adView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         makeNotice();
 
-        checkAuth();
+        List<String> testDeviceIds = Arrays.asList("FFB5744D4B4D0025B6D43CA185C0A686");
+        RequestConfiguration configuration =
+                new RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build();
+        MobileAds.setRequestConfiguration(configuration);
+        MobileAds.initialize(this);
+        AdRequest adRequest = new AdRequest.Builder().build();
 
+        checkAuth();
+        adView = findViewById(R.id.adView1);
         findViewById(R.id.move_to_board_btn).setOnClickListener(moveActivityClickListener);
         findViewById(R.id.schedule_btn).setOnClickListener(moveActivityClickListener);
         findViewById(R.id.move_to_do_btn).setOnClickListener(moveActivityClickListener);
         findViewById(R.id.move_to_grade_planner_btn).setOnClickListener(moveActivityClickListener);
         findViewById(R.id.MyInfo_btn).setOnClickListener(moveActivityClickListener);
+        adView.loadAd(adRequest);
 
         pager = findViewById(R.id.pager);
         pager.setOffscreenPageLimit(2);

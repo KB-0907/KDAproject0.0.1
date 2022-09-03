@@ -44,7 +44,7 @@ public class SaveManager {
             return obj1.toString();
         }
 
-        public static HashMap<Integer,Sticker> loadSticker(String json){
+        public static HashMap<Integer,Sticker> loadSticker(String json){ //이걸 뷰페이저에서 실행
             HashMap<Integer, Sticker> stickers = new HashMap<Integer,Sticker>();
             JsonParser parser = new JsonParser();
             JsonObject obj1 = (JsonObject)parser.parse(json);

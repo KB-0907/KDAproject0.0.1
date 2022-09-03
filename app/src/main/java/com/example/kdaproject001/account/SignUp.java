@@ -22,7 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity {
-    EditText webMail, PassWd, PWCheck,Department,StudentID,StudentName;
+    EditText webMail, PassWd, PWCheck, Department, StudentID, StudentName;
     Button signBtn, checkBtn;
 
     DatabaseReference mDatabaseRef;     //실시간 데이터베이스
@@ -78,11 +78,8 @@ public class SignUp extends AppCompatActivity {
         else if (strPwd.length()<=5){ startToast("비밀번호는 최소 6자리 이상입니다."); }
         else if (strStudentId.length()<=9){ startToast("학번은 최소 10자리 이상입니다."); }
         else if (strDepartment.length()<=4){ startToast("학과는 최소 4글자 이상입니다."); }
-        else if (strName.length()<=1){ startToast("성명은 최소 2글자 이상입니다."); }
         else { startToast("비밀번호가 일치하지 않습니다."); }
-
     }
-
 
     private void signUpFirebase(String email, String password){
         FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
@@ -93,9 +90,7 @@ public class SignUp extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-
                             FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
-
                             UserAccount account = new UserAccount();
                             account.setEmailId(firebaseUser.getEmail());
                             account.setPassword(password);

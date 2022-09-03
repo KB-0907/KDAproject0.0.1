@@ -36,12 +36,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ScheduleActivity extends AppCompatActivity {
+public class ScheduleActivity extends AppCompatActivity implements ClassBottomSheetListener{
     public static final int REQUEST_ADD = 1;
     public static final int REQUEST_EDIT = 2;
     private TimetableView timetable;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseUser user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,17 +51,20 @@ public class ScheduleActivity extends AppCompatActivity {
         loadSchedule();
         findViewById(R.id.save_schedule).setOnClickListener(viewOnClick);
         findViewById(R.id.add_class_tv).setOnClickListener(viewOnClick);
+        findViewById(R.id.exampleSave).setOnClickListener(viewOnClick);
 
         timetable = findViewById(R.id.timetable);
         timetable.setHeaderHighlight(2);
         timetable.setOnStickerSelectEventListener(new TimetableView.OnStickerSelectedListener() {
             @Override
             public void OnStickerSelected(int idx, ArrayList<Schedule> schedules) {
-                Intent i = new Intent(getApplicationContext(), MakeClassActivity.class);
-                i.putExtra("mode",REQUEST_EDIT);
-                i.putExtra("idx", idx);
-                i.putExtra("schedules", schedules);
-                startActivityForResult(i,REQUEST_EDIT);
+                MakeClassFragment makeClassFragment = new MakeClassFragment(getApplicationContext());
+                Bundle bundle = new Bundle(3);
+                bundle.putInt("mode", REQUEST_EDIT);
+                bundle.putInt("idx", idx);
+                bundle.putSerializable("schedules", schedules);
+                makeClassFragment.setArguments(bundle);
+                makeClassFragment.show(getSupportFragmentManager(),"makeClassFragment");
             }
         });
     }
@@ -74,6 +78,13 @@ public class ScheduleActivity extends AppCompatActivity {
                 break;
             case R.id.save_schedule:
                 uploadSchedule();
+                break;
+            case R.id.exampleSave:
+                MakeClassFragment makeClassFragment = new MakeClassFragment(getApplicationContext());
+                Bundle bundle = new Bundle(1);
+                bundle.putInt("mode", REQUEST_ADD);
+                makeClassFragment.setArguments(bundle);
+                makeClassFragment.show(getSupportFragmentManager(),"makeClassFragment");
                 break;
         }
     };
@@ -104,11 +115,15 @@ public class ScheduleActivity extends AppCompatActivity {
         }
     }
 
+    //위와 같이 \" 이스케이프 시퀀스를 통해 따옴표를 나타내면 문자열의 열고 닫음을 표현하는 예약문자로써의 기능이 아닌 따옴표 그 자체로 문자열 안에 포함시킬 수 있습니다.
+    //String example = "\"url\" : \"https://www.naver.com\"";
     public void uploadSchedule(){
         db = FirebaseFirestore.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser(); //파이어 베이스에서 현재 로그인한 유저의 UID
+
+        String scheduleData = timetable.createSaveData();
         Map<String, Object> schedule = new HashMap<>();
-        schedule.put("data", timetable.createSaveData());
+        schedule.put("data", scheduleData);
 
         db.collection("Schedules").document(user.getUid())
                 .set(schedule)
@@ -127,7 +142,7 @@ public class ScheduleActivity extends AppCompatActivity {
                 });
     }
 
-    public void loadSchedule(){
+    public void loadSchedule(){//메인 뷰페이저 프래그먼트에서 스케줄 데이터 로드  timetable.load(savedData);
         if (timetable != null){
             timetable.removeAll();
         }
@@ -149,4 +164,23 @@ public class ScheduleActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onSubmitClassClick(ArrayList<Schedule> schedules) {
+        ArrayList<Schedule> item = schedules;
+        timetable.add(item);
+        uploadSchedule();
+    }
+
+    @Override
+    public void onEditClassClick(ArrayList<Schedule> schedules, int idx) {
+        int id = idx;
+        ArrayList<Schedule> item = schedules;
+        timetable.edit(id, item);
+    }
+
+    @Override
+    public void onDeleteClassClick(int idx) {
+        int id = idx;
+        timetable.remove(idx);
+    }
 }

@@ -17,6 +17,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
+        <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713
+        ca-app-pub-5710808848357990~1031327758-->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="false" />
@@ -65,7 +71,8 @@
             android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar" />
         <activity
             android:name=".schedule.ScheduleActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustNothing"/>
 
         <activity
             android:name=".myInfo.ChangePwd"
