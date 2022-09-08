@@ -39,8 +39,8 @@ public class FreeBoardListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_free_borad_list);
         postRecyclerView = findViewById(R.id.post_recyclerview);
         boardSortTitle = findViewById(R.id.board_sort_title);
+        backBtn = findViewById(R.id.before2);
 
-        backBtn = findViewById(R.id.before_btn);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
