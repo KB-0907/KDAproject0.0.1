@@ -41,9 +41,10 @@ public class ScheduleFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
     private String mParam2;
-    TextView class1, class2;
+    TextView class1, class2, class3;
     int weekDayInt;
-    String[] todayClassData = new String[5];
+    String[] todayClassData = new String[4];
+    String[] todayClassTime = new String[4];
     int a = 0;
 
 
@@ -73,6 +74,8 @@ public class ScheduleFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_schedule, container, false);
         class1 = view.findViewById(R.id.class1);
         class2 = view.findViewById(R.id.class2);
+        class3 = view.findViewById(R.id.class3);
+
         CheckTodayClass();
         return view;
     }
@@ -151,12 +154,6 @@ public class ScheduleFragment extends Fragment {
             for(int k = 0 ; k < arr2.size(); k++){
                 Schedule schedule = new Schedule();
                 JsonObject obj3 = (JsonObject)arr2.get(k);
-                if (obj3.get("day").getAsInt() == weekDayInt){ //파이어베이스에 있는 시간표 요일 데이터와 오늘 요일
-                    todayClassData[a] = (obj3.get("classTitle").getAsString() + obj3.get("classPlace").getAsString());
-                    a = a + 1;
-                    Log.d("-----------------------", todayClassData[0]);
-
-                }
                 schedule.setClassTitle(obj3.get("classTitle").getAsString());
                 schedule.setClassPlace(obj3.get("classPlace").getAsString());
                 schedule.setProfessorName(obj3.get("professorName").getAsString());
@@ -171,6 +168,17 @@ public class ScheduleFragment extends Fragment {
                 endTime.setMinute(obj5.get("minute").getAsInt());
                 schedule.setStartTime(startTime);
                 schedule.setEndTime(endTime);
+                if (obj3.get("day").getAsInt() == weekDayInt){ //파이어베이스에 있는 시간표 요일 데이터와 오늘 요일
+                    //String.format("%02d:%02d", alarm.getHour(), alarm.getMinute());
+                    todayClassData[a] = (obj3.get("classTitle").getAsString() + obj3.get("classPlace").getAsString());
+                    todayClassTime[a] = String.format("%02d:%02d", obj4.get("hour").getAsInt(), obj4.get("minute").getAsInt());
+                            //String.valueOf(obj4.get("hour").getAsInt() + obj4.get("minute").getAsInt());
+
+
+                    a = a + 1;
+                    Log.d("-----------------------", todayClassData[0]);
+
+                }
                 sticker.addSchedule(schedule);
             }
             stickers.put(idx,sticker);
@@ -180,12 +188,15 @@ public class ScheduleFragment extends Fragment {
 
     public void setClassText(){
         if (todayClassData[0] == null && todayClassData[1] == null && todayClassData[2]
-                == null && todayClassData[3] == null && todayClassData[4] == null){
+                == null && todayClassData[3] == null){
             class1.setText("강의 없음");
 
         } else {
-            class1.setText(todayClassData[0]);
-            class2.setText(todayClassData[1]);
+
+            class1.setText(todayClassData[0] + todayClassTime[0]);
+            class2.setText(todayClassData[1] +todayClassTime[1]);
+            class3.setText(todayClassData[2] +todayClassTime[2]);
+
         }
     }
 

@@ -43,7 +43,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MyInfoActivity<ID> extends AppCompatActivity {
+public class MyInfoActivity extends AppCompatActivity {
     TextView withdrawal, Name, StudentID, Department;
     FirebaseAuth mFirebaseAuth;         //파이어베이스 인증처리wal;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -100,23 +100,20 @@ public class MyInfoActivity<ID> extends AppCompatActivity {
 
 
     public void showInfo () {
-        String Name = ((TextView) findViewById(R.id.textView_Name)).toString();
-        String StudentID = ((TextView) findViewById(R.id.textView_student_ID)).toString();
-        String Department = ((TextView) findViewById(R.id.textView_department)).toString();
+        Name = findViewById(R.id.textView_Name);
+        StudentID = findViewById(R.id.textView_student_ID);
+        Department = findViewById(R.id.textView_department);
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("KAD");
 
         mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                /* if (task.isSuccessful()) {
-                    Log.e("firebase", "Name");
-
-                    UserAccount userAccount = new UserAccount(Name , StudentID, Department);
-                    mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(userAccount);
+                if (task.isSuccessful()) {
+                    Log.d("---------------------", String.valueOf(task.getResult().getValue()));
+                    Name.setText(String.valueOf(task.getResult().child("name").getValue()));
+                    StudentID.setText(String.valueOf(task.getResult().child("studentId").getValue()));
 
                 }
-
-                 */
             }
         });
     }

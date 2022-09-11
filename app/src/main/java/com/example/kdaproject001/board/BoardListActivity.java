@@ -29,7 +29,6 @@ public class BoardListActivity extends AppCompatActivity {
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference("KAD");
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +44,6 @@ public class BoardListActivity extends AppCompatActivity {
         findViewById(R.id.move_to_do_btn).setOnClickListener(moveActivityClickListener);
         findViewById(R.id.move_to_grade_planner_btn).setOnClickListener(moveActivityClickListener);
         checkAuth();
-
     }
 
     View.OnClickListener moveActivityClickListener = v -> {
@@ -101,7 +99,6 @@ public class BoardListActivity extends AppCompatActivity {
                 moveToBoard(boardSort);
                 break;
         }
-
     };
 
     private void moveActivity(Class moveClass){
@@ -133,7 +130,6 @@ public class BoardListActivity extends AppCompatActivity {
                         Log.d("인증 확인", "인증");
                         auth = true;
                     }
-
                 }
             }
         });
