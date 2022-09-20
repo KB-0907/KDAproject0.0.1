@@ -20,6 +20,7 @@ import com.example.kdaproject001.account.SendEmail;
 import com.example.kdaproject001.board.BoardListActivity;
 import com.example.kdaproject001.mainViewPager.CreditFragment;
 import com.example.kdaproject001.mainViewPager.ScheduleFragment;
+import com.example.kdaproject001.mainViewPager.ToDoFragment;
 import com.example.kdaproject001.myInfo.MyInfoActivity;
 import com.example.kdaproject001.schedule.ScheduleActivity;
 import com.example.kdaproject001.todo.ToDoActivity;
@@ -92,7 +93,7 @@ public class MainActivity extends AppCompatActivity{
         adView.loadAd(adRequest);
 
         pager = findViewById(R.id.pager);
-        pager.setOffscreenPageLimit(2);
+        pager.setOffscreenPageLimit(3);
 
         MainPagerAdapter mainAdapter = new MainPagerAdapter(getSupportFragmentManager());
 
@@ -101,6 +102,9 @@ public class MainActivity extends AppCompatActivity{
 
         CreditFragment creFragment = new CreditFragment();
         mainAdapter.addItem(creFragment);
+
+        ToDoFragment toFragment = new ToDoFragment();
+        mainAdapter.addItem(toFragment);
 
         pager.setAdapter(mainAdapter);
     }

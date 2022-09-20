@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -36,12 +37,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class ScheduleActivity extends AppCompatActivity implements ClassBottomSheetListener{
     public static final int REQUEST_ADD = 1;
     public static final int REQUEST_EDIT = 2;
     private TimetableView timetable;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseUser user;
+    ImageButton backBtn;
 
 
     @Override
@@ -52,6 +55,14 @@ public class ScheduleActivity extends AppCompatActivity implements ClassBottomSh
         findViewById(R.id.save_schedule).setOnClickListener(viewOnClick);
         findViewById(R.id.add_class_tv).setOnClickListener(viewOnClick);
         findViewById(R.id.exampleSave).setOnClickListener(viewOnClick);
+
+        backBtn = findViewById(R.id.back3_btn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         timetable = findViewById(R.id.timetable);
         timetable.setHeaderHighlight(2);
@@ -65,6 +76,7 @@ public class ScheduleActivity extends AppCompatActivity implements ClassBottomSh
                 bundle.putSerializable("schedules", schedules);
                 makeClassFragment.setArguments(bundle);
                 makeClassFragment.show(getSupportFragmentManager(),"makeClassFragment");
+
             }
         });
     }
@@ -183,4 +195,5 @@ public class ScheduleActivity extends AppCompatActivity implements ClassBottomSh
         int id = idx;
         timetable.remove(idx);
     }
+
 }
