@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.kdaproject001.account.SendEmail;
 import com.example.kdaproject001.board.BoardListActivity;
 import com.example.kdaproject001.mainViewPager.CreditFragment;
 import com.example.kdaproject001.mainViewPager.ScheduleFragment;
@@ -65,6 +66,16 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
+        boolean check = FirebaseAuth.getInstance().getCurrentUser().isEmailVerified();
+        if (check == true){
+            Log.e ("firebase", "인중");
+
+
+        }else {
+            Log.e ("firebase", "인중 안됌");
+        }
 
         makeNotice();
 
@@ -132,6 +143,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(DialogInterface dialog, int id) {
                 Log.e("아아", "아직 이메일 인증 창 미구현");
+                moveActivity(SendEmail.class);
                 finish();
                 // 학교 인증 창으로 전환
             }
@@ -241,8 +253,6 @@ public class MainActivity extends AppCompatActivity{
                     } else {
                         Log.d("인증 확인", "인증");
                         auth = true;
-
-
                     }
 
                 }

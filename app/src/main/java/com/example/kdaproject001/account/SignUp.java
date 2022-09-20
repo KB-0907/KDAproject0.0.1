@@ -1,8 +1,11 @@
 package com.example.kdaproject001.account;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -70,16 +73,28 @@ public class SignUp extends AppCompatActivity {
         String strName = Name.getText().toString();
 
         //  웹메일 아이디가 4자 이상, 비번, 비번확인은 6자 이상,
-        if (strEmail.length() > 16 && strPwd.length() > 5 && strPwdCh.length() > 5 && strStudentId.length() > 9 && strDepartment.length()>4 && strName.length()>1) {
-            if (strPwd.equals(strPwdCh)) { signUpFirebase(strEmail,strPwd); }
-            else {  }
+        if (strEmail.length() > 16 && strPwd.length() > 5 && strPwdCh.length() > 5 && strStudentId.length() > 9 && strDepartment.length()>3 && strName.length()>1) {
+            if (strPwd.equals(strPwdCh)) {
+                signUpFirebase(strEmail,strPwd);
+            }
+            else {
+                startToast("비밀번호가 일치하지 않습니다.");
+            }
         }
-        if (strEmail.length()<=16){ startToast("웹메일 아이디는 최소 4자리 이상입니다."); }
-        else if (strPwd.length()<=5){ startToast("비밀번호는 최소 6자리 이상입니다."); }
-        else if (strStudentId.length()<=9){ startToast("학번은 최소 10자리 이상입니다."); }
-        else if (strDepartment.length()<=4){ startToast("학과는 최소 4글자 이상입니다."); }
-        else { startToast("비밀번호가 일치하지 않습니다."); }
+
+        if (strEmail.length()<=16){
+            startToast("웹메일 아이디는 최소 4자리 이상입니다."); }
+        else if (strPwd.length()<=5){
+            startToast("비밀번호는 최소 6자리 이상입니다."); }
+        else if (strStudentId.length()<=9){
+            startToast("학번은 최소 10자리 이상입니다."); }
+        else if (strDepartment.length()<=4){
+            startToast("학과는 최소 4글자 이상입니다."); }
+
     }
+
+
+
 
     private void signUpFirebase(String email, String password){
         FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();

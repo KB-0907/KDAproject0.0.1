@@ -25,13 +25,12 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp">
 
-            <ImageView
-                android:id="@+id/credit_back_btn"
+            <ImageButton
+                android:id="@+id/backbtn3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:onClick="finishAct"
-                android:src="@drawable/before" />
+                android:background="@drawable/before" />
 
             <TextView
                 android:id="@+id/noticeBoard"

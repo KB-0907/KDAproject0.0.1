@@ -3,6 +3,7 @@ package com.example.kdaproject001.board;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +11,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.kdaproject001.CreditActivity;
-import com.example.kdaproject001.EmailCertification;
+import com.example.kdaproject001.account.Certification;
 import com.example.kdaproject001.R;
 import com.example.kdaproject001.myInfo.MyInfoActivity;
 import com.example.kdaproject001.schedule.ScheduleActivity;
@@ -26,9 +27,11 @@ import com.google.firebase.database.FirebaseDatabase;
 public class BoardListActivity extends AppCompatActivity {
     String boardSort;
     boolean auth;
+    ImageButton backBtn;
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference("KAD");
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,15 @@ public class BoardListActivity extends AppCompatActivity {
         findViewById(R.id.move_to_do_btn).setOnClickListener(moveActivityClickListener);
         findViewById(R.id.move_to_grade_planner_btn).setOnClickListener(moveActivityClickListener);
         checkAuth();
+
+        backBtn = findViewById(R.id.backbtn3);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
     View.OnClickListener moveActivityClickListener = v -> {
@@ -61,7 +73,7 @@ public class BoardListActivity extends AppCompatActivity {
                 if (auth == true){
                     moveActivity(CreditActivity.class);
                 } else {
-                    Intent i = new Intent(getApplicationContext(), EmailCertification.class);
+                    Intent i = new Intent(getApplicationContext(), Certification.class);
                     startActivity(i);
                 }
                 break;
@@ -80,7 +92,6 @@ public class BoardListActivity extends AppCompatActivity {
             case R.id.freeBoard:
                 boardSort = "free";
                 moveToBoard(boardSort);
-
                 break;
             case R.id.academicBoard:
                 boardSort = "academic";
@@ -135,5 +146,4 @@ public class BoardListActivity extends AppCompatActivity {
         });
     }
 
-    public void finishAct() { finish(); }
 }
